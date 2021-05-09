@@ -1,0 +1,25 @@
+.the_page {
+    background-color: #5f8d69;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registrationForm{
+    flex-basis: 20%;
+    background-color: ivory;
+    border-radius: 8px;
+    height: 40vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-height: 768px) {
+    .shrink{
+
+            /*height: 10%;*/
+    }
+}
