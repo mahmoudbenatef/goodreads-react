@@ -1,9 +1,12 @@
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {useEffect, useContext, useReducer, useState} from "react"
 import {authContext} from "../../contexts/authContext";
 import styles from "../../styles/signin.module.css"
 import {ApiServices} from "../../API/ApiServices";
 import {mySessionStorage} from "../../helper/LocalStorge";
+import ErrorComponent from "../reusableComponents/ErrorComponent"
+import {validateAllInputs} from "../../helper/validateFormErrors"
+
 
 export default function LoginComponent() {
     const [user, setUser] = useReducer((oldstate, updates) => ({...oldstate, ...updates}), {
@@ -11,9 +14,38 @@ export default function LoginComponent() {
         password: '',
     })
 
-    const [loginPressed, setloginPressed] = useState(false)
+    const[serverError,setServerError]= useState("")
+    const [userErrors, setUserErrors] = useReducer((oldstate, updates) => ({...oldstate, ...updates}), {
+        email: {
+            isValid: false,
+            isTouched: false,
+            errorMsg: 'email must be in a valid format'
+        },
+        password: {
+            isValid: false, isTouched: false,
+            errorMsg: 'password must be at least 6 characters'
+        }
+    })
+
+    const [loginPressed, setloginPressed] = useState(0)
+
     const authentication = useContext(authContext)
     const history = useHistory();
+
+    useEffect(() => {
+        setServerError("")
+        if (user.email !== '' && /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(user.email)) {
+            setUserErrors({email: {...userErrors.email, isValid: true}})
+        } else if (user.email !== '') {
+            setUserErrors({email: {...userErrors.email, isValid: false, isTouched: true}})
+        }
+        if (user.password !== '' && user.password.length > 5) {
+            setUserErrors({password: {...userErrors.password, isValid: true}})
+        } else if (user.password !== '') {
+            setUserErrors({password: {...userErrors.password, isValid: false, isTouched: true}})
+        }
+    }, [user])
+
     useEffect(() => {
         if (authentication.auth.authed === true && authentication.auth.role === "admin") {
             history.push("/admin");
@@ -27,19 +59,24 @@ export default function LoginComponent() {
     useEffect(() => {
         console.log(authentication.auth)
         if (loginPressed) {
-
-            ApiServices.signin(user)
-                .then(function (response) {
-                                    mySessionStorage.setCurrentUser(response.data.user)
-                                    mySessionStorage.setToken(response.data.token)
-                                    console.log(mySessionStorage.getCurrentUser())
-                                    console.log(mySessionStorage.getToken())
-                                    authentication.setAuth({authed: true, role: mySessionStorage.getCurrentUser().role})
-                    setloginPressed(false)
-                })
-                .catch(err => {
-                console.log(err)
-            })
+            const {valid, newErrors} = validateAllInputs(userErrors)
+            if (valid) {
+                ApiServices.signin(user)
+                    .then(function (response) {
+                        mySessionStorage.setCurrentUser(response.data.user)
+                        mySessionStorage.setToken(response.data.token)
+                        console.log(mySessionStorage.getCurrentUser())
+                        console.log(mySessionStorage.getToken())
+                        authentication.setAuth({authed: true, role: mySessionStorage.getCurrentUser().role})
+                        setloginPressed(false)
+                    })
+                    .catch(err => {
+                        setServerError(err.response.data.message)
+                    })
+            }
+            else {
+                setUserErrors(newErrors)
+            }
         }
 
     }, [loginPressed])
@@ -65,6 +102,12 @@ export default function LoginComponent() {
                         </div>
                     </div>
 
+
+                    {!userErrors.email.isValid && userErrors.email.isTouched &&
+                    <ErrorComponent > {userErrors.email.errorMsg}</ErrorComponent>
+
+                    }
+
                     <div className="row justify-content-center mt-2">
                         <div className="col-md-8">
                             <input type="password" value={user.password} onChange={(e) => {
@@ -75,12 +118,26 @@ export default function LoginComponent() {
                     </div>
 
 
+                    {!userErrors.password.isValid && userErrors.password.isTouched &&
+                    <ErrorComponent > {userErrors.password.errorMsg}</ErrorComponent>
+                    }
+
+                    { serverError !== "" &&
+                    <ErrorComponent > {serverError}</ErrorComponent>
+                    }
+
+
                     <div className="row justify-content-center mt-3 mb-5">
                         <div className="col-md-8 align-items-center">
                             <button type="submit" className={"btn btn-primary align-self-center"} onClick={() => {
-                                setloginPressed(true)
+                                setloginPressed(loginPressed+1)
                             }}>Login
                             </button>
+                        </div>
+                    </div>
+                    <div className="row justify-content-center ">
+                        <div className="col-md-8 align-items-center">
+                            Doesn't have account ?<span className={ "ml-2" }> <Link  to="/register" > register </Link></span>
                         </div>
                     </div>
                     {/*</div>*/}
