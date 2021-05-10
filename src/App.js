@@ -75,9 +75,9 @@ function App(props) {
               <UserHomeComponent />
             </Route>
 
-            {/*<Route path="/">*/}
-            {/*  <RegisterComponent />*/}
-            {/*</Route>*/}
+            <Route exact  path="/">
+              <LoginComponent />
+            </Route>
 
             <Route path="/login">
               <LoginComponent />

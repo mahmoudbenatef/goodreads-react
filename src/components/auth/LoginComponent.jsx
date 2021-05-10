@@ -27,20 +27,17 @@ export default function LoginComponent() {
     useEffect(() => {
         console.log(authentication.auth)
         if (loginPressed) {
+
             ApiServices.signin(user)
-                .then(r => r.json().then(data => ({status: r.status, body: data})))
-                .then(obj => {
-                        if (obj.status === 200) {
-                            mySessionStorage.setCurrentUser(obj.body.user)
-                            mySessionStorage.setToken(obj.body.token)
-                            console.log(mySessionStorage.getCurrentUser())
-                            console.log(mySessionStorage.getToken())
-                            authentication.setAuth({authed: true, role: mySessionStorage.getCurrentUser().role})
-                        }
-                        console.log(obj)
-                        setloginPressed(false)
-                    }
-                ).catch(err => {
+                .then(function (response) {
+                                    mySessionStorage.setCurrentUser(response.data.user)
+                                    mySessionStorage.setToken(response.data.token)
+                                    console.log(mySessionStorage.getCurrentUser())
+                                    console.log(mySessionStorage.getToken())
+                                    authentication.setAuth({authed: true, role: mySessionStorage.getCurrentUser().role})
+                    setloginPressed(false)
+                })
+                .catch(err => {
                 console.log(err)
             })
         }
@@ -76,6 +73,8 @@ export default function LoginComponent() {
                                    aria-describedby="emailHelp"/>
                         </div>
                     </div>
+
+
                     <div className="row justify-content-center mt-3 mb-5">
                         <div className="col-md-8 align-items-center">
                             <button type="submit" className={"btn btn-primary align-self-center"} onClick={() => {
