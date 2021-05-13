@@ -1,13 +1,10 @@
-import {useHistory} from "react-router-dom";
-import {useEffect, useContext, useState, useReducer} from "react"
-import {authContext} from "../../contexts/authContext";
 import axios from "axios";
-import {API} from "../../API/Constants";
-import ErrorComponent from "../reusableComponents/ErrorComponent"
-import {validateAllInputs} from "../../helper/validateFormErrors"
-import {
-    Link
-} from "react-router-dom";
+import { useContext, useEffect, useReducer, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { API } from "../../API/urls";
+import { authContext } from "../../contexts/authContext";
+import { validateAllInputs } from "../../helper/validateFormErrors";
+import ErrorComponent from "../reusableComponents/ErrorComponent";
 export default function LoginComponent() {
     const authentication = useContext(authContext)
     const history = useHistory();
