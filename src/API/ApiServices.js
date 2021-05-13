@@ -1,5 +1,5 @@
-import {API} from "./Constants"
 import axios from 'axios';
+import { API } from "./urls";
 
 export const ApiServices = {
     register(user) {
