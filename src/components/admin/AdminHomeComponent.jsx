@@ -3,11 +3,11 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    useParams,
     useRouteMatch, useHistory
 } from "react-router-dom";
-import AdminBooksComponent from "./AdminBooksComponent";
+import {CategoryProvider} from "../../contexts/categoryContext"
+import BooksComponent from "../adminDashboard/BooksComponent";
+import CategoryComponent from "../adminDashboard/category/CategoryComponent";
 import {authContext} from "../../contexts/authContext";
 export default function AdminHomeComponent(){
     let { path, url } = useRouteMatch();
@@ -29,10 +29,16 @@ export default function AdminHomeComponent(){
 
         <>
             <Switch>
-                <Route path={`${path}/books`}>
-                    <AdminBooksComponent />
+                <Route key={1} path={`${path}/books`}>
+                    <BooksComponent />
                 </Route>
 
+
+                <Route key={2} path={`${path}/categories`}>
+                <CategoryProvider>
+                    <CategoryComponent />
+                </CategoryProvider>
+                </Route>
             </Switch>
         </>
     )

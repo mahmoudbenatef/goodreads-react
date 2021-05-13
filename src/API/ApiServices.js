@@ -21,6 +21,21 @@ export const ApiServices = {
             {
             headers: {'Content-type': 'application/json; charset=UTF-8'}
         })
+    },
+
+    addCategory(category){
+        return axios.post(API.category(),
+            category)
+    },
+    listCategories(){
+        return axios.get(API.category());
+    },
+    deleteCategory(id){
+        return axios.delete(API.category()+id);
+    },
+
+    editCategory(id,name){
+        return axios.put(API.category()+id ,{label:name});
     }
 
 }
