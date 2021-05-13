@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 import { useContext } from "react";
+=======
+import './App.css';
+import {authContext} from "./contexts/authContext"
+import {useContext, useEffect} from "react"
+import {BASE_URL} from "./API/Constants"
+>>>>>>> add autherization headers to admin request
 import {
   BrowserRouter as Router,
   Link,
@@ -15,15 +22,9 @@ import UserHomeComponent from "./components/user/UserHomeComponent";
 import { authContext } from "./contexts/authContext";
 
 function App(props) {
-  // const location = useLocation();
-  const authentication = useContext(authContext);
-  // useEffect(()=>{
-  //   if (mySessionStorage.getCurrentUser())
-  //   {
-  //     authentication.setAuth({authed:true,role:mySessionStorage.getCurrentUser().role})
-  //   }
-  // },[])
-  console.log(authentication);
+  const authentication = useContext(authContext)
+
+  console.log(authentication)
   return (
     <>
       <Router>
