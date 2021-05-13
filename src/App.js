@@ -31,18 +31,22 @@ function App(props) {
   return (
     <>
       <Router>
-        <div className="d-flex flex-column min-vh-100">
+        <div className="d-flex flex-column min-vh-100 bg-light">
           {
             authentication.auth.authed === true&& authentication.auth.role === "admin" &&
             // location.pathname !== "register" &&
                 <>
           <nav>
             <ul>
-              <li>
+              <li key={1}>
                 <Link to="/admin">Admin</Link>
               </li>
-              <li>
+              <li key={2}>
                 <Link to="/admin/books">admin books</Link>
+              </li>
+
+              <li key={3}>
+                <Link to="/admin/categories">Categories</Link>
               </li>
             </ul>
           </nav>
