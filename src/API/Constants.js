@@ -1,3 +1,4 @@
+import  {mySessionStorage} from "../helper/LocalStorge"
 
 export const BASE_URL = "http://localhost:3000";
 export const API = {
@@ -5,5 +6,6 @@ export const API = {
     signin: () => `${BASE_URL}/users/signin`,
     getUsers: () => `${BASE_URL}/users/`,
     category:()=> `${BASE_URL}/category/`,
+    token:()=> mySessionStorage.getToken()
 
 };

@@ -2,7 +2,6 @@ import './App.css';
 import {authContext} from "./contexts/authContext"
 import {useContext, useEffect} from "react"
 import {BASE_URL} from "./API/Constants"
-import  {mySessionStorage} from "./helper/LocalStorge"
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,14 +18,8 @@ import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 
 function App(props) {
-  // const location = useLocation();
   const authentication = useContext(authContext)
-  // useEffect(()=>{
-  //   if (mySessionStorage.getCurrentUser())
-  //   {
-  //     authentication.setAuth({authed:true,role:mySessionStorage.getCurrentUser().role})
-  //   }
-  // },[])
+
   console.log(authentication)
   return (
     <>
