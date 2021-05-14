@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import AdminBooks from "./components/admin/AdminBooksComponent.jsx";
+import AdminBooks from "./components/adminDashboard/BooksComponent";
 import { AuthProvider } from "./contexts/authContext";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";

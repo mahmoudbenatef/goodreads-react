@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import authorService from "../../API/authorServices";
 import bookServiece from "../../API/bookService";
 import categoryService from "../../API/categoryServices";
-import BookFormComponent from "./BookFormComponent";
+import BookFormComponent from "../admin/BookFormComponent";
 export default function AdminBooksComponent() {
   // TODO: 1) create BookFormComponent,
   // TODO: 2) table to list all books,
@@ -44,7 +44,6 @@ export default function AdminBooksComponent() {
   // add new book
   const addNewBook = async (newBook) => {
     console.log(newBook);
-    setErrors({});
     const response = await bookServiece.addNewBook(newBook);
 
     if (response.status === 201) setBooks((old) => old.concat(response.data));
@@ -60,14 +59,15 @@ export default function AdminBooksComponent() {
         <div>
           <ul>
             {books.map((book) => (
-              <li>{book.name}</li>
+              <li>
+                {book.name} {book.image}
+              </li>
             ))}
           </ul>
           <BookFormComponent
             authors={authors}
             categories={categories}
             onSubmit={addNewBook}
-            errors={errors}
           />
         </div>
       )}
