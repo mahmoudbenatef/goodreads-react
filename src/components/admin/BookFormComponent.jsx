@@ -11,6 +11,7 @@ export default function BookFormComponent({
   categories,
   buttonTitle,
   buttonClassName,
+  buttonIcon,
   onSubmit,
 }) {
   const [book, setBook] = useState({
@@ -95,7 +96,7 @@ export default function BookFormComponent({
   return (
     <>
       <button type="button" className={buttonClassName} onClick={handleOpen}>
-        {buttonTitle}
+        {buttonIcon || buttonTitle}
       </button>
       <Modal
         open={open}

@@ -1,3 +1,5 @@
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 import { useEffect, useState } from "react";
 import authorService from "../../API/authorServices";
 import bookServiece from "../../API/bookService";
@@ -51,11 +53,12 @@ export default function AdminBooksComponent() {
   };
 
   const editBook = (updatedBook) => {
-    console.log(updatedBook);
+    console.log(updatedBook, "\n updated book");
   };
 
-  const handleDeleteBook = (book) => {
-    console.log(book);
+  const handleDeleteBook = (deletedBook) => {
+    const updatedBooks = books.filter((book) => book._id != deletedBook._id);
+    setBooks([...updatedBooks]);
   };
   return (
     <>
@@ -94,18 +97,16 @@ export default function AdminBooksComponent() {
                     <BookFormComponent
                       updatedbook={book}
                       buttonTitle="Edit"
+                      buttonIcon={<EditIcon fontSize="small" />}
                       buttonClassName="btn btn-warning btn-sm"
                       authors={authors}
                       categories={categories}
                       onSubmit={editBook}
                     />
                     {"  "}
-                    <button
-                      onClick={() => handleDeleteBook(book)}
-                      className="btn btn-danger btn-sm"
-                    >
-                      Delete
-                    </button>
+                    <span className="btn btn-sm btn-danger">
+                      <DeleteIcon onClick={() => handleDeleteBook(book)} />
+                    </span>
                   </td>
                 </tr>
               ))}
