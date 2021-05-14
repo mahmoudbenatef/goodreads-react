@@ -7,11 +7,16 @@ export default function ({category, setCatgory}) {
     const catContext = useContext(categoryContext)
     const [errorMsg, setErrorMsg] = useState('')
     const [editedcategory, setEditedCatgory] = useState(0)
+
     useEffect(() => {
         setErrorMsg("")
     }, [
         category.value.label
     ])
+
+
+
+    
     useEffect(() => {
         let temp = {...category}
         temp.value.label = ''
@@ -19,6 +24,10 @@ export default function ({category, setCatgory}) {
         setCatgory(temp)
 
     }, [catContext.newOneAdded])
+
+
+
+
     useEffect(() => {
         if (editedcategory) {
             console.log("child add new cat")

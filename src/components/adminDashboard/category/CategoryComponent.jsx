@@ -15,6 +15,7 @@ export default function () {
                     </div>
                     <EditCategoryConponent category={category} setCatgory={setCatgory}/>
                     <ListCategoriesComponent  changeState={setCatgory}/>
+
                 </div>
             </div>
 
