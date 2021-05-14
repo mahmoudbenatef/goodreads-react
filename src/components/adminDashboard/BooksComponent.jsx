@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import authorService from "../../API/authorServices";
 import bookServiece from "../../API/bookService";
 import categoryService from "../../API/categoryServices";
+import statusCode from "../../helper/statusCode";
 import BookFormComponent from "../admin/BookFormComponent";
 export default function AdminBooksComponent() {
   // TODO: 1) create BookFormComponent,
@@ -48,15 +49,22 @@ export default function AdminBooksComponent() {
     console.log(newBook);
     const response = await bookServiece.addNewBook(newBook);
 
-    if (response.status === 201) setBooks((old) => old.concat(response.data));
-    if (response.status === 400) setErrors(response.data);
+    if (response.status === statusCode.Created)
+      setBooks((old) => old.concat(response.data));
+    if (response.status === statusCode.BadRequest) setErrors(response.data);
   };
 
   const editBook = (updatedBook) => {
     console.log(updatedBook, "\n updated book");
   };
 
-  const handleDeleteBook = (deletedBook) => {
+  const handleDeleteBook = async (deletedBook) => {
+    const response = await bookServiece.deleteBook(deletedBook._id);
+
+    // in case there is a server problem
+    if (response.status != statusCode.NoContent)
+      return alert("Somthing went wronge Please try again Later");
+
     const updatedBooks = books.filter((book) => book._id != deletedBook._id);
     setBooks([...updatedBooks]);
   };

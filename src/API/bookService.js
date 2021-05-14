@@ -11,4 +11,8 @@ export default {
       return error.response;
     }
   },
+
+  async deleteBook(bookId) {
+    return await axios.delete(`${booksURL.deleteBook}/${bookId}`);
+  },
 };
