@@ -70,6 +70,7 @@ export default function AdminBooksComponent() {
               authors={authors}
               categories={categories}
               onSubmit={addNewBook}
+              buttonTitle="Add New "
             />
           </div>
           <table class="table">
