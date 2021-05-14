@@ -49,6 +49,14 @@ export default function AdminBooksComponent() {
     if (response.status === 201) setBooks((old) => old.concat(response.data));
     if (response.status === 400) setErrors(response.data);
   };
+
+  const editBook = (updatedBook) => {
+    console.log(updatedBook);
+  };
+
+  const handleDeleteBook = (book) => {
+    console.log(book);
+  };
   return (
     <>
       {loading ? (
@@ -56,19 +64,52 @@ export default function AdminBooksComponent() {
           <h1>Loading</h1>
         </div>
       ) : (
-        <div>
-          <ul>
-            {books.map((book) => (
-              <li>
-                {book.name} {book.image}
-              </li>
-            ))}
-          </ul>
-          <BookFormComponent
-            authors={authors}
-            categories={categories}
-            onSubmit={addNewBook}
-          />
+        <div className="container justify-content-center mt-3">
+          <div className="mt-5  mb-3 float-end ">
+            <BookFormComponent
+              authors={authors}
+              categories={categories}
+              onSubmit={addNewBook}
+            />
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Author</th>
+                <th scope="col">Category</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((book, index) => (
+                <tr>
+                  <td>{index + 1}</td>
+                  <td>{book.name}</td>
+                  <td>{book.author.firstname}</td>
+                  <td>{book.category.label}</td>
+                  <td>
+                    <BookFormComponent
+                      updatedbook={book}
+                      buttonTitle="Edit"
+                      buttonClassName="btn btn-warning btn-sm"
+                      authors={authors}
+                      categories={categories}
+                      onSubmit={editBook}
+                    />
+                    {"  "}
+                    <button
+                      onClick={() => handleDeleteBook(book)}
+                      className="btn btn-danger btn-sm"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </>

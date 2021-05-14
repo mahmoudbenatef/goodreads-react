@@ -21,6 +21,11 @@ export default function BookFormComponent({
     image: "",
   });
 
+  // handleGivenBookToUpdate
+  useEffect(() => {
+    if (updatedbook) setBook({ ...updatedbook });
+  }, []);
+
   const [errors, setErrors] = useState({});
 
   // open modal
@@ -34,7 +39,6 @@ export default function BookFormComponent({
   // handle close modal
   const handleClose = () => {
     setOpen(false);
-    resetForm();
   };
 
   const resetForm = () => {
@@ -46,10 +50,6 @@ export default function BookFormComponent({
       category: { label: "" },
     });
   };
-  // handleGivenBookToUpdate
-  useEffect(() => {
-    if (updatedbook) setBook({ ...updatedbook });
-  }, []);
 
   // if not passed assign as default
   buttonTitle = buttonTitle ?? "Create";
@@ -78,7 +78,6 @@ export default function BookFormComponent({
     isValidForm((err) => {
       // rais Error if exsit
       if (err) return setErrors(err);
-      console.log("submitting form");
 
       // use form data object to carry the file input
       const form = new FormData();
@@ -173,11 +172,11 @@ export default function BookFormComponent({
               <option></option>
               {authors.map((auth) => (
                 <option
-                  selected={book.author.name === auth.name}
+                  selected={book.author.firstname === auth.firstname}
                   value={auth._id}
                   key={auth._id}
                 >
-                  {auth.firstname}
+                  {auth.firstname} {book.author.firstname === auth.firstname}
                 </option>
               ))}
             </select>
@@ -194,7 +193,6 @@ export default function BookFormComponent({
             id="categories"
             className="form-select"
             required
-            value={book.category.label}
             onChange={(e) =>
               setBook((oldBook) => ({ ...oldBook, category: e.target.value }))
             }
@@ -203,7 +201,7 @@ export default function BookFormComponent({
 
             {categories.map((cat) => (
               <option
-                selected={book.category && book.category.label === cat.label}
+                selected={book.category.label === cat.label}
                 value={cat._id}
                 key={cat._id}
               >
