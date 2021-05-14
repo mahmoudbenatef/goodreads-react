@@ -1,6 +1,6 @@
-import { api } from "./urls";
+import { API } from "./urls";
 export const BookService =  {
   rate(userId, bookId, rating) {
-    return api.post(`/books/${bookId}/rate`, { user: userId, rating: rating });
+    return API.post(`/books/${bookId}/rate`, { user: userId, rating: rating });
   },
 };
