@@ -11,10 +11,10 @@ export default function () {
             <div className="row justify-content-center w-100 p-3 bg-light rounded-3">
                 <div className="row justify-content-center mt-5 flex-xl-shrink-2">
                     <div className="col-md-12 flex-xl-shrink-2">
-                        <h1> Add new category </h1>
+                        <h1> Categories </h1>
                     </div>
                     <EditCategoryConponent category={category} setCatgory={setCatgory}/>
-                    <ListCategoriesComponent changeState={setCatgory}/>
+                    <ListCategoriesComponent  changeState={setCatgory}/>
                 </div>
             </div>
 

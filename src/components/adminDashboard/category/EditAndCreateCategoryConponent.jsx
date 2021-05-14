@@ -43,7 +43,6 @@ export default function ({category, setCatgory}) {
                         catContext.setNewOneAdded(catContext.newOneAdded + 1)
                     })
                     .catch(err => {
-
                             if ('driver' in err.response.data) {
                                 setErrorMsg("category label must be unique ")
                             } else {
@@ -51,7 +50,6 @@ export default function ({category, setCatgory}) {
                             }
                         }
                     )
-
             }
         }
     }, [editedcategory])
