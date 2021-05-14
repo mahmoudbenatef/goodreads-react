@@ -1,5 +1,4 @@
-import {useContext, useEffect} from "react"
-import {BASE_URL} from "./API/urls"
+import { useContext } from "react";
 import {
   BrowserRouter as Router,
   Link,
@@ -7,6 +6,7 @@ import {
   Route,
   Switch
 } from "react-router-dom";
+import { BASE_URL } from "./API/urls";
 import "./App.css";
 import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";

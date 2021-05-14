@@ -1,14 +1,12 @@
-import {useEffect,useContext} from "react"
+import { useContext, useEffect } from "react";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    useRouteMatch, useHistory
+    Route, Switch,
+    useHistory, useRouteMatch
 } from "react-router-dom";
-import {CategoryProvider} from "../../contexts/categoryContext"
+import { authContext } from "../../contexts/authContext";
+import { CategoryProvider } from "../../contexts/categoryContext";
 import BooksComponent from "../adminDashboard/BooksComponent";
 import CategoryComponent from "../adminDashboard/category/CategoryComponent";
-import {authContext} from "../../contexts/authContext";
 export default function AdminHomeComponent(){
     let { path, url } = useRouteMatch();
     const authentication = useContext(authContext)
