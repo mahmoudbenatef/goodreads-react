@@ -69,7 +69,7 @@ function App(props) {
               <UserHomeComponent />
             </Route>
             <Route exact path="/">
-              <LoginComponent />
+              <LoginComponent parent="home"/>
             </Route>
             <Route path="/login">
               <LoginComponent />
