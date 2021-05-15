@@ -67,6 +67,15 @@ export default function RegisterComponent({ parent }) {
   // validate effect
   useEffect(() => {
     setServerError("");
+    setUserErrors({
+      firstname: { ...userErrors.firstname, isTouched: false },
+      lastname: { ...userErrors.lastname, isTouched: false },
+      email: { ...userErrors.email, isTouched: false },
+      password: { ...userErrors.password, isTouched: false },
+      confirm_password: { ...userErrors.confirm_password, isTouched: false },
+      gender: { ...userErrors.gender, isTouched: false },
+      avatar: { ...userErrors.avatar, isTouched: false },
+    });
     // console.log(userErrors)
     if (user.firstname !== "" && user.firstname.length > 2) {
       setUserErrors({ firstname: { ...userErrors.firstname, isValid: true } });
@@ -174,9 +183,12 @@ export default function RegisterComponent({ parent }) {
   }, [registerPressed]);
 
   return parent === "home" ? (
-    <div className={"d-flex flex-column min-vh-100 align-items-center "}>
-      <div className="row justify-content-center mt-2">
-        <div className="col-md-7">
+    <div className={"d-flex flex-column min-vh-100 "}>
+      <div className="row  justify-content-center  align-items-baseline">
+      <div className="col-md-2 mt-2" style={{ textAlign:"right" }}>
+          <label>First name</label>
+        </div>
+        <div className="col-md-6 mt-2">
           <input
             type="text"
             value={user.firstname}
@@ -184,137 +196,176 @@ export default function RegisterComponent({ parent }) {
               setUser({ firstname: e.target.value });
             }}
             className="form-control"
-            id="exampleInputEmail1"
-            placeholder={"first name"}
+            placeholder={"First name"}
+          />
+        </div>
+      </div>
+      <div className="row justify-content-center mt-1 align-items-baseline">
+        <div className="col-md-2" style={{ textAlign:"right" }}>
+          <label >
+            Last name
+          </label>
+        </div>
+        <div className="col-md-6">
+          <input
+            type="text"
+            value={user.lastname}
+            onChange={(e) => {
+              setUser({ lastname: e.target.value });
+            }}
+            className="form-control"
+            placeholder={"Last name"}
+          />
+        </div>
+      </div>
+      <div className="row justify-content-center mt-1 align-items-baseline">
+        <div style={{ textAlign:"right" }} className="col-md-2">
+          <label >Email</label>
+        </div>
+        <div className="col-md-6 ">
+          <input
+            type="email"
+            value={user.email}
+            onChange={(e) => {
+              setUser({ email: e.target.value });
+            }}
+            className="form-control"
+            placeholder={"Email"}
+          />
+        </div>
+      </div>
+      <div className="row justify-content-center mt-1 align-items-baseline">
+      <div className="col-md-2" style={{ textAlign:"right" }}>
+          <label>Password</label>
+        </div>
+        <div className="col-md-6 ">
+          <input
+            type="password"
+            value={user.password}
+            onChange={(e) => {
+              setUser({ password: e.target.value });
+            }}
+            className="form-control"
+            placeholder={"Password"}
+          />
+        </div>
+      </div>
+      <div className="row justify-content-center mt-1 align-items-baseline">
+        <div className="col-md-2"></div>
+        <div className="col-md-6 ">
+          <input
+            type="password"
+            value={user.confirm_password}
+            onChange={(e) => {
+              setUser({ confirm_password: e.target.value });
+            }}
+            className="form-control"
+            placeholder={"Confirm password"}
+          />
+        </div>
+      </div>
+      <div className="row justify-content-center mt-1 align-items-baseline">
+      <div className="col-md-2" style={{ textAlign:"right" }}>
+          <label>Gender</label>
+        </div>
+        <div className="col-md-6 ">
+          <select
+            className="form-select"
+            value={user.gender}
+            onChange={(e) => {
+              setUser({ gender: e.target.value });
+            }}
+          >
+            <option value={""}> Gender</option>
+            <option value={"Male"}> Male</option>
+            <option value={"Female"}> Female</option>
+          </select>
+        </div>
+      </div>
+      <div className="row justify-content-center mt-1 align-items-baseline">
+      <div className="col-md-2" style={{ textAlign:"right" }}>
+          <label>Avatar</label>
+        </div>
+        <div className="col-md-6 ">
+          <input
+            type="file"
+            onChange={(e) => {
+              setUser({ avatar: e.target.files[0] });
+            }}
+            className="form-control"
+            placeholder={"password"}
             aria-describedby="emailHelp"
           />
         </div>
-        <div className="row justify-content-center mt-2">
-          <div className="col-md-7">
-            <input
-              type="text"
-              value={user.lastname}
-              onChange={(e) => {
-                setUser({ lastname: e.target.value });
-              }}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder={"last name"}
-              aria-describedby="emailHelp"
-            />
-          </div>
-        </div>
-        <div className="row justify-content-center mt-2">
-          <div className="col-md-7">
-            <input
-              type="email"
-              value={user.email}
-              onChange={(e) => {
-                setUser({ email: e.target.value });
-              }}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder={"email"}
-              aria-describedby="emailHelp"
-            />
-          </div>
-        </div>
-        <div className="row justify-content-center mt-2">
-          <div className="col-md-7">
-            <input
-              type="password"
-              value={user.password}
-              onChange={(e) => {
-                setUser({ password: e.target.value });
-              }}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder={"password"}
-              aria-describedby="emailHelp"
-            />
-          </div>
-        </div>
-        <div className="row justify-content-center mt-2">
-          <div className="col-md-7">
-            <input
-              type="password"
-              value={user.confirm_password}
-              onChange={(e) => {
-                setUser({ confirm_password: e.target.value });
-              }}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder={"confirm password"}
-              aria-describedby="emailHelp"
-            />
-          </div>
-        </div>
-        <div className="row justify-content-center mt-2">
-          <div className="col-md-7">
-            <select
-              className="form-select"
-              value={user.gender}
-              onChange={(e) => {
-                setUser({ gender: e.target.value });
-              }}
-            >
-              <option value={""}> select gender</option>
-              <option value={"Male"}> Male</option>
-              <option value={"Female"}> Female</option>
-            </select>
-          </div>
-        </div>
-        <div className="row justify-content-center mt-2">
-          <div className="col-md-7">
-            <input
-              type="file"
-              onChange={(e) => {
-                // setAvatar(e.target.files[0])
-                setUser({ avatar: e.target.files[0] });
-              }}
-              className="form-control"
-              placeholder={"password"}
-              aria-describedby="emailHelp"
-            />
-          </div>
-        </div>
-        <div className="row justify-content-center mt-3">
-          <div className="col-md-2 align-items-center">
-            <button
-              type="submit"
-              className="btn align-self-center"
-              style={{backgroundColor: "#3d6b8c",color:"white",width:"8rem"}}
-              onClick={() => {
-                setRegisterPressed(registerPressed + 1);
-              }}
-            >
-              Register
-            </button>
-          </div>
-        </div>
-        {!userErrors.firstname.isValid && userErrors.firstname.isTouched && (
-          <p style={{textAlign:"center",margin:"0",color: "#711D1D"}} > {userErrors.firstname.errorMsg}</p>
-        )}
-        {!userErrors.lastname.isValid && userErrors.lastname.isTouched && (
-          <p style={{textAlign:"center",margin:"0",color: "#711D1D"}}> {userErrors.lastname.errorMsg}</p>
-        )}
-        {!userErrors.email.isValid && userErrors.email.isTouched && (
-          <p style={{textAlign:"center",margin:"0",color: "#711D1D"}}> {userErrors.email.errorMsg}</p>
-        )}
-        {!userErrors.password.isValid && userErrors.password.isTouched && (
-          <p style={{textAlign:"center",margin:"0",color: "#711D1D"}}> {userErrors.password.errorMsg}</p>
-        )}
-        {!userErrors.confirm_password.isValid && userErrors.confirm_password.isTouched && (
-          <p style={{textAlign:"center",margin:"0",color: "#711D1D"}}>{userErrors.confirm_password.errorMsg}</p>
-        )}
-        {!userErrors.gender.isValid && userErrors.gender.isTouched && (
-          <p style={{textAlign:"center",margin:"0",color: "#711D1D"}}> {userErrors.gender.errorMsg}</p>
-        )}
-        {!userErrors.avatar.isValid && userErrors.avatar.isTouched && (
-          <p style={{textAlign:"center",margin:"0",color: "#711D1D"}}> {userErrors.avatar.errorMsg}</p>
-        )}
-        {serverError !== "" && <p> {serverError}</p>}
       </div>
+      <div className="row justify-content-center mt-3 align-items-baseline">
+        <div className="col-md-5"></div>
+        <div className="col-md-6 ">
+          <button
+            type="submit"
+            className="btn align-self-center"
+            style={{
+              backgroundColor: "#3d6b8c",
+              color: "white",
+              width: "8rem",
+            }}
+            onClick={() => {
+              setRegisterPressed(registerPressed + 1);
+            }}
+          >
+            Register
+          </button>
+        </div>
+      </div>
+      <div className="row justify-content-center mt-1 align-items-baseline">
+      <div className="col-md-2" style={{ textAlign:"right" }}>
+        </div>
+        <div className="col-md-10 ">
+      {!userErrors.firstname.isValid && userErrors.firstname.isTouched && (
+        <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
+          {" "}
+          {userErrors.firstname.errorMsg}
+        </p>
+      )}
+      {!userErrors.lastname.isValid && userErrors.lastname.isTouched && (
+        <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
+          {" "}
+          {userErrors.lastname.errorMsg}
+        </p>
+      )}
+      {!userErrors.email.isValid && userErrors.email.isTouched && (
+        <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
+          {" "}
+          {userErrors.email.errorMsg}
+        </p>
+      )}
+      {!userErrors.password.isValid && userErrors.password.isTouched && (
+        <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
+          {" "}
+          {userErrors.password.errorMsg}
+        </p>
+      )}
+      {!userErrors.confirm_password.isValid &&
+        userErrors.confirm_password.isTouched && (
+          <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
+            {userErrors.confirm_password.errorMsg}
+          </p>
+        )}
+      {!userErrors.gender.isValid && userErrors.gender.isTouched && (
+        <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
+          {" "}
+          {userErrors.gender.errorMsg}
+        </p>
+      )}
+      {!userErrors.avatar.isValid && userErrors.avatar.isTouched && (
+        <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
+          {" "}
+          {userErrors.avatar.errorMsg}
+        </p>
+      )}
+      {serverError !== "" && <p> {serverError}</p>}
+    </div>
+    </div>
     </div>
   ) : (
     <>

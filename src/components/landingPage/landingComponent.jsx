@@ -1,11 +1,13 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Background from "../assets/e.png";
-import logo from "../assets/logo.png";
-import { authContext } from "../contexts/authContext";
-import LoginComponent from "./auth/LoginComponent";
-import RegisterComponent from "./auth/RegisterComponent";
+import Background from "../../assets/e.png";
+import logo from "../../assets/logo.png";
+import { authContext } from "../../contexts/authContext";
+import LoginComponent from "../auth/LoginComponent";
+import RegisterComponent from "../auth/RegisterComponent";
+import CategoriesComponent from "./categories";
+
 export default function LandingComponent({ parent = "login" }) {
   const authentication = useContext(authContext);
   const history = useHistory();
@@ -36,7 +38,7 @@ export default function LandingComponent({ parent = "login" }) {
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       width: "100%",
-      margin:"0"
+      margin:"0",
     },
     regHeader: {
       color:"black",
@@ -47,13 +49,20 @@ export default function LandingComponent({ parent = "login" }) {
   const classes = useStyles();
 
   return (
+    <>
     <div className={classes.header}>
       <img src={logo} style={{ width: "17rem" ,marginLeft:"1rem"}} />
       <div className={classes.login}>
-        <LoginComponent className={classes.login} parent="home" />
+        <div style={{ height: "5rem"}}>
+        <LoginComponent parent="home" />
+        </div>
         <h3 className={classes.regHeader}>New here? Create an account </h3>
         <RegisterComponent parent="home" />
       </div>
     </div>
+    <div className={classes.categories}>
+    <CategoriesComponent></CategoriesComponent>
+    </div>
+    </>
   );
 }

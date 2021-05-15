@@ -11,7 +11,7 @@ import "./App.css";
 import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
-import LandingComponent from "./components/landingComponent";
+import LandingComponent from "./components/landingPage/landingComponent";
 import UserHomeComponent from "./components/user/UserHomeComponent";
 import { authContext } from "./contexts/authContext";
 
