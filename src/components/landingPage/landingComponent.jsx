@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Background from "../../assets/e.png";
+import headerBg from "../../assets/e.png";
 import logo from "../../assets/logo.png";
 import { authContext } from "../../contexts/authContext";
 import LoginComponent from "../auth/LoginComponent";
@@ -34,7 +34,7 @@ export default function LandingComponent({ parent = "login" }) {
       overflow: "hidden",
     },
     header: {
-      backgroundImage: `url(${Background})`,
+      backgroundImage: `url(${headerBg})`,
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       width: "100%",
@@ -43,7 +43,11 @@ export default function LandingComponent({ parent = "login" }) {
     regHeader: {
       color:"black",
       textAlign:"center",
-      marginTop: '5rem'
+      marginTop: '5rem',
+      marginLeft: "3rem"
+    },
+    categories:{
+      backgroundColor:"white"
     }
   }));
   const classes = useStyles();

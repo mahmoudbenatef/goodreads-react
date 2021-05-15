@@ -185,7 +185,7 @@ export default function RegisterComponent({ parent }) {
   return parent === "home" ? (
     <div className={"d-flex flex-column min-vh-100 "}>
       <div className="row  justify-content-center  align-items-baseline">
-      <div className="col-md-2 mt-2" style={{ textAlign:"right" }}>
+      <div className="col-md-3 mt-2" style={{ textAlign:"right" }}>
           <label>First name</label>
         </div>
         <div className="col-md-6 mt-2">
@@ -201,7 +201,7 @@ export default function RegisterComponent({ parent }) {
         </div>
       </div>
       <div className="row justify-content-center mt-1 align-items-baseline">
-        <div className="col-md-2" style={{ textAlign:"right" }}>
+        <div className="col-md-3" style={{ textAlign:"right" }}>
           <label >
             Last name
           </label>
@@ -218,8 +218,8 @@ export default function RegisterComponent({ parent }) {
           />
         </div>
       </div>
-      <div className="row justify-content-center mt-1 align-items-baseline">
-        <div style={{ textAlign:"right" }} className="col-md-2">
+      <div className="row justify-content-center mt-1 mr-1 align-items-baseline">
+        <div style={{ textAlign:"right" }} className="col-md-3">
           <label >Email</label>
         </div>
         <div className="col-md-6 ">
@@ -235,7 +235,7 @@ export default function RegisterComponent({ parent }) {
         </div>
       </div>
       <div className="row justify-content-center mt-1 align-items-baseline">
-      <div className="col-md-2" style={{ textAlign:"right" }}>
+      <div className="col-md-3" style={{ textAlign:"right" }}>
           <label>Password</label>
         </div>
         <div className="col-md-6 ">
@@ -251,7 +251,7 @@ export default function RegisterComponent({ parent }) {
         </div>
       </div>
       <div className="row justify-content-center mt-1 align-items-baseline">
-        <div className="col-md-2"></div>
+        <div className="col-md-3"></div>
         <div className="col-md-6 ">
           <input
             type="password"
@@ -265,7 +265,7 @@ export default function RegisterComponent({ parent }) {
         </div>
       </div>
       <div className="row justify-content-center mt-1 align-items-baseline">
-      <div className="col-md-2" style={{ textAlign:"right" }}>
+      <div className="col-md-3" style={{ textAlign:"right" }}>
           <label>Gender</label>
         </div>
         <div className="col-md-6 ">
@@ -283,7 +283,7 @@ export default function RegisterComponent({ parent }) {
         </div>
       </div>
       <div className="row justify-content-center mt-1 align-items-baseline">
-      <div className="col-md-2" style={{ textAlign:"right" }}>
+      <div className="col-md-3" style={{ textAlign:"right" }}>
           <label>Avatar</label>
         </div>
         <div className="col-md-6 ">
@@ -299,8 +299,8 @@ export default function RegisterComponent({ parent }) {
         </div>
       </div>
       <div className="row justify-content-center mt-3 align-items-baseline">
-        <div className="col-md-5"></div>
-        <div className="col-md-6 ">
+        <div className="col-md-6"></div>
+        <div className="col-md-6 mb-3">
           <button
             type="submit"
             className="btn align-self-center"
@@ -318,9 +318,9 @@ export default function RegisterComponent({ parent }) {
         </div>
       </div>
       <div className="row justify-content-center mt-1 align-items-baseline">
-      <div className="col-md-2" style={{ textAlign:"right" }}>
+      <div className="col-md-3" style={{ textAlign:"right" }}>
         </div>
-        <div className="col-md-10 ">
+        <div className="col-md-8 ">
       {!userErrors.firstname.isValid && userErrors.firstname.isTouched && (
         <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
           {" "}

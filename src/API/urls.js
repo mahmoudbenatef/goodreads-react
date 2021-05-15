@@ -13,3 +13,7 @@ export const BOOK_API = {
     rate: (bookId) => `${BASE_URL}/books/${bookId}/rate`,
     shelve: (bookId) => `${BASE_URL}/books/${bookId}/shelve`
 };
+
+export const CATEGORY_API = {
+    popular: () => `${BASE_URL}/category/popular`,
+};
