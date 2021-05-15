@@ -112,12 +112,12 @@ useEffect(() => {
                   
                   placeholder="enter your first name"/>
 
-{ !isValid.firstname  ? 
+{ !isValid.firstname  &&  props.label == "add" ? 
 
 <ErrorComponent > {errorMessages.firstname}</ErrorComponent> : ""
 
 }
-{ formData.firstname.trim() === ""  ? 
+{ formData.firstname.trim() === "" &&  props.label !== "add"  ? 
 
 <ErrorComponent > {errorMessages.firstname}</ErrorComponent> : ""
 
@@ -135,12 +135,12 @@ useEffect(() => {
                   }}
                    className="form-control"  placeholder="enter your last name"/>
 
-{ !isValid.lastname  ? 
+{ !isValid.lastname &&  props.label == "add" ? 
 
 <ErrorComponent > {errorMessages.lastname}</ErrorComponent> : ""
 
 }
-{ formData.lastname.trim() === ""  ? 
+{ (formData.lastname.trim() === "" &&  props.label !== "add" )  ? 
 
 <ErrorComponent > {errorMessages.lastname}</ErrorComponent> : ""
 
