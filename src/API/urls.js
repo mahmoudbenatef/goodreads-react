@@ -21,9 +21,7 @@ export const BOOK_API = {
 };
 
 const booksURL = {
-  getAllBooks: `${BASE_URL}/books`,
-  addNewBook: `${BASE_URL}/books`,
-  deleteBook: `${BASE_URL}/books`,
+  books: `${BASE_URL}/books`,
 };
 
 const categoriesURL = {

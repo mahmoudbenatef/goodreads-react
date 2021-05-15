@@ -70,7 +70,6 @@ export default function BookFormComponent({
     if (book.image === "") errors["image"] = "Book Image is required!";
 
     if (isEmptyObject(errors)) errors = null;
-    console.log(errors);
 
     return cb(errors);
   };
@@ -82,7 +81,16 @@ export default function BookFormComponent({
 
       // use form data object to carry the file input
       const form = new FormData();
-      Object.entries(book).map(([key, value]) => form.append(key, value));
+      Object.entries(book).map(([key, value]) => {
+        // assign the id only for author, and category if updated book
+        if (
+          (updatedbook && key === "author") ||
+          (updatedbook && key === "category")
+        ) {
+          return form.append(key, value._id);
+        }
+        return form.append(key, value);
+      });
 
       // submit form
       onSubmit(form);

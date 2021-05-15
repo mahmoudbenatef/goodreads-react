@@ -7,22 +7,11 @@ import categoryService from "../../API/categoryServices";
 import statusCode from "../../helper/statusCode";
 import BookFormComponent from "../admin/BookFormComponent";
 export default function AdminBooksComponent() {
-  // TODO: 1) create BookFormComponent,
-  // TODO: 2) table to list all books,
-  // TODO: 3) edit, and delete books,
-
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [authors, setAuthors] = useState([
-    { name: "ahmed", _id: 1 },
-    { name: "mohamed", _id: 2 },
-  ]);
+  const [authors, setAuthors] = useState([]);
 
-  const [categories, setCategories] = useState([
-    { lable: "food", _id: 1 },
-    { lable: "education", _id: 2 },
-  ]);
-  const [errors, setErrors] = useState({});
+  const [categories, setCategories] = useState([]);
   //   getting books, categories, authors
   useEffect(() => {
     const getAllData = async () => {
@@ -46,24 +35,45 @@ export default function AdminBooksComponent() {
 
   // add new book
   const addNewBook = async (newBook) => {
-    console.log(newBook);
     const response = await bookServiece.addNewBook(newBook);
 
     if (response.status === statusCode.Created)
       setBooks((old) => old.concat(response.data));
-    if (response.status === statusCode.BadRequest) setErrors(response.data);
+    if (response.status === statusCode.BadRequest)
+      alert("Somthing went wronge Please try again Later");
   };
 
-  const editBook = (updatedBook) => {
-    console.log(updatedBook, "\n updated book");
+  const editBook = async (updatedBook) => {
+    const updatedBookId = updatedBook.get("_id");
+
+    const response = await bookServiece.editBook(updatedBookId, updatedBook);
+
+    // in case there is a server problem
+    if (response.status != statusCode.Success) {
+      return alert("Somthing went wronge Please try again Later");
+      console.log(response.data);
+    }
+
+    // getting  book reference to change it in the new array
+    const oldBook = books.find((book) => book._id == updatedBookId);
+    const index = books.indexOf(oldBook);
+
+    // new reference to update the stat
+    const updatedBooks = [...books];
+    // replace old book with updated  book
+    updatedBooks[index] = response.data;
+
+    setBooks(updatedBooks);
   };
 
   const handleDeleteBook = async (deletedBook) => {
     const response = await bookServiece.deleteBook(deletedBook._id);
 
     // in case there is a server problem
-    if (response.status != statusCode.NoContent)
+    if (response.status != statusCode.NoContent) {
       return alert("Somthing went wronge Please try again Later");
+      console.log(response.data);
+    }
 
     const updatedBooks = books.filter((book) => book._id != deletedBook._id);
     setBooks([...updatedBooks]);
