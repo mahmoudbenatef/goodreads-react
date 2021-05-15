@@ -12,6 +12,8 @@ import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import UserHomeComponent from "./components/user/UserHomeComponent";
+import AdmiAuthorsComponent from "./components/admin/AdmiAuthorsComponent";
+
 import { authContext } from "./contexts/authContext";
 
 function App(props) {
@@ -78,6 +80,9 @@ function App(props) {
             </Route>
             <Route path="/register">
               <RegisterComponent />
+            </Route>
+            <Route path="/testAdmin">
+              <AdmiAuthorsComponent />
             </Route>
           </Switch>
         </div>
