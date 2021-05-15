@@ -107,11 +107,7 @@ export default function LoginComponent({ parent = "login" }) {
       borderRadius: "0.2rem",
       fontSize: "0.9rem",
       display: "inline",
-      marginRight:"1rem",
       color: "#711D1D"
-    },
-    loginBtn:{
-        backgroundColor: "#3d6b8c"
     }
   }));
   const classes = useStyles();
@@ -196,7 +192,7 @@ export default function LoginComponent({ parent = "login" }) {
   ) : (
     <div>
       <div className="row">
-        <div className="col-md-2 ">
+        <div className="col-md-6 ">
           <input
             type="email"
             value={user.email}
@@ -209,7 +205,7 @@ export default function LoginComponent({ parent = "login" }) {
           />
         </div>
 
-        <div className="col-md-2">
+        <div className="col-md-4">
           <input
             type="password"
             value={user.password}
@@ -229,7 +225,7 @@ export default function LoginComponent({ parent = "login" }) {
             onClick={() => {
               setloginPressed(loginPressed + 1);
             }}
-            style={{backgroundColor: "lightblue"}}
+            style={{backgroundColor: "#3d6b8c",color:"white"}}
           >
             Login
           </button>
@@ -239,7 +235,7 @@ export default function LoginComponent({ parent = "login" }) {
           <ul>
       {serverError !== "" && <li className={classes.homeError}> {serverError}</li>}
       {!userErrors.email.isValid && userErrors.email.isTouched && (
-        <li className={classes.homeError} > {userErrors.email.errorMsg}</li>
+        <li style={{marginRight:"5rem",paddingLeft:"2.5rem"}} className={classes.homeError} > {userErrors.email.errorMsg}</li>
       )}
             {!userErrors.password.isValid && userErrors.password.isTouched && (
         <li className={classes.homeError}> {userErrors.password.errorMsg}</li>

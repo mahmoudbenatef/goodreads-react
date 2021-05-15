@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { ApiServices } from "../../API/ApiServices";
-import { authContext } from "../../contexts/authContext";
-import { mySessionStorage } from "../../helper/LocalStorge";
-import { validateAllInputs } from "../../helper/validateFormErrors";
-
+import Background from "../assets/e.png";
+import logo from "../assets/logo.png";
+import { authContext } from "../contexts/authContext";
+import LoginComponent from "./auth/LoginComponent";
+import RegisterComponent from "./auth/RegisterComponent";
 export default function LandingComponent({ parent = "login" }) {
   const authentication = useContext(authContext);
   const history = useHistory();
@@ -24,49 +24,36 @@ export default function LandingComponent({ parent = "login" }) {
     }
   }, [authentication]);
 
-  useEffect(() => {
-    console.log(authentication.auth);
-    if (loginPressed) {
-      const { valid, newErrors } = validateAllInputs(userErrors);
-      if (valid) {
-        ApiServices.signin(user)
-          .then(function (response) {
-            mySessionStorage.setCurrentUser(response.data.user);
-            mySessionStorage.setToken(response.data.token);
-            console.log(mySessionStorage.getCurrentUser());
-            console.log(mySessionStorage.getToken());
-            authentication.setAuth({
-              authed: true,
-              role: mySessionStorage.getCurrentUser().role,
-            });
-            setloginPressed(false);
-          })
-          .catch((err) => {
-            setServerError(err.response.data.message);
-          });
-      } else {
-        setUserErrors(newErrors);
-      }
-    }
-  }, [loginPressed]);
-
-
   const useStyles = makeStyles((theme) => ({
-    homeError: {
-      borderRadius: "0.2rem",
-      fontSize: "0.9rem",
-      display: "inline",
-      marginRight:"1rem",
-      color: "#711D1D"
+    login: {
+      float: "right",
+      marginTop: "0.6rem",
+      width: "38rem",
+      overflow: "hidden",
     },
-    loginBtn:{
-        backgroundColor: "#3d6b8c"
+    header: {
+      backgroundImage: `url(${Background})`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      width: "100%",
+      margin:"0"
+    },
+    regHeader: {
+      color:"black",
+      textAlign:"center",
+      marginTop: '5rem'
     }
   }));
   const classes = useStyles();
-  
+
   return (
-      <div>
+    <div className={classes.header}>
+      <img src={logo} style={{ width: "17rem" ,marginLeft:"1rem"}} />
+      <div className={classes.login}>
+        <LoginComponent className={classes.login} parent="home" />
+        <h3 className={classes.regHeader}>New here? Create an account </h3>
+        <RegisterComponent parent="home" />
+      </div>
     </div>
   );
 }
