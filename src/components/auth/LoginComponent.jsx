@@ -45,7 +45,6 @@ export default function LoginComponent() {
             setUserErrors({password: {...userErrors.password, isValid: false, isTouched: true}})
         }
     }, [user])
-
     useEffect(() => {
         if (authentication.auth.authed === true && authentication.auth.role === "admin") {
             history.push("/admin");
@@ -53,9 +52,7 @@ export default function LoginComponent() {
         } else if (authentication.auth.authed === true && authentication.auth.role === "user") {
             history.push("/user");
         }
-
     }, [authentication])
-
     useEffect(() => {
         console.log(authentication.auth)
         if (loginPressed) {

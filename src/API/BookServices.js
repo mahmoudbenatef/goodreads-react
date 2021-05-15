@@ -1,6 +1,11 @@
-import { api } from "./urls";
+import axios from 'axios';
+import { BOOK_API } from "./urls";
+
 export const BookService =  {
   rate(userId, bookId, rating) {
-    return api.post(`/books/${bookId}/rate`, { user: userId, rating: rating });
+    return axios.post( BOOK_API.rate(bookId), { user: userId, rating: rating });
   },
+  shelve(userId, bookId, shelf) {
+    return axios.post(BOOK_API.shelve(bookId), { user: userId, shelf: shelf });
+  }
 };

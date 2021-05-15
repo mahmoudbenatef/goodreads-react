@@ -52,10 +52,13 @@ export default function LoginComponent() {
             errorMsg: 'you must upload your photo'
         },
     })
+    const[serverError,setServerError]= useState("")
+
     const [registerPressed, setRegisterPressed] = useState(0)
 
     // validate effect
     useEffect(() => {
+        setServerError("")
         // console.log(userErrors)
         if (user.firstname !== '' && user.firstname.length > 2) {
             setUserErrors({firstname: {...userErrors.firstname, isValid: true}})
@@ -132,6 +135,7 @@ export default function LoginComponent() {
                     })
                     .catch(function (error) {
                         console.log(error);
+                        setServerError("this email has been already taken")
                         setRegisterPressed(false)
                     });
             } else {
@@ -250,6 +254,10 @@ export default function LoginComponent() {
 
                         {!userErrors.avatar.isValid && userErrors.avatar.isTouched &&
                         <ErrorComponent > {userErrors.avatar.errorMsg}</ErrorComponent>
+                        }
+
+                        { serverError !== "" &&
+                        <ErrorComponent > {serverError}</ErrorComponent>
                         }
                         <div className="row justify-content-center mt-3">
                             <div className="col-md-8 align-items-center">

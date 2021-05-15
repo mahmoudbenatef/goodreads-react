@@ -1,14 +1,12 @@
-import {useEffect,useContext} from "react"
+import { useContext, useEffect } from "react";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams,
-    useRouteMatch, useHistory
+    Route, Switch,
+    useHistory, useRouteMatch
 } from "react-router-dom";
-import AdminBooksComponent from "./AdminBooksComponent";
-import {authContext} from "../../contexts/authContext";
+import { authContext } from "../../contexts/authContext";
+import { CategoryProvider } from "../../contexts/categoryContext";
+import BooksComponent from "../adminDashboard/BooksComponent";
+import CategoryComponent from "../adminDashboard/category/CategoryComponent";
 export default function AdminHomeComponent(){
     let { path, url } = useRouteMatch();
     const authentication = useContext(authContext)
@@ -29,10 +27,16 @@ export default function AdminHomeComponent(){
 
         <>
             <Switch>
-                <Route path={`${path}/books`}>
-                    <AdminBooksComponent />
+                <Route key={1} path={`${path}/books`}>
+                    <BooksComponent />
                 </Route>
 
+
+                <Route key={2} path={`${path}/categories`}>
+                <CategoryProvider>
+                    <CategoryComponent />
+                </CategoryProvider>
+                </Route>
             </Switch>
         </>
     )
