@@ -320,28 +320,24 @@ export default function RegisterComponent({ parent }) {
       <div className="row justify-content-center mt-1 align-items-baseline">
       <div className="col-md-3" style={{ textAlign:"right" }}>
         </div>
-        <div className="col-md-8 ">
+        <div className="col-md-9 ">
       {!userErrors.firstname.isValid && userErrors.firstname.isTouched && (
         <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
-          {" "}
           {userErrors.firstname.errorMsg}
         </p>
       )}
       {!userErrors.lastname.isValid && userErrors.lastname.isTouched && (
         <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
-          {" "}
           {userErrors.lastname.errorMsg}
         </p>
       )}
       {!userErrors.email.isValid && userErrors.email.isTouched && (
         <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
-          {" "}
           {userErrors.email.errorMsg}
         </p>
       )}
       {!userErrors.password.isValid && userErrors.password.isTouched && (
         <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
-          {" "}
           {userErrors.password.errorMsg}
         </p>
       )}
@@ -353,13 +349,11 @@ export default function RegisterComponent({ parent }) {
         )}
       {!userErrors.gender.isValid && userErrors.gender.isTouched && (
         <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
-          {" "}
           {userErrors.gender.errorMsg}
         </p>
       )}
       {!userErrors.avatar.isValid && userErrors.avatar.isTouched && (
         <p style={{ textAlign: "center", margin: "0", color: "#711D1D" }}>
-          {" "}
           {userErrors.avatar.errorMsg}
         </p>
       )}

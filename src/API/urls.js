@@ -11,9 +11,10 @@ export const API = {
 
 export const BOOK_API = {
     rate: (bookId) => `${BASE_URL}/books/${bookId}/rate`,
-    shelve: (bookId) => `${BASE_URL}/books/${bookId}/shelve`
+    shelve: (bookId) => `${BASE_URL}/books/${bookId}/shelve`,
+    popular: () => `${BASE_URL}/popular/books`
 };
 
 export const CATEGORY_API = {
-    popular: () => `${BASE_URL}/category/popular`,
+    popular: () => `${BASE_URL}/popular/categories`,
 };

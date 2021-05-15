@@ -1,12 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import bg from "../../assets/bg.png";
 import headerBg from "../../assets/e.png";
 import logo from "../../assets/logo.png";
 import { authContext } from "../../contexts/authContext";
+import "../../styles/test.css";
 import LoginComponent from "../auth/LoginComponent";
 import RegisterComponent from "../auth/RegisterComponent";
+import BooksComponent from "./books";
 import CategoriesComponent from "./categories";
+
 
 export default function LandingComponent({ parent = "login" }) {
   const authentication = useContext(authContext);
@@ -66,6 +70,9 @@ export default function LandingComponent({ parent = "login" }) {
     </div>
     <div className={classes.categories}>
     <CategoriesComponent></CategoriesComponent>
+    </div>
+    <div style={{ backgroundImage: `url(${bg})`}}>
+    <BooksComponent></BooksComponent>
     </div>
     </>
   );

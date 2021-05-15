@@ -238,9 +238,8 @@ export default function LoginComponent({ parent = "login" }) {
       <div className="row">
       <ul>
       {serverError !== "" && <li className={classes.homeError}> {serverError}</li>}
-      
       {!userErrors.email.isValid && userErrors.email.isTouched && (
-        <li style={{marginRight:"5rem",paddingLeft:"2.5rem"}} className={classes.homeError} > {userErrors.email.errorMsg}</li>
+        <li style={{marginRight:"4rem",paddingLeft:"1.8rem"}} className={classes.homeError} > {userErrors.email.errorMsg}</li>
       )}
             {!userErrors.password.isValid && userErrors.password.isTouched && (
         <li className={classes.homeError}> {userErrors.password.errorMsg}</li>
