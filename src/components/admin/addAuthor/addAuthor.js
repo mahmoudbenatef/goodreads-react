@@ -2,10 +2,8 @@ import {  useEffect, useState } from "react";
 import axios from 'axios';
 import './addAuthor.css'
 import ErrorComponent from "../../reusableComponents/ErrorComponent";
-
+import UploadImage from '../shared/uploadImage'
 // import { Redirect } from 'react-router-dom';
-
-
 
 function AddAuthor(props) {
   const [formData, setFormData] = useState(props.label === "add" ?  {
@@ -14,8 +12,6 @@ function AddAuthor(props) {
     dob : "" , 
     avatar : '' , 
     role : "author"
-
-
   } : {
     id : props.myObject.id,
     firstname : props.myObject.firstname, 
@@ -27,6 +23,22 @@ function AddAuthor(props) {
 
 
   })
+const HandlerOfImage= (imageFile , imageIsValid)=>{
+
+  console.log("imageFile" ,imageFile)
+
+  setFormData({
+    ...formData , 
+    avatar:imageFile ,
+  })
+
+  setIs(
+    {...isValid, 
+       avatar:  imageIsValid
+    }
+    ) ;
+}
+
 
 
 const errorMessages = {
@@ -163,34 +175,30 @@ useEffect(() => {
 
 }
                     </div>
-                  <div className="m-3">
-                  <label >Choose a profile picture:</label>
-                  <input type="file"
-                        id="avatar" name="avatar"
-                        accept="image/png, image/jpeg"
-                        className="form-control-file"
-                        // value={formData.selectedFile}
-                        onChange={(event)=>{
-                          setFormData({
-                            ...formData , 
-                            avatar: event.target.files[0],
-                          })
-                        }}
-                        ></input>
+                
+                  <div> <UploadImage
+                    uploadInput={(pickedFile ,isVlaidImg )=>{
+
+                      console.log("pickedFile in props",pickedFile)
+
+                      HandlerOfImage(pickedFile ,isVlaidImg)
+                    }}
+                  /> 
                    { !isValid.avatar  ? 
 
 <ErrorComponent > {errorMessages.avatar}</ErrorComponent> : ""
 
 }
-                  </div>
+                  
+                   </div>
         </div>
-        <button type="submit" className="btn btn-primary "  style={{width:70}}
+        <button type="submit" className="btn btn-primary mt-10 "  style={{width:70}}
           onClick={(event)=>{ 
             
 
                 event.preventDefault() ; 
 
-                if ( isValid.firstname && isValid.lastname &&  isValid.dob &&  isValid.avatar  )
+                if ( isValid.firstname && isValid.lastname &&  isValid.dob  )
                 {
 
                   console.log("mydata" , formData) 

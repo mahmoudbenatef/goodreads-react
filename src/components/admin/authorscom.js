@@ -7,24 +7,42 @@ function Author(props) {
     const [authors , setAuthors] = useState([])
     const [dataIndex , setIndex] = useState(0)
 
+    const [data , setData] = useState([])
+    const [totalPages , settotalPages] = useState(0)
+    const [currentPage , setcurrentPage] = useState(0)
+    const pages = new Array(totalPages).fill(null).map((v , i )=> i )
+
+    const goprev = ()=>{
+
+        setcurrentPage(Math.max(0,currentPage - 1))
+    
+      }
+      const goNext= ()=>{
+    
+        setcurrentPage(Math.min(totalPages - 1 ,currentPage + 1))
+    
+      }
 
     useEffect(()=>{
         console.log("responsea 1 ")
-        axios.get('http://localhost:3001/authors' )
+        axios.get(`http://localhost:3001/authors?page=${currentPage}` )
         .then((response)=>{
            
-             setAuthors(response.data) 
+             setAuthors(response.data.allAuthors) 
             console.log("response",response.data)
+            settotalPages(response.data.totalPages)
+
             }) 
-    } , [])
+    } , [currentPage])
    const  deleteAuthor = (index)=>{
+
     axios.delete('http://localhost:3001/authors/' + authors[index]._id)
     .then((response)=>{
         console.log("deleted",response.data)
-        axios.get('http://localhost:3001/authors' )
+        axios.get(`http://localhost:3001/authors?page=${currentPage}` )
         .then((response)=>{
             
-             setAuthors(response.data) 
+             setAuthors(response.data.allAuthors) 
             console.log("response",response.data)
             }) 
         })
@@ -119,6 +137,36 @@ function Author(props) {
        
 
      </div>
+      
+     <div className="btn-group" role="group" aria-label="Basic example">
+        
+        <button type="button"  onClick={goprev} className="btn btn-secondary">prev</button>
+
+        {pages.map((item)=>{
+            return(
+              
+
+              <button 
+              key={item} type="button"  className={`btn  ${currentPage === item ? "btn-primary":"btn-secondary" }`}
+              // className={`btn  ${currentPage === item ? "btn-primary":"btn-secondary" }`}
+              onClick={()=>{
+                setcurrentPage(item)   
+
+              }}
+
+            
+              >
+                
+                {item + 1}
+              
+              </button>
+
+            ) ; 
+
+          })}
+            <button type="button" onClick={goNext} className="btn btn-secondary">next</button>
+
+    </div>
 
 
     </div>
