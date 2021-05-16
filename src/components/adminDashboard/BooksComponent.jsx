@@ -35,6 +35,11 @@ export default function AdminBooksComponent() {
   //   getting books, categories, authors
   useEffect(() => {
     const getAllData = async () => {
+      // getting books
+      const booksResponse = await bookServiece.getAllBooks();
+      if (booksResponse.status === 200) setBooks(booksResponse.data.data);
+
+
       // getting authors
       const authorsResponse = await authorService.getAllAuthors();
 
