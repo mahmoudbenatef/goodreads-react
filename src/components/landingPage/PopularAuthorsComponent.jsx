@@ -1,6 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { BookService } from "../../API/BookServices";
+import { BASE_URL } from "../../API/urls";
 import "../../styles/authors.css";
 export default function Authors() {
   const [authors, setAuthors] = useState([]);
@@ -19,7 +21,10 @@ export default function Authors() {
           return (
           <div className="book read" key={index}>
             <div className="cover">
-              <img src="https://s-media-cache-ak0.pinimg.com/564x/f9/8e/2d/f98e2d661445620266c0855d418aab71.jpg" />
+            <Link to={"/author/"+value.author._id}>
+            <img src="https://s-media-cache-ak0.pinimg.com/564x/f9/8e/2d/f98e2d661445620266c0855d418aab71.jpg" />
+            <img src={BASE_URL+value.author.avatar} />
+            </Link>
             </div>
             <div className="description">
               <p className="title">{value.author.firstname} {value.author.lastname}</p>

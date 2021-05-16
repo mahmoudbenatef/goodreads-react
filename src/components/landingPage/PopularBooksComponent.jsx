@@ -47,6 +47,7 @@ export default function Books() {
                           className="book-card__img"
                           src="https://i.ibb.co/gTvbqnQ/harry-potter.jpg"
                         />
+                        {/* <img className="book-card__img" src={BASE_URL+value.book.image} /> */}
                       </div>
                       <div className="book-card__book-back"></div>
                       <div className="book-card__book-side"></div>

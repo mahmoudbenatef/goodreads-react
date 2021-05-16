@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="copyright">
-        Copyright © 2021 All Rights Reserved by Hanibal.
+        Copyright © 2021 All Rights Reserved.
       </div>
     </footer>
   );
