@@ -97,7 +97,8 @@ export default function BookFormComponent({
 
       // reset form
       setOpen(false);
-      resetForm();
+
+      if (!updatedbook) resetForm();
     });
   };
 
@@ -230,7 +231,7 @@ export default function BookFormComponent({
               className="form-control form-control-sm"
               type="file"
               accept="image/*"
-              required
+              required={updatedbook && false}
               onChange={(e) =>
                 setBook((old) => ({ ...old, image: e.target.files[0] }))
               }
