@@ -1,5 +1,4 @@
 import { useRef, useState } from "react"
-import react  from 'react'
 
 const UploadImage = (props)=>{
 const refTofileUploader = useRef() ; 

@@ -47,10 +47,9 @@ const errorMessages = {
   lastname:  'lastname is required and must be more than 2 characters',
   dob:  "date of birth is required",
   avatar:  "you must upload avatar"
-
-
-
 }
+
+
 const [isValid , setIs] = useState( props.label === "add" ? 
   {
   
