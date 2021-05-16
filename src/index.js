@@ -5,11 +5,13 @@ import AdminBooks from "./components/adminDashboard/BooksComponent";
 import { AuthProvider } from "./contexts/authContext";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AdminBooks />
-    <AuthProvider>{/* <App /> */}</AuthProvider>
+    <AuthProvider>
+         <App />
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
