@@ -1,7 +1,8 @@
 import axios from "axios";
 import { booksURL } from "./urls";
 export default {
-  getAllBooks() {
+  getAllBooks(queryParams) {
+    if (queryParams) return axios.get(`${booksURL.books}/${queryParams}`);
     return axios.get(booksURL.books);
   },
   async addNewBook(book) {
