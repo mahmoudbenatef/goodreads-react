@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API } from "./urls";
+import {API, booksURL} from "./urls";
 
 export const ApiServices = {
   register(user) {
@@ -25,7 +25,11 @@ export const ApiServices = {
       },
     });
   },
-  listCategories() {
+  listCategories(queryParams) {
+    if (queryParams) return axios.get(`${API.category()}${queryParams}`, {
+      headers: {
+        Authorization: `JWT ${API.token()}`,
+      }});
     return axios.get(API.category(), {
       headers: {
         Authorization: `JWT ${API.token()}`,
