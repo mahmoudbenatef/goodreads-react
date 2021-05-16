@@ -5,11 +5,12 @@ import bg from "../../assets/bg.png";
 import headerBg from "../../assets/e.png";
 import logo from "../../assets/logo.png";
 import { authContext } from "../../contexts/authContext";
-import "../../styles/test.css";
+import "../../styles/popular.css";
 import LoginComponent from "../auth/LoginComponent";
 import RegisterComponent from "../auth/RegisterComponent";
 import BooksComponent from "./books";
 import CategoriesComponent from "./categories";
+import FooterComponent from "./footer";
 
 
 export default function LandingComponent({ parent = "login" }) {
@@ -74,6 +75,7 @@ export default function LandingComponent({ parent = "login" }) {
     <div style={{ backgroundImage: `url(${bg})`}}>
     <BooksComponent></BooksComponent>
     </div>
+    <FooterComponent></FooterComponent>
     </>
   );
 }

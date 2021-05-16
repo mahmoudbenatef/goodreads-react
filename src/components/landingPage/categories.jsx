@@ -46,8 +46,8 @@ export default function Categories() {
           return (
             <div className={classes.category} key={index}>
               <Button style={{padding: "1rem" , width: "15rem"}} variant="outlined" >
-                <Link className={classes.label} to={"/categoty/"+value._id._id}>
-                  {value._id.label}
+                <Link className={classes.label} to={"/categoty/"+value.category._id}>
+                  {value.category.label}
                 </Link>
               </Button>
             </div>

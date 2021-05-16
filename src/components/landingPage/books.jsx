@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BookService } from "../../API/BookServices";
@@ -17,13 +18,7 @@ export default function Books() {
       alignItems: "baseline",
       alignContent: "space-between",
       marginTop: "4rem",
-    },
-    category: {
-      width: "20rem",
-      height: "7rem",
-      textAlign: "center",
-      marginBottom: "2rem",
-      lineHeight: "7rem",
+      marginBottom: "10rem",
     },
     label: {
       textDecoration: "none",
@@ -41,32 +36,47 @@ export default function Books() {
       <div className={classes.flex}>
         {books.map((value, index) => {
           return (
-            <main>
-              <div class="book-card">
-                <Link className={classes.label} to={"/book/" + value._id}>
-                  <div class="book-card__cover">
-                    <div class="book-card__book">
-                      <div class="book-card__book-front">
+            <main key={index}>
+              <div className="book-card">
+                <Link className={classes.label} to={"/book/" + value.book._id}>
+                  <div className="book-card__cover">
+                    <div className="book-card__book">
+                      <div className="book-card__book-front">
                         <img
-                          class="book-card__img"
+                          className="book-card__img"
                           src="https://i.ibb.co/gTvbqnQ/harry-potter.jpg"
                         />
                       </div>
-                      <div class="book-card__book-back"></div>
-                      <div class="book-card__book-side"></div>
+                      <div className="book-card__book-back"></div>
+                      <div className="book-card__book-side"></div>
                     </div>
                   </div>
                 </Link>
                 <div>
-                  <div class="book-card__title">{value.name}</div>
+                  <div className="book-card__title">{value.book.name}</div>
+                  <p
+                    style={{ margin: 0, color: "#2e6f59", textAlign: "center" }}
+                  >
+                    {value.book.category.label}
+                  </p>
                   <Link
                     className={classes.label}
-                    to={"/authors/" + value.author._id}
+                    to={"/authors/" + value.book.author._id}
                   >
-                    <div class="book-card__author">
-                      By: {value.author.firstname} {value.author.lastname}
+                    <div className="book-card__author">
+                      by {value.book.author.firstname}{" "}
+                      {value.book.author.lastname}
                     </div>
                   </Link>
+                  <div style={{justifyContent:"center",display:"flex"}}>
+                    <Rating
+                      name="read-only"
+                      value={value.book.avgRating}
+                      precision={0.2}
+                      size="small"
+                      readOnly
+                    />
+                  </div>
                 </div>
               </div>
             </main>
