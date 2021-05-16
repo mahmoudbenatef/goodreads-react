@@ -7,6 +7,7 @@ import bookServiece from "../../API/bookService";
 import categoryService from "../../API/categoryServices";
 import statusCode from "../../helper/statusCode";
 import BookFormComponent from "../admin/BookFormComponent";
+import LoadingCompoenet from "../reusableComponents/LoadingComponent";
 
 //set book limit
 const limit = 5;
@@ -24,8 +25,11 @@ export default function AdminBooksComponent() {
 
   // paginate books
   useEffect(async () => {
-    const queryParams = `?page=${page}&limit=${limit}`;
-    const booksResponse = await bookServiece.getAllBooks(queryParams);
+    const params = {
+      page,
+      limit,
+    };
+    const booksResponse = await bookServiece.getAllBooks(params);
     if (booksResponse.status === 200) {
       setBooks(booksResponse.data.data);
       setPagesCount(booksResponse.data.count);
@@ -39,7 +43,6 @@ export default function AdminBooksComponent() {
       const booksResponse = await bookServiece.getAllBooks();
       if (booksResponse.status === 200) setBooks(booksResponse.data.data);
 
-
       // getting authors
       const authorsResponse = await authorService.getAllAuthors();
 
@@ -48,11 +51,11 @@ export default function AdminBooksComponent() {
 
       //getting categories
       const categoriesResponse = await categoryService.getAllCategories();
-      console.log(" 29categoriesResponse", categoriesResponse);
       if (categoriesResponse.status === 200)
         setCategories(categoriesResponse.data.data);
-
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     };
     getAllData();
   }, []);
@@ -110,9 +113,7 @@ export default function AdminBooksComponent() {
   return (
     <>
       {loading ? (
-        <div>
-          <h1>Loading</h1>
-        </div>
+        <LoadingCompoenet />
       ) : (
         <div className="container justify-content-center mt-3 text-center ">
           <div className="mt-5  mb-3 float-end ">
