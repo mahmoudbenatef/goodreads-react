@@ -8,7 +8,10 @@ export const BookService =  {
   shelve(userId, bookId, shelf) {
     return axios.post(BOOK_API.shelve(bookId), { user: userId, shelf: shelf });
   },
-  getPopular(){
-    return axios.get(BOOK_API.popular());
+  getPopularBooks(){
+    return axios.get(BOOK_API.popularBooks());
+  },
+  getPopularAuthors(){
+    return axios.get(BOOK_API.popularAuthors());
   }
 };

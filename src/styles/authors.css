@@ -1,0 +1,61 @@
+.container {
+  margin: 0 auto;
+  max-width: 910px;
+}
+
+.book {
+  display: inline-block;
+  width: 230px;
+  height: 380px;
+  box-shadow: 0 0 20px #aaa;
+  margin: 25px;
+  padding: 10px 10px 0 10px;
+  vertical-align: top;
+  transition: height 1s;
+}
+
+.book:after {
+  font-family: FontAwesome;
+  content: "\f006";
+  font-size: 35px;
+  position: relative;
+  left: -.1cm;
+  top: -1.6cm;
+  float: right;
+}
+
+.cover {
+  border: 2px solid gray;
+  height: 80%;
+  overflow: hidden;
+}
+
+.cover img {
+  width: 100%;
+}
+
+.book p {
+  margin-top: 12px;
+  font-size: 22px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.book .author {
+  font-size: 15px;
+}
+@media (max-width: 941px) {
+  .container {
+    max-width: 700px;
+  }
+  .book {
+    margin: 49px;
+  }
+}
+@media (max-width: 730px) {
+  .book {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+}

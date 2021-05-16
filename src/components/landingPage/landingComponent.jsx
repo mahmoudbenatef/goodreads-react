@@ -8,9 +8,10 @@ import { authContext } from "../../contexts/authContext";
 import "../../styles/popular.css";
 import LoginComponent from "../auth/LoginComponent";
 import RegisterComponent from "../auth/RegisterComponent";
-import BooksComponent from "./books";
-import CategoriesComponent from "./categories";
-import FooterComponent from "./footer";
+import FooterComponent from "./FooterComponent";
+import AuthorsComponent from "./PopularAuthorsComponent";
+import BooksComponent from "./PopularBooksComponent";
+import CategoriesComponent from "./PopularCategoriesComponent";
 
 
 export default function LandingComponent({ parent = "login" }) {
@@ -53,6 +54,13 @@ export default function LandingComponent({ parent = "login" }) {
     },
     categories:{
       backgroundColor:"white"
+    },
+    books:{
+      backgroundImage: `url(${bg})`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      width: "100%",
+      margin:"0"
     }
   }));
   const classes = useStyles();
@@ -72,8 +80,11 @@ export default function LandingComponent({ parent = "login" }) {
     <div className={classes.categories}>
     <CategoriesComponent></CategoriesComponent>
     </div>
-    <div style={{ backgroundImage: `url(${bg})`}}>
+    <div className={classes.books}>
     <BooksComponent></BooksComponent>
+    </div>
+    <div style={{ backgroundColor: "white" , paddingBottom:"4rem"}}>
+    <AuthorsComponent></AuthorsComponent>
     </div>
     <FooterComponent></FooterComponent>
     </>

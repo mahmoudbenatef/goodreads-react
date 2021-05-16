@@ -7,7 +7,7 @@ import { BookService } from "../../API/BookServices";
 export default function Books() {
   const [books, setBooks] = useState([]);
   useEffect(() => {
-    BookService.getPopular().then((cat) => setBooks(cat.data));
+    BookService.getPopularBooks().then((cat) => setBooks(cat.data));
   }, []);
 
   const useStyles = makeStyles((theme) => ({
@@ -22,6 +22,7 @@ export default function Books() {
     },
     label: {
       textDecoration: "none",
+      textAlign:"center",
       color: "black",
       "&:hover": {
         color: "#ac5d59",
@@ -59,16 +60,17 @@ export default function Books() {
                   >
                     {value.book.category.label}
                   </p>
+                  <div className="book-card__author"></div>
                   <Link
                     className={classes.label}
                     to={"/authors/" + value.book.author._id}
                   >
-                    <div className="book-card__author">
-                      by {value.book.author.firstname}{" "}
-                      {value.book.author.lastname}
-                    </div>
+                    <p  style={{ margin: 0}}>
+                    by {value.book.author.firstname}
+                    {value.book.author.lastname}
+                    </p>
                   </Link>
-                  <div style={{justifyContent:"center",display:"flex"}}>
+                  <div style={{ justifyContent: "center", display: "flex" }}>
                     <Rating
                       name="read-only"
                       value={value.book.avgRating}

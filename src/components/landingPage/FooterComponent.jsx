@@ -48,7 +48,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div class="footer_right">
+        <div className="footer_right">
           <h3>About Us</h3>
           <p>
           We are a team of software engineering students at ITI intake 41, 
