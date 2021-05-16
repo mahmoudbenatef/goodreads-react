@@ -41,10 +41,11 @@ export default function LandingComponent({ parent = "login" }) {
     },
     header: {
       backgroundImage: `url(${headerBg})`,
-      backgroundSize: "cover",
+      backgroundSize: "contain",
       backgroundRepeat: "no-repeat",
       width: "100%",
       margin:"0",
+      height:"48.9rem"
     },
     regHeader: {
       color:"black",
