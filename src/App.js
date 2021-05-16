@@ -13,6 +13,9 @@ import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import UserHomeComponent from "./components/user/UserHomeComponent";
 import AdmiAuthorsComponent from "./components/admin/AdmiAuthorsComponent";
+import AuthorsList from "./components/author/AuthorsList/AuthorsLIst";
+
+
 
 import { authContext } from "./contexts/authContext";
 
@@ -81,6 +84,9 @@ function App(props) {
             </Route>
             <Route path="/testAdmin">
               <AdmiAuthorsComponent />
+            </Route>
+            <Route path="/authors">
+              <AuthorsList />
             </Route>
           </Switch>
         </div>
