@@ -17,16 +17,24 @@ export default function AdminBooksComponent() {
     const getAllData = async () => {
       // getting books
       const booksResponse = await bookServiece.getAllBooks();
-      if (booksResponse.status === 200) setBooks(booksResponse.data);
+      if (booksResponse.status === 200) setBooks(booksResponse.data.data);
 
       // getting authors
       const authorsResponse = await authorService.getAllAuthors();
-      if (authorsResponse.status === 200) setAuthors(authorsResponse.data);
+
+      if (authorsResponse.status === 200) setAuthors(authorsResponse.data.allAuthors);
 
       //getting categories
       const categoriesResponse = await categoryService.getAllCategories();
+      console.log( " 29categoriesResponse",categoriesResponse )
       if (categoriesResponse.status === 200)
-        setCategories(categoriesResponse.data);
+      {
+
+        console.log( " 31 categoriesResponse",categoriesResponse )
+
+        setCategories(categoriesResponse.data.data);
+        
+      }
 
       setLoading(false);
     };
@@ -94,7 +102,7 @@ export default function AdminBooksComponent() {
               buttonTitle="Add New "
             />
           </div>
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>

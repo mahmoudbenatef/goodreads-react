@@ -1,10 +1,13 @@
 import {useContext, useEffect, useState} from "react"
 import {categoryContext} from "../../../contexts/categoryContext";
 import {ApiServices} from "../../../API/ApiServices";
+import PaginationComponent from "../../reusableComponents/PaginationComponent"
 
 export default function ({changeState}) {
     const [categories, setCategories] = useState([])
     const catContext = useContext(categoryContext)
+    const [page, setPage] = useState(1);
+    console.log(page)
     const [deletedElement, setDeletedElement] = useState(null)
     useEffect(() => {
         if (deletedElement) {
@@ -15,57 +18,63 @@ export default function ({changeState}) {
     }, [deletedElement])
 
     useEffect(() => {
-        ApiServices.listCategories().then((data) => {
-            setCategories(data.data.data)
-            console.log(data.data.data)
+        ApiServices.listCategories(`?page=${page}&limit=${2}`).then((data) => {
+            setCategories(data.data)
+            console.log(data.data)
         }).catch()
-    }, [catContext.newOneAdded])
+    }, [catContext.newOneAdded,page])
     return (
+        <>
+            <div className="row justify-content-center mt-4 ">
+                <div className="col-md-8 ">
 
-        <div className="row justify-content-center mt-4 ">
-            <div className="col-md-8 ">
+                    <table className="table">
+                        <caption>List of categories</caption>
+                        <thead key={-1}>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Category</th>
+                            <th colSpan={2} scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {categories.data && categories.data.length > 0 && categories.data.map((cat, index) => {
+                            return <>
 
-                <table className="table">
-                    <caption>List of categories</caption>
-                    <thead key={-1}>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Category</th>
-                        <th colSpan={2} scope="col">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {categories.length > 0 && categories.map((cat, index) => {
-                        return <>
-
-                            <tr key={cat._id.toString()}>
-                                <td>{index + 1}</td>
-                                <td>{cat.label}</td>
-                                <td>
-                                    <button className={"btn btn-warning"} onClick={() => {
-                                        changeState({status: 'edit', value: {...cat}})
-                                    }
-                                    }>Edit
-                                    </button>
-                                </td>
-                                <td>
-                                    <button className={"btn btn-danger"} onClick={() => {
-                                        setDeletedElement(cat._id)
-                                    }
-                                    }>delete
-                                    </button>
-                                </td>
-                            </tr>
-                        </>
-                    })}
-                    {categories.length === 0 &&
-                    <tr>
-                        <td colSpan={4}> nodata yet</td>
-                    </tr>}
-                    </tbody>
-                </table>
+                                <tr key={cat._id.toString()}>
+                                    <td>{index + 1}</td>
+                                    <td>{cat.label}</td>
+                                    <td>
+                                        <button className={"btn btn-warning"} onClick={() => {
+                                            changeState({status: 'edit', value: {...cat}})
+                                        }
+                                        }>Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button className={"btn btn-danger"} onClick={() => {
+                                            setDeletedElement(cat._id)
+                                        }
+                                        }>delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            </>
+                        })}
+                        {categories.data && categories.data.length === 0 &&
+                        <tr>
+                            <td colSpan={4}> nodata yet</td>
+                        </tr>}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+            <div className="row justify-content-center mt-4 ">
+                <div className="col-md-8 ">
+                    <PaginationComponent count={categories.count} page={page} setPage={setPage}></PaginationComponent>
+                </div>
+            </div>
+        </>
 
     )
 }

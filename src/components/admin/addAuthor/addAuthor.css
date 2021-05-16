@@ -1,0 +1,16 @@
+html {
+
+    background-color: #8fcbd6;
+
+
+}
+
+.body{
+    
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+
+}

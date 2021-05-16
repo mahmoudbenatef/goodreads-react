@@ -18,30 +18,30 @@ const useStyles = makeStyles({
     },
 });
 
-export default function BookCardComponent({bookName, authorName,rate}){
+export default function BookCardComponent({bookName, authorName, image, rate, bookID}){
     const classes = useStyles();
     return (
         <Card className={classes.root}>
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image="/static/images/cards/contemplative-reptile.jpg"
+                    image={image}
                     title="Contemplative Reptile"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h5">
-                        Book Name
+                        {bookName}
                     </Typography>
                     <Typography gutterBottom variant="h5" component="h5">
-                        Author Name
+                        {authorName}
                     </Typography>
                     <div >
-                    <RateComponent bookId="609964ba4d02fa267a53acf4" userRating={2} size="small"></RateComponent>
+                    <RateComponent bookId={bookID} userRating={rate} size="small"></RateComponent>
                     </div>
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <ShelfComponent bookId="609964ba4d02fa267a53acf4"  ></ShelfComponent>
+                <ShelfComponent bookId={bookID}></ShelfComponent>
             </CardActions>
         </Card>
     );
