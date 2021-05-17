@@ -12,7 +12,7 @@ import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import AuthorsList from "./components/author/AuthorsList/AuthorsLIst";
-import BookDetials from "./components/BookDetails";
+import BookDetials from "./components/book/BookDetails";
 import LandingComponent from "./components/landingPage/landingComponent";
 import NavbarComponent from "./components/user/NavbarComponent";
 import UserHomeComponent from "./components/user/UserHomeComponent";
