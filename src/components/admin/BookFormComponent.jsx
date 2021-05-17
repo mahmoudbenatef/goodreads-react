@@ -84,13 +84,17 @@ export default function BookFormComponent({
       Object.entries(book).map(([key, value]) => {
         // assign the id only for author, and category if updated book
         if (
-          (updatedbook && key === "author") ||
+
+          (updatedbook && key === "author") ||  // the problem is here 
           (updatedbook && key === "category")
         ) {
           return form.append(key, value._id);
         }
+      
         return form.append(key, value);
       });
+
+      const testAuthor = form.get("author"); 
 
       // submit form
       onSubmit(form);
@@ -100,6 +104,7 @@ export default function BookFormComponent({
 
       if (!updatedbook) resetForm();
     });
+    
   };
 
   return (
@@ -175,8 +180,10 @@ export default function BookFormComponent({
               id="authors"
               className="form-select"
               required
-              onChange={(e) =>
+              onChange={(e) =>{
+
                 setBook((oldBook) => ({ ...oldBook, author: e.target.value }))
+              }
               }
             >
               <option></option>
@@ -244,6 +251,7 @@ export default function BookFormComponent({
             type="submit"
             className={buttonClassName}
             value={buttonTitle}
+            
           />
         </form>
       </Modal>

@@ -1,6 +1,13 @@
 import {useEffect, useState} from 'react'
+import PaginationComponent from '../../reusableComponents/PaginationComponent'
+import Pagination from "@material-ui/lab/Pagination";
+
 import axios from  'axios'
 const AuthorsList = (props)=>{
+    const [page, setPage] = useState(0);
+    const [count, setCount] = useState(0);
+
+
     const [authors , setAuthors] = useState([
             // {name : "mohamed kaoud ", image : "https://picsum.photos/200/300.jpg"},
             // {name : "mahmoud  atef ", image : "https://picsum.photos/200/300.jpg"},
@@ -13,18 +20,25 @@ const AuthorsList = (props)=>{
             // {name : "sherlok holmes ", image : "https://picsum.photos/200/300.jpg"},
             // {name : "ahmed ramadan ", image : "https://picsum.photos/200/300.jpg"}
     ])
+
+    const handlePagination = (event, pageNumber) => {
+        console.log("number",pageNumber )
+        setPage(pageNumber - 1);
+      };
     useEffect( ()=>{
-            axios.get('http://localhost:3001/authors?page=0&limit=8')
+            axios.get(`http://localhost:3001/authors?page=${page}&limit=${3}`)
             .then((response)=>{
-                    console.log("response of get request", response.data.allAuthors)
+                    console.log("response of get request", response.data)
                     const myData = [...response.data.allAuthors]
+                    const mycount = response.data.totalPages
                     setAuthors(myData)
+                    setCount(mycount)
             })
-    }  , [])
+    }  , [page])
     console.log("test test ",authors )
     const mycards = authors.map((one)=>{
             return (
-                    <div key={one.firstname} className="card"
+                    <div key={one._id} className="card"
                      style={
                          {width: "18rem"   }
                     }>
@@ -40,8 +54,9 @@ const AuthorsList = (props)=>{
             ); 
     })
 return(
-
+<div  className="container">
 <div className="container" 
+
 style={
     { 
      display: "flex"  ,
@@ -52,6 +67,25 @@ style={
 }
 >
     {mycards}
+
+    
+</div>
+
+<div className="row " 
+ >
+                <div className=" container  " style={{
+      display: "flex", 
+
+    justifyContent: "center", 
+    }} >
+                <Pagination
+              count={count}
+              variant="outlined"
+              color="primary"
+              onChange={handlePagination}
+            />
+        </div>
+</div>
 </div>
 ); 
 }

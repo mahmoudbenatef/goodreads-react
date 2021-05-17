@@ -18,6 +18,7 @@ export default function AdminBooksComponent() {
   const [categories, setCategories] = useState([]);
 
   // books pagination
+
   const [paginateBooks, setPaginateBooks] = useState([]);
   const [page, setPage] = useState(1);
   const [pagesCount, setPagesCount] = useState(0);
@@ -69,10 +70,11 @@ export default function AdminBooksComponent() {
 
   // editt old book
   const editBook = async (updatedBook) => {
+
     const updatedBookId = updatedBook.get("_id");
+    const kaoud = updatedBook.get("author"); 
 
     const response = await bookServiece.editBook(updatedBookId, updatedBook);
-
     // in case there is a server problem
     if (response.status !== statusCode.Success) {
       return alert("Somthing went wronge Please try again Later");
@@ -89,11 +91,9 @@ export default function AdminBooksComponent() {
 
     setBooks(updatedBooks);
   };
-
   // deletebook
   const handleDeleteBook = async (deletedBook) => {
     const response = await bookServiece.deleteBook(deletedBook._id);
-
     // in case there is a server problem
     if (response.status !== statusCode.NoContent) {
       return alert("Somthing went wronge Please try again Later");
