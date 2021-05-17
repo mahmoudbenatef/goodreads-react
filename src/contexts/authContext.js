@@ -13,7 +13,10 @@ let authed = false, role=""
     }
  const [auth, setAuth]= useState({authed:authed,role:role})
     return <>
-        <Provider value={{auth,setAuth}}>{
-        children}</Provider>
+
+        <Provider value={{auth,setAuth}}>
+            {children}
+        </Provider>
+
         </>
 }

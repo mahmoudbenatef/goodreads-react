@@ -30,13 +30,13 @@ export default function BooksCardContainerComponent  (){
                     })
                 }
             </div>
-        </div>
 
-            <div className="row justify-content-center mt-4 ">
+            <div className="row justify-content-center mt-5  pt-5">
                 <div className="col-md-8 ">
                     <PaginationComponent count={books.count} page={page} setPage={setPage}></PaginationComponent>
                 </div>
-            </div>
+            </div>        </div>
+
         </>
     )
 }
