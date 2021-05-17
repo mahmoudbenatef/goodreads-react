@@ -5,6 +5,9 @@ export default {
     return axios.get(BOOK_API.books(), { params });
   },
 
+  getBookById(bookId) {
+    return axios.get(`${BOOK_API.books()}/${bookId}`);
+  },
   async addNewBook(book) {
     try {
       return await axios.post(BOOK_API.books(), book);

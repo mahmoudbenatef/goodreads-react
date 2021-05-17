@@ -4,7 +4,7 @@ import {
   Link,
   Redirect,
   Route,
-  Switch
+  Switch,
 } from "react-router-dom";
 import { BASE_URL } from "./API/urls";
 import "./App.css";
@@ -12,13 +12,12 @@ import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import AuthorsList from "./components/author/AuthorsList/AuthorsLIst";
+import BookDetials from "./components/BookDetails";
 import LandingComponent from "./components/landingPage/landingComponent";
 import NavbarComponent from "./components/user/NavbarComponent";
 import UserHomeComponent from "./components/user/UserHomeComponent";
+import BookCardContainerComponent from "./components/userDashboard/BooksCardContainerComponent.jsx";
 import { authContext } from "./contexts/authContext";
-
-
-
 
 function App(props) {
   const authentication = useContext(authContext);
@@ -82,6 +81,13 @@ function App(props) {
         
             <Route path="/authors">
               <AuthorsList />
+            </Route>
+
+            <Route exact path="/books/details">
+              <BookDetials />
+            </Route>
+            <Route path="/books">
+              <BookCardContainerComponent></BookCardContainerComponent>
             </Route>
           </Switch>
         </div>

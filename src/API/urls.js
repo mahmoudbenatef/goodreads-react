@@ -23,9 +23,9 @@ export const CATEGORY_API = {
   getAllCategories: () => `${BASE_URL}/category`,
 };
 export const userBook = {
-  shelve: (bookId, userId)=>`${BASE_URL}/userBooks/${bookId}/user/${userId}/shelve`,
-}
-// export { booksURL, categoriesURL, authorsURL };
+  shelve: (bookId, userId) =>
+    `${BASE_URL}/userBooks/${bookId}/user/${userId}/shelve`,
+};
 export const AUTHOR_API = {
   popularAuthors: () => `${BASE_URL}/popular/authors`,
   getAllAuthors: () => `${BASE_URL}/authors`,
