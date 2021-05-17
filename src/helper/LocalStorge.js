@@ -32,7 +32,7 @@ const removeCurrenUser = () => removeSessionUser();
 
 const getCurrentUser = () => getSessionUser(session.currentUser);
 
-export  const mySessionStorage=  {
+export  const mySessionStorage =  {
   setToken,
   getToken,
   removeToken,
