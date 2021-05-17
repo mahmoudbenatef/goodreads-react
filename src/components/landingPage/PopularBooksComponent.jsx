@@ -3,11 +3,12 @@ import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BookService } from "../../API/BookServices";
-
+import { BASE_URL } from "../../API/urls";
 export default function Books() {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    BookService.getPopularBooks().then((cat) => setBooks(cat.data));
+    BookService.getPopularBooks().then((cat) => {setBooks(cat.data)});
   }, []);
 
   const useStyles = makeStyles((theme) => ({
@@ -43,11 +44,7 @@ export default function Books() {
                   <div className="book-card__cover">
                     <div className="book-card__book">
                       <div className="book-card__book-front">
-                        <img
-                          className="book-card__img"
-                          src="https://i.ibb.co/gTvbqnQ/harry-potter.jpg"
-                        />
-                        {/* <img className="book-card__img" src={BASE_URL+value.book.image} /> */}
+                        <img className="book-card__img" src={BASE_URL+"/"+value.book.image} />
                       </div>
                       <div className="book-card__book-back"></div>
                       <div className="book-card__book-side"></div>

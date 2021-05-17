@@ -9,7 +9,7 @@ import { BookService } from "../../API/BookServices";
 import { authContext } from "../../contexts/authContext";
 import { mySessionStorage } from "../../helper/LocalStorge";
 
-export default function ShelfComponent({ bookShelf="", bookId }) {
+export default function ShelfComponent({ bookShelf="0", bookId }) {
   const [shelf, setShelf] = React.useState(bookShelf);
   const authentication = useContext(authContext);
   const history = useHistory();

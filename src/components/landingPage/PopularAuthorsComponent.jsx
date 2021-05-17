@@ -22,8 +22,7 @@ export default function Authors() {
           <div className="book read" key={index}>
             <div className="cover">
             <Link to={"/author/"+value.author._id}>
-            <img src="https://s-media-cache-ak0.pinimg.com/564x/f9/8e/2d/f98e2d661445620266c0855d418aab71.jpg" />
-            <img src={BASE_URL+value.author.avatar} />
+            <img src={BASE_URL+"/"+value.author.avatar} />
             </Link>
             </div>
             <div className="description">
