@@ -25,5 +25,7 @@ const categoriesURL = {
 const authorsURL = {
   getAllAuthors: `${BASE_URL}/authors`,
 };
-
+export const userBook = {
+  shelve: (bookId, userId)=>`${BASE_URL}/userBooks/${bookId}/user/${userId}/shelve`,
+}
 export { booksURL, categoriesURL, authorsURL };

@@ -3,7 +3,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useContext } from "react";
+import React, {useContext, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import { BookService } from "../../API/BookServices";
 import { authContext } from "../../contexts/authContext";
@@ -13,6 +13,10 @@ export default function ShelfComponent({ bookShelf="0", bookId }) {
   const [shelf, setShelf] = React.useState(bookShelf);
   const authentication = useContext(authContext);
   const history = useHistory();
+
+ useEffect(()=>{
+   setShelf(bookShelf)
+ },[bookShelf])
 
   const changeShelf = async (event, newValue) => {
     if (authentication.auth.authed) {
@@ -43,6 +47,7 @@ export default function ShelfComponent({ bookShelf="0", bookId }) {
 
   return (
     <FormControl >
+
       <InputLabel className={classes.label} id="demo-mutiple-name-label">Shelf</InputLabel>
       <Select
         labelId="demo-mutiple-name-label"

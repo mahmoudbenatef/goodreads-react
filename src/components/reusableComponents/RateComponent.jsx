@@ -24,6 +24,7 @@ export default function RateComponent({userRating,bookId,size}) {
   const classes = useStyles();
 
   return (
+      <>
     <Rating
       name="half-rating"
       onChange={changeRate}
@@ -32,5 +33,6 @@ export default function RateComponent({userRating,bookId,size}) {
       size={size}
       className={classes.rating}
     />
+      </>
   );
 }
