@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CategoryService } from "../../API/CategoryServices";
+import  CategoryService from "../../API/categoryServices";
 
 export default function Categories() {
   const [categories , setCategories] = useState([]);

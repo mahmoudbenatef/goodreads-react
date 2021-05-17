@@ -1,13 +1,13 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BookService } from "../../API/BookServices";
+import  AuthorService  from "../../API/authorServices";
 import { BASE_URL } from "../../API/urls";
 import "../../styles/authors.css";
 export default function Authors() {
   const [authors, setAuthors] = useState([]);
   useEffect(() => {
-    BookService.getPopularAuthors().then((authors) => setAuthors(authors.data));
+    AuthorService.getPopularAuthors().then((authors) => setAuthors(authors.data));
   }, []);
 
   const useStyles = makeStyles((theme) => ({}));

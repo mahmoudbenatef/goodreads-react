@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BookService } from "../../API/BookServices";
+import  BookService  from "../../API/bookServices";
 import { BASE_URL } from "../../API/urls";
 export default function Books() {
   const [books, setBooks] = useState([]);
