@@ -2,12 +2,15 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import  CategoryService from "../../API/categoryServices";
+import CategoryService from "../../API/categoryServices";
+import LoadingComponent from "../reusableComponents/LoadingComponent";
 
 export default function Categories() {
   const [categories , setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-        CategoryService.getPopular().then((cat)=>setCategories(cat.data));
+        CategoryService.getPopular().then((cat)=>{setCategories(cat.data);setLoading(false);});
   }, []);
 
   const useStyles = makeStyles((theme) => ({
@@ -41,6 +44,7 @@ export default function Categories() {
   return (
     <div style={{ paddingTop: "4.0rem" }}>
       <h1 style={{ textAlign: "center" }}>Explore our Categories</h1>
+      {loading? <LoadingComponent></LoadingComponent> :
       <div className={classes.flex}>
         {categories.map((value, index) => {
           return (
@@ -54,6 +58,7 @@ export default function Categories() {
           );
         })}
       </div>
+}
     </div>
   );
 }

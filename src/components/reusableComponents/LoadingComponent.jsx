@@ -1,16 +1,10 @@
 import React from "react";
-import logo from "../../open-book.png";
-import "../../styles/LoadingComponent.css";
+import loading from "../../assets/loading.gif";
 export default function LoadingComponent() {
   return (
     <div className="text-center">
-      <div className="text-center">
-        <img src={logo} className="w-25 h-25" alt="" />
-      </div>
-      <div className="loader"></div>
-      <div>
-        <h1>Loading..</h1>
-      </div>
+        <img src={loading} className="w-25 h-25 m-0" alt="" />
+        <h3>Loading..</h3>
     </div>
   );
 }

@@ -13,7 +13,6 @@ import AuthorsComponent from "./PopularAuthorsComponent";
 import BooksComponent from "./PopularBooksComponent";
 import CategoriesComponent from "./PopularCategoriesComponent";
 
-
 export default function LandingComponent({ parent = "login" }) {
   const authentication = useContext(authContext);
   const history = useHistory();
@@ -79,7 +78,7 @@ export default function LandingComponent({ parent = "login" }) {
       </div>
     </div>
     <div className={classes.categories}>
-    <CategoriesComponent></CategoriesComponent>
+ <CategoriesComponent></CategoriesComponent>
     </div>
     <div className={classes.books}>
     <BooksComponent></BooksComponent>

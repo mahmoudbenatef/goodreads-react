@@ -2,13 +2,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import  BookService  from "../../API/bookServices";
+import BookService from "../../API/bookServices";
 import { BASE_URL } from "../../API/urls";
+import LoadingComponent from "../reusableComponents/LoadingComponent";
 export default function Books() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    BookService.getPopularBooks().then((cat) => {setBooks(cat.data)});
+    BookService.getPopularBooks().then((cat) => {setBooks(cat.data);setLoading(false);});
   }, []);
 
   const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,7 @@ export default function Books() {
   return (
     <div style={{ paddingTop: "9.0rem" }}>
       <h1 style={{ textAlign: "center" }}>Most Popular Books</h1>
+      {loading? <LoadingComponent></LoadingComponent> :
       <div className={classes.flex}>
         {books.map((value, index) => {
           return (
@@ -82,7 +84,7 @@ export default function Books() {
             </main>
           );
         })}
-      </div>
+      </div>}
     </div>
   );
 }
