@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import Pagination from "@material-ui/lab/Pagination";
+
 
 
 function Author(props) {
@@ -22,10 +24,16 @@ function Author(props) {
         setcurrentPage(Math.min(totalPages - 1 ,currentPage + 1))
     
       }
+      const handlePagination= (event , pageNumber)=>{
+    
+        setcurrentPage(pageNumber - 1)
+    
+      }
+
 
     useEffect(()=>{
         console.log("responsea 1 ")
-        axios.get(`http://localhost:3001/authors?page=${currentPage}` )
+        axios.get(`http://localhost:3001/authors?page=${currentPage}&limit=${3}` )
         .then((response)=>{
            
              setAuthors(response.data.allAuthors) 
@@ -148,7 +156,6 @@ function Author(props) {
 
               <button 
               key={item} type="button"  className={`btn  ${currentPage === item ? "btn-primary":"btn-secondary" }`}
-              // className={`btn  ${currentPage === item ? "btn-primary":"btn-secondary" }`}
               onClick={()=>{
                 setcurrentPage(item)   
 
@@ -167,6 +174,20 @@ function Author(props) {
             <button type="button" onClick={goNext} className="btn btn-secondary">next</button>
 
     </div>
+    <div className="row" >
+                <div className=" container  " 
+                style={{
+                        display: "flex", 
+                        justifyContent: "center", 
+                       }} >
+                <Pagination
+              count={totalPages}
+              variant="outlined"
+              color="primary"
+              onChange={handlePagination}
+                 />
+        </div>
+</div>
 
 
     </div>

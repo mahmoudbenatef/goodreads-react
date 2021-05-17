@@ -1,7 +1,6 @@
 import { Modal } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import ErrorComponent from "../reusableComponents/ErrorComponent";
-
 const isEmptyObject = (obj) => {
   return Object.keys(obj).length === 0 && obj.constructor === Object;
 };

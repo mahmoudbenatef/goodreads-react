@@ -12,10 +12,14 @@ import AdmiAuthorsComponent from "./components/admin/AdmiAuthorsComponent";
 import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
+import AuthorsList from "./components/author/AuthorsList/AuthorsLIst";
 import LandingComponent from "./components/landingPage/landingComponent";
 import NavbarComponent from "./components/user/NavbarComponent";
 import UserHomeComponent from "./components/user/UserHomeComponent";
 import { authContext } from "./contexts/authContext";
+
+
+
 
 function App(props) {
   const authentication = useContext(authContext);
@@ -75,6 +79,9 @@ function App(props) {
             </Route>
             <Route path="/testAdmin">
               <AdmiAuthorsComponent />
+            </Route>
+            <Route path="/authors">
+              <AuthorsList />
             </Route>
           </Switch>
         </div>
