@@ -2,9 +2,11 @@ import axios from "axios";
 import { useContext, useEffect, useReducer, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { API } from "../../API/urls";
+import bg from "../../assets/stars.png";
 import { authContext } from "../../contexts/authContext";
 import { validateAllInputs } from "../../helper/validateFormErrors";
 import ErrorComponent from "../reusableComponents/ErrorComponent";
+
 export default function RegisterComponent({ parent }) {
   const authentication = useContext(authContext);
   const history = useHistory();
@@ -365,9 +367,12 @@ export default function RegisterComponent({ parent }) {
     <>
       <div
         className={
-          "d-flex flex-column min-vh-100 align-items-center justify-content-center bg-success"
+          "d-flex flex-column min-vh-100 align-items-center justify-content-center"
         }
-      >
+        style={{backgroundImage:`url(${bg})`,backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        width: "100%",
+        margin:"0"}}>
         <div className="row justify-content-center w-50 p-3 bg-light rounded-3">
           <div className="col-md-12 flex-grow-1 p-5 ">
             <div className="row justify-content-center mt-2">
@@ -539,7 +544,7 @@ export default function RegisterComponent({ parent }) {
             </div>
             <div className="row justify-content-center mt-3">
               <div className="col-md-8 align-items-center">
-                Already have account? <Link to="/login">login</Link>
+                Already have an account? <Link to="/login">login</Link>
               </div>
             </div>
           </div>

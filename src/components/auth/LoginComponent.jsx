@@ -2,11 +2,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useEffect, useReducer, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { ApiServices } from "../../API/ApiServices";
+import bg from "../../assets/stars.png";
 import { authContext } from "../../contexts/authContext";
 import { mySessionStorage } from "../../helper/LocalStorge";
 import { validateAllInputs } from "../../helper/validateFormErrors";
 import ErrorComponent from "../reusableComponents/ErrorComponent";
-
 export default function LoginComponent({ parent = "login" }) {
   const [user, setUser] = useReducer(
     (oldstate, updates) => ({ ...oldstate, ...updates }),
@@ -121,8 +121,12 @@ export default function LoginComponent({ parent = "login" }) {
     <>
       <div
         className={
-          "d-flex flex-column min-vh-100 align-items-center justify-content-center bg-success"
-        }>
+          "d-flex flex-column min-vh-100 align-items-center justify-content-center"
+        }
+        style={{backgroundImage:`url(${bg})`,backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        width: "100%",
+        margin:"0"}}>
         <div className="row justify-content-center w-50 p-3 bg-light rounded-3">
           <div className="row justify-content-center mt-5 flex-xl-shrink-2">
             <div className="col-md-4 flex-xl-shrink-2">
