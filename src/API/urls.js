@@ -12,18 +12,18 @@ export const API = {
 export const BOOK_API = {
   rate: (bookId) => `${BASE_URL}/books/${bookId}/rate`,
   shelve: (bookId) => `${BASE_URL}/books/${bookId}/shelve`,
+  popularBooks: () => `${BASE_URL}/popular/books`,
+  books: () => `${BASE_URL}/books`,
 };
 
-const booksURL = {
-  books: `${BASE_URL}/books`,
+export const CATEGORY_API = {
+  popular: () => `${BASE_URL}/popular/categories`,
+  rate: (bookId) => `${BASE_URL}/books/${bookId}/rate`,
+  shelve: (bookId) => `${BASE_URL}/books/${bookId}/shelve`,
+  getAllCategories: () => `${BASE_URL}/category`,
 };
 
-const categoriesURL = {
-  getAllCategories: `${BASE_URL}/category`,
+export const AUTHOR_API = {
+  popularAuthors: () => `${BASE_URL}/popular/authors`,
+  getAllAuthors: () => `${BASE_URL}/authors`,
 };
-
-const authorsURL = {
-  getAllAuthors: `${BASE_URL}/authors`,
-};
-
-export { booksURL, categoriesURL, authorsURL };

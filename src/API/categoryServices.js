@@ -1,7 +1,10 @@
 import axios from "axios";
-import { categoriesURL } from "./urls";
+import { CATEGORY_API } from "./urls";
+
 export default {
   getAllCategories() {
-    return axios.get(categoriesURL.getAllCategories);
-  },
+    return axios.get(CATEGORY_API.getAllCategories());
+  },  getPopular() {
+    return axios.get( CATEGORY_API.popular());
+  }
 };

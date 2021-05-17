@@ -1,6 +1,6 @@
 import BookCardComponent from "./BookCardComponent";
 import {useEffect, useState} from "react";
-import bookServiece from "../../API/bookService";
+import bookServiece from "../../API/bookServices";
 import {BASE_URL} from "../../API/urls"
 import PaginationComponent from "../reusableComponents/PaginationComponent"
 

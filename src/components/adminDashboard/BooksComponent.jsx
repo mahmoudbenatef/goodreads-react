@@ -3,7 +3,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import Pagination from "@material-ui/lab/Pagination";
 import { useEffect, useState } from "react";
 import authorService from "../../API/authorServices";
-import bookServiece from "../../API/bookService";
+import bookServiece from "../../API/bookServices";
 import categoryService from "../../API/categoryServices";
 import statusCode from "../../helper/statusCode";
 import BookFormComponent from "../admin/BookFormComponent";

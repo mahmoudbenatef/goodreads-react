@@ -1,8 +1,11 @@
 import axios from "axios";
-import { authorsURL } from "./urls";
+import { AUTHOR_API } from "./urls";
 
 export default {
   getAllAuthors() {
-    return axios.get(authorsURL.getAllAuthors);
+    return axios.get(AUTHOR_API.getAllAuthors());
+  },
+  getPopularAuthors() {
+    return axios.get(AUTHOR_API.popularAuthors());
   },
 };
