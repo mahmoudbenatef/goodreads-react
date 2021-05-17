@@ -1,8 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
-import RateComponent from "../reusableComponents/RateComponent";
-import ShelfComponent from "../reusableComponents/ShelfComponent";
 import BooksCardContainerComponent from "../userDashboard/BooksCardContainerComponent";
 
 export default function UserHomeComponent() {
@@ -22,15 +20,12 @@ export default function UserHomeComponent() {
   }, []);
   return (
     <>
-      <RateComponent bookId="609964ba4d02fa267a53acf4" userRating={2} size="small"></RateComponent>
-       <ShelfComponent bookId="609964ba4d02fa267a53acf4" ></ShelfComponent>
-
+      {/* <RateComponent bookId="609964ba4d02fa267a53acf4" userRating={2} size="small"></RateComponent>
+       <ShelfComponent bookId="609964ba4d02fa267a53acf4" ></ShelfComponent> */}
       <Switch>
         <Route key={1} path={`${path}/books`}>
           <BooksCardContainerComponent></BooksCardContainerComponent>
         </Route>
-
-
       </Switch>
 
     </>
