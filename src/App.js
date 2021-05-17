@@ -43,6 +43,9 @@ function App(props) {
               <li key={3}>
                 <Link to="/admin/categories">Categories</Link>
               </li>
+              <li key={4}>
+                <Link to="/admin/testAdmin">authors</Link>
+              </li>
             </ul>
           </nav>
               </>
