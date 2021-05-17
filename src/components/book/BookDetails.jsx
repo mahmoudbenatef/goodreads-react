@@ -6,6 +6,8 @@ import statusCode from "../../helper/statusCode";
 import LoadingComponent from "../reusableComponents/LoadingComponent";
 import BookCardCompontent from "../userDashboard/BookCardComponent";
 import BookDescription from "./BookDescription";
+import ReviewComponent from "./ReviewComponent";
+
 export default function BookDetails(props) {
   const [book, setBook] = useState({});
   const [reviews, setReviews] = useState([]);
@@ -37,8 +39,7 @@ export default function BookDetails(props) {
     }
   }, [bookId]);
 
-  const getAuthorFullName = () =>
-    book.author.firstname + " " + book.author.lastname;
+  const getFullName = (user) => user.firstname + " " + user.lastname;
   return (
     <>
       {loading ? (
@@ -52,14 +53,14 @@ export default function BookDetails(props) {
                 rate={book.avgRating}
                 image={BASE_URL + "/" + book.image}
                 bookName={book.name}
-                authorName={getAuthorFullName()}
+                authorName={getFullName(book.author)}
               />
             </div>
             <div className="col-6">
               <BookDescription
                 bookName={book.name}
                 bookAvgValue={book.avgRating}
-                authorName={getAuthorFullName()}
+                authorName={getFullName(book.author)}
                 numberOfReviews={reviews.length}
                 bookDescription={book.description}
               />
@@ -67,7 +68,17 @@ export default function BookDetails(props) {
           </div>
 
           <hr />
-          <div className="row"></div>
+          <div className="row">
+            {reviews.map((review) => (
+              <ReviewComponent
+                authorImg={review.user.avatar}
+                authorName={getFullName(review.user)}
+                rating={review.rating}
+                review={review.review}
+                shelf={review.shelf}
+              />
+            ))}
+          </div>
         </div>
       )}
     </>
