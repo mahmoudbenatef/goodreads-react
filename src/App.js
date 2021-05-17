@@ -8,37 +8,38 @@ import {
 } from "react-router-dom";
 import { BASE_URL } from "./API/urls";
 import "./App.css";
+import AdmiAuthorsComponent from "./components/admin/AdmiAuthorsComponent";
 import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
-import UserHomeComponent from "./components/user/UserHomeComponent";
-import AdmiAuthorsComponent from "./components/admin/AdmiAuthorsComponent";
 import AuthorsList from "./components/author/AuthorsList/AuthorsLIst";
-
-
-
+import LandingComponent from "./components/landingPage/landingComponent";
+import NavbarComponent from "./components/user/NavbarComponent";
+import UserHomeComponent from "./components/user/UserHomeComponent";
 import { authContext } from "./contexts/authContext";
 
-function App(props) {
-  const authentication = useContext(authContext)
 
-  console.log(authentication)
+
+
+function App(props) {
+  const authentication = useContext(authContext);
+  console.log(authentication);
   return (
     <>
       <Router>
         <div className="d-flex flex-column min-vh-100 bg-light">
-          {
-            authentication.auth.authed === true&& authentication.auth.role === "admin" &&
-            // location.pathname !== "register" &&
-                <>
-          <nav>
-            <ul>
-              <li key={1}>
-                <Link to="/admin">Admin</Link>
-              </li>
-              <li key={2}>
-                <Link to="/admin/books">admin books</Link>
-              </li>
+          {authentication.auth.authed === true &&
+            authentication.auth.role === "admin" && (
+              // location.pathname !== "register" &&
+              <>
+                <nav>
+                  <ul>
+                    <li key={1}>
+                      <Link to="/admin">Admin</Link>
+                    </li>
+                    <li key={2}>
+                      <Link to="/admin/books">admin books</Link>
+                    </li>
 
               <li key={3}>
                 <Link to="/admin/categories">Categories</Link>
@@ -49,17 +50,11 @@ function App(props) {
             </ul>
           </nav>
               </>
-            }
+            )}
 
           {authentication.auth.authed === true &&
             authentication.auth.role === "user" && (
-              <nav>
-                <ul>
-                  <li>
-                    <Link to="/user">User</Link>
-                  </li>
-                </ul>
-              </nav>
+              <NavbarComponent></NavbarComponent>
             )}
           {authentication.auth.authed === false &&
             BASE_URL + "/register" === window.location.pathname && (
@@ -77,7 +72,7 @@ function App(props) {
               <UserHomeComponent />
             </Route>
             <Route exact path="/">
-              <LoginComponent />
+              <LandingComponent />
             </Route>
             <Route path="/login">
               <LoginComponent />

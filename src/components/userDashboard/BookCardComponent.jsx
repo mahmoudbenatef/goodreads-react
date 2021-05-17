@@ -8,6 +8,11 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import RateComponent from "../reusableComponents/RateComponent";
 import ShelfComponent from "../reusableComponents/ShelfComponent";
+import { authContext } from "../../contexts/authContext";
+import {useContext, useEffect, useState} from "react";
+import {userBookService} from "../../API/userBookService"
+import {mySessionStorage}from "../../helper/LocalStorge"
+
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -19,6 +24,30 @@ const useStyles = makeStyles({
 });
 
 export default function BookCardComponent({bookName, authorName, image, rate, bookID}){
+    const authentication = useContext(authContext);
+    const [shelf,setShelf]= useState(0)
+
+   useEffect(()=>{
+       if (
+           authentication.auth.authed === true &&
+           authentication.auth.role === "user"
+       ){
+           userBookService.getShelve(bookID,mySessionStorage.getCurrentUser()._id)
+               .then(data=> {
+                   // console.log(data.data.data.shelf)
+                   if(data.data.data)
+                   {
+                       setShelf(data.data.data.shelf)
+
+                   }
+                   else {
+                       setShelf(0)
+                   }
+           }).catch()
+
+       }
+
+       },[] )
     const classes = useStyles();
     return (
         <Card className={classes.root}>
@@ -29,19 +58,20 @@ export default function BookCardComponent({bookName, authorName, image, rate, bo
                     title="Contemplative Reptile"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h5">
+                    <Typography gutterBottom variant="h5" component="h3">
                         {bookName}
                     </Typography>
                     <Typography gutterBottom variant="h5" component="h5">
-                        {authorName}
+                     by: {authorName}
                     </Typography>
                     <div >
+
                     <RateComponent bookId={bookID} userRating={rate} size="small"></RateComponent>
                     </div>
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <ShelfComponent bookId={bookID}></ShelfComponent>
+                <ShelfComponent bookShelf={shelf} bookId={bookID}></ShelfComponent>
             </CardActions>
         </Card>
     );

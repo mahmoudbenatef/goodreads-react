@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { BookService } from "../../API/BookServices";
+import BookService from "../../API/bookServices";
 import { authContext } from "../../contexts/authContext";
 import { mySessionStorage } from "../../helper/LocalStorge";
 
@@ -24,6 +24,7 @@ export default function RateComponent({userRating,bookId,size}) {
   const classes = useStyles();
 
   return (
+      <>
     <Rating
       name="half-rating"
       onChange={changeRate}
@@ -32,5 +33,6 @@ export default function RateComponent({userRating,bookId,size}) {
       size={size}
       className={classes.rating}
     />
+      </>
   );
 }
