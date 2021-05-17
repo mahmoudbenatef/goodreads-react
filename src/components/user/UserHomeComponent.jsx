@@ -54,11 +54,10 @@ export default function UserHomeComponent() {
   useEffect(()=>{
     const getBooks = async () => {
         const userBooksData = await UserBookServices.userBooks(mySessionStorage.getCurrentUser()._id);
-        console.log(userBooksData.data);
         if (userBooksData.status === 200) setUserBooks(userBooksData.data);
     };
     getBooks()
-  },[])
+  },[filter])
 
   return (
     <>
