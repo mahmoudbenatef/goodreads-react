@@ -16,7 +16,7 @@ function Author(props) {
     const [currentPage , setcurrentPage] = useState(0)
     const pages = new Array(totalPages).fill(null).map((v , i )=> i )
 
-    
+
       const handlePagination= (event , pageNumber)=>{
     
         setcurrentPage(pageNumber - 1)
@@ -28,7 +28,7 @@ function Author(props) {
         console.log("responsea 1 ")
         axios.get(`http://localhost:3001/authors?page=${currentPage}&limit=${3}` )
         .then((response)=>{
-           
+            
              setAuthors(response.data.allAuthors) 
             console.log("response",response.data)
             settotalPages(response.data.totalPages)
@@ -43,6 +43,7 @@ function Author(props) {
         console.log("deleted",response.data)
         axios.get(`http://localhost:3001/authors?page=${currentPage}` )
         .then((response)=>{
+            
             
              setAuthors(response.data.allAuthors) 
             console.log("response",response.data)
@@ -77,8 +78,15 @@ function Author(props) {
              <tbody>
              {
 
-
+                
               authors ?    authors.map((item,index)=>{
+
+              let  dd =item.DOB 
+            let d =new Date(dd)
+            var datestring = d.getDate()  + " - " + (d.getMonth()+1) + " - " + d.getFullYear() 
+           
+
+                
         
                 
                      return(
@@ -92,11 +100,8 @@ function Author(props) {
                                      </td>
                             <td  className="pt-5">{item.firstname}</td>
                             <td  className="pt-5">{item.lastname}</td>
-                            <td  className="pt-5">{
-                                
-                                item.DOB}</td>
-
-
+                            <td  className="pt-5">
+                                { datestring}</td>
                             <td>
                                 <button 
                                 onClick={()=>{ 

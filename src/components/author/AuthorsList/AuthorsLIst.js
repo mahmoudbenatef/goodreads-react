@@ -37,29 +37,13 @@ const AuthorsList = (props)=>{
             })
     }  , [page])
     console.log("test test ",authors )
-    // const mycards = authors.map((one)=>{
-    //         return (
-    //                 <div key={one._id} className="card"
-    //                  style={
-    //                      {width: "18rem"   }
-    //                 }>
-    //                 <img className="card-img-top"
-    //                  src={`http://localhost:3001/${one.avatar}`}
-    //                   alt="Card image cap"/>
-    //                 <div className="card-body">
-    //                     <a href="#" className="link-info">
-    //                         {one.firstname + "  "  + one.lastname }
-    //                      </a>
-    //                 </div>
-    //                 </div>
-    //         ); 
-    // })
+
     const mycards = loading? <LoadingComponent></LoadingComponent> :
       authors.map((value, index) => {
         return (
         <div className="book read" key={index}>
           <div className="cover">
-          <Link to={"/author/"+value._id}>
+          <Link to={"/authors/"+value._id}>
           <img src={BASE_URL+"/"+value.avatar} />
           </Link>
           </div>
