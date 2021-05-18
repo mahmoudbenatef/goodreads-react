@@ -1,6 +1,13 @@
 import {useEffect, useState} from 'react'
 import PaginationComponent from '../../reusableComponents/PaginationComponent'
 import Pagination from "@material-ui/lab/Pagination";
+import "../../../styles/authors.css";
+import { Link } from "react-router-dom";
+import LoadingComponent from "../../reusableComponents/LoadingComponent";
+import { BASE_URL } from "../../../API/urls";
+
+
+
 
 import axios from  'axios'
 const AuthorsList = (props)=>{
@@ -9,17 +16,10 @@ const AuthorsList = (props)=>{
 
 
     const [authors , setAuthors] = useState([
-            // {name : "mohamed kaoud ", image : "https://picsum.photos/200/300.jpg"},
-            // {name : "mahmoud  atef ", image : "https://picsum.photos/200/300.jpg"},
-            // {name : "ahmed mamdouh ", image : "https://picsum.photos/200/300.jpg"},
-            // {name : "aya  hammed ", image : "https://picsum.photos/200/300.jpg"},
-            // {name : "abo baker ", image : "https://picsum.photos/200/300.jpg"},
-            // {name : "hossam  mohamed ", image : "https://picsum.photos/200/300.jpg"},
-            // {name : "abdelrahman montaser ", image : "https://picsum.photos/200/300.jpg"},
-            // {name : "hatem mohamed ", image : "https://picsum.photos/200/300.jpg"},
-            // {name : "sherlok holmes ", image : "https://picsum.photos/200/300.jpg"},
-            // {name : "ahmed ramadan ", image : "https://picsum.photos/200/300.jpg"}
-    ])
+      
+    ]) 
+     const [loading, setLoading] = useState(true);
+
 
     const handlePagination = (event, pageNumber) => {
         console.log("number",pageNumber )
@@ -33,26 +33,42 @@ const AuthorsList = (props)=>{
                     const mycount = response.data.totalPages
                     setAuthors(myData)
                     setCount(mycount)
+                    setLoading(false)
             })
     }  , [page])
     console.log("test test ",authors )
-    const mycards = authors.map((one)=>{
-            return (
-                    <div key={one._id} className="card"
-                     style={
-                         {width: "18rem"   }
-                    }>
-                    <img className="card-img-top"
-                     src={`http://localhost:3001/${one.avatar}`}
-                      alt="Card image cap"/>
-                    <div className="card-body">
-                        <a href="#" className="link-info">
-                            {one.firstname + "  "  + one.lastname }
-                         </a>
-                    </div>
-                    </div>
-            ); 
-    })
+    // const mycards = authors.map((one)=>{
+    //         return (
+    //                 <div key={one._id} className="card"
+    //                  style={
+    //                      {width: "18rem"   }
+    //                 }>
+    //                 <img className="card-img-top"
+    //                  src={`http://localhost:3001/${one.avatar}`}
+    //                   alt="Card image cap"/>
+    //                 <div className="card-body">
+    //                     <a href="#" className="link-info">
+    //                         {one.firstname + "  "  + one.lastname }
+    //                      </a>
+    //                 </div>
+    //                 </div>
+    //         ); 
+    // })
+    const mycards = loading? <LoadingComponent></LoadingComponent> :
+      authors.map((value, index) => {
+        return (
+        <div className="book read" key={index}>
+          <div className="cover">
+          <Link to={"/author/"+value._id}>
+          <img src={BASE_URL+"/"+value.avatar} />
+          </Link>
+          </div>
+          <div className="description">
+            <p className="title">{value.firstname} {value.lastname}</p>
+          </div>
+        </div>
+        )})
+      
 return(
 <div  className="container">
 <div className="container" 

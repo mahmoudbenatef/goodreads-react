@@ -7,6 +7,9 @@ import { authContext } from "../../contexts/authContext";
 import { CategoryProvider } from "../../contexts/categoryContext";
 import BooksComponent from "../adminDashboard/BooksComponent";
 import CategoryComponent from "../adminDashboard/category/CategoryComponent";
+import AdmiAuthorsComponent from "./AdmiAuthorsComponent";
+
+
 export default function AdminHomeComponent(){
     let { path, url } = useRouteMatch();
     const authentication = useContext(authContext)
@@ -36,6 +39,9 @@ export default function AdminHomeComponent(){
                 <CategoryProvider>
                     <CategoryComponent />
                 </CategoryProvider>
+                </Route>
+                <Route key={3} path={`${path}/authors`}>
+                    <AdmiAuthorsComponent />
                 </Route>
             </Switch>
         </>

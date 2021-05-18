@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import Pagination from "@material-ui/lab/Pagination";
+import LoadingComponent from "../reusableComponents/LoadingComponent";
+
 
 
 
@@ -8,22 +10,13 @@ function Author(props) {
 
     const [authors , setAuthors] = useState([])
     const [dataIndex , setIndex] = useState(0)
-
+    const [loading, setLoading] = useState(true);
     const [data , setData] = useState([])
     const [totalPages , settotalPages] = useState(0)
     const [currentPage , setcurrentPage] = useState(0)
     const pages = new Array(totalPages).fill(null).map((v , i )=> i )
 
-    const goprev = ()=>{
-
-        setcurrentPage(Math.max(0,currentPage - 1))
     
-      }
-      const goNext= ()=>{
-    
-        setcurrentPage(Math.min(totalPages - 1 ,currentPage + 1))
-    
-      }
       const handlePagination= (event , pageNumber)=>{
     
         setcurrentPage(pageNumber - 1)
@@ -39,6 +32,7 @@ function Author(props) {
              setAuthors(response.data.allAuthors) 
             console.log("response",response.data)
             settotalPages(response.data.totalPages)
+            setLoading(false)
 
             }) 
     } , [currentPage])
@@ -52,14 +46,18 @@ function Author(props) {
             
              setAuthors(response.data.allAuthors) 
             console.log("response",response.data)
+            setLoading(false)
+
             }) 
         })
     }
   return (
+    loading ? <LoadingComponent></LoadingComponent>  :
+    
     <div className="container">
      <div className="container">
                     <div className="d-flex flex-row-reverse">
-                          <button className="btn btn-primary add-btn" 
+                          <button className="btn btn-primary btn-sm rounded-0 add-btn" 
                            onClick={()=>{ 
                             props.clicked('add',"add")
                            }} >add author 
@@ -70,8 +68,8 @@ function Author(props) {
                  <tr>
                  <td>#</td>
                 <td>image</td>
-                <td>fname</td>
-                <td>lname</td>
+                <td>first name</td>
+                <td>last name</td>
                 <td>date of birth</td>
                 <td>actions</td>
                  </tr>
@@ -86,17 +84,15 @@ function Author(props) {
                      return(
 
                         <tr key={item._id}>
-                            <td>{index + 1}</td>
+                            <td className="pt-5">{index + 1}</td>
                             <td>
                                 
                             <img src={`http://localhost:3001/${item.avatar}`} width="100"/>
-                            
-
-
+                          
                                      </td>
-                            <td>{item.firstname}</td>
-                            <td>{item.lastname}</td>
-                            <td>{
+                            <td  className="pt-5">{item.firstname}</td>
+                            <td  className="pt-5">{item.lastname}</td>
+                            <td  className="pt-5">{
                                 
                                 item.DOB}</td>
 
@@ -109,88 +105,41 @@ function Author(props) {
                                     props.clicked('add' ,"update"  )
 
                                    }}
-                                className="btn btn-warning m-2"
+                                // className="btn btn-warning m-2"
+                                className="btn btn-success btn-sm rounded-0 m-2 mt-5"
+                                
                                 >edit</button>
-                                <button className="btn btn-danger m-2" 
+                                <button className="btn btn-danger btn-sm rounded-0 m-2 mt-5" 
                                 onClick={()=>{
                                         deleteAuthor(index)
 
-                                }}
-                                
+                                }}  
                                 >delete</button>
-
-
                             </td>
-
-
-
                         </tr>
-
-
-
                      ) ; 
-                        
                  })
-
-
-
             : "" }
              </tbody>
-
-
-
-
          </table>
-
-       
-
      </div>
-      
-     <div className="btn-group" role="group" aria-label="Basic example">
-        
-        <button type="button"  onClick={goprev} className="btn btn-secondary">prev</button>
-
-        {pages.map((item)=>{
-            return(
-              
-
-              <button 
-              key={item} type="button"  className={`btn  ${currentPage === item ? "btn-primary":"btn-secondary" }`}
-              onClick={()=>{
-                setcurrentPage(item)   
-
-              }}
-
-            
-              >
-                
-                {item + 1}
-              
-              </button>
-
-            ) ; 
-
-          })}
-            <button type="button" onClick={goNext} className="btn btn-secondary">next</button>
-
-    </div>
     <div className="row" >
                 <div className=" container  " 
-                style={{
-                        display: "flex", 
-                        justifyContent: "center", 
-                       }} >
-                <Pagination
-              count={totalPages}
-              variant="outlined"
-              color="primary"
-              onChange={handlePagination}
+                        style={{
+                                display: "flex", 
+                                justifyContent: "center", 
+                              }} >
+                        <Pagination
+                      count={totalPages}
+                      variant="outlined"
+                      color="primary" 
+                      onChange={handlePagination}
                  />
-        </div>
-</div>
-
-
+             </div>
     </div>
+
+
+    </div>  
   );
 }
 

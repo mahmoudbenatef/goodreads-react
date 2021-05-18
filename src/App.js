@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { BASE_URL } from "./API/urls";
 import "./App.css";
-import AdmiAuthorsComponent from "./components/admin/AdmiAuthorsComponent";
 import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
@@ -45,7 +44,7 @@ function App(props) {
                 <Link to="/admin/categories">Categories</Link>
               </li>
               <li key={4}>
-                <Link to="/admin/testAdmin">authors</Link>
+                <Link to="/admin/authors">authors</Link>
               </li>
             </ul>
           </nav>
@@ -80,9 +79,7 @@ function App(props) {
             <Route path="/register">
               <RegisterComponent />
             </Route>
-            <Route path="/testAdmin">
-              <AdmiAuthorsComponent />
-            </Route>
+        
             <Route path="/authors">
               <AuthorsList />
             </Route>
