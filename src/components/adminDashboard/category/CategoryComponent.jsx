@@ -9,7 +9,7 @@ export default function () {
     return (
 
         <div className={"d-flex flex-column min-vh-100 align-items-center  "}>
-            <div className="row justify-content-center w-100 p-3 bg-light rounded-3">
+            <div className="row justify-content-center w-100 p-3 rounded-3">
                 <div className="row justify-content-center mt-5 flex-xl-shrink-2">
                     <div className="col-md-12 flex-xl-shrink-2">
                         <h1> Categories </h1>

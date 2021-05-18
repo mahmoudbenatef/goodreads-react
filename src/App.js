@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import {
   BrowserRouter as Router,
-  Link,
+
   Redirect,
   Route,
   Switch
@@ -26,28 +26,11 @@ function App(props) {
   return (
     <>
       <Router>
-        <div className="d-flex flex-column min-vh-100 bg-light">
+        <div className="d-flex flex-column min-vh-100" style={{backgroundColor:"#e3f2fd"}}>
           {authentication.auth.authed === true &&
             authentication.auth.role === "admin" && (
-              // location.pathname !== "register" &&
               <>
-                <nav>
-                  <ul>
-                    <li key={1}>
-                      <Link to="/admin">Admin</Link>
-                    </li>
-                    <li key={2}>
-                      <Link to="/admin/books">admin books</Link>
-                    </li>
-
-              <li key={3}>
-                <Link to="/admin/categories">Categories</Link>
-              </li>
-              <li key={4}>
-                <Link to="/admin/authors">authors</Link>
-              </li>
-            </ul>
-          </nav>
+                <NavbarComponent parent="admin"></NavbarComponent>
               </>
             )}
 
