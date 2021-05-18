@@ -15,6 +15,7 @@ import Rating from "@material-ui/lab/Rating";
 
 export default function UserHomeComponent() {
   const [userBooks, setUserBooks] = useState([]);
+  const [reload, setReload] = useState(false);
   const [filter, setFilter] = useState('all');
   let { path, url } = useRouteMatch();
   const authentication = useContext(authContext);
@@ -55,9 +56,10 @@ export default function UserHomeComponent() {
     const getBooks = async () => {
         const userBooksData = await UserBookServices.userBooks(mySessionStorage.getCurrentUser()._id);
         if (userBooksData.status === 200) setUserBooks(userBooksData.data);
+        setReload(false);
     };
-    getBooks()
-  },[filter])
+    getBooks();
+  },[filter, reload])
 
   return (
     <>
@@ -97,8 +99,8 @@ export default function UserHomeComponent() {
               <td>{userBook.book.name}</td>
               <td>{userBook.book.author.lastname}</td>
               <td><Rating name="read-only" value={userBook.book.avgRating} readOnly size="small"/></td>
-              <td><RateComponent bookId={userBook.book._id} userRating={userBook.rating} size="small"></RateComponent></td>
-              <td><ShelfComponent bookId={userBook.book._id} bookShelf={userBook.shelf} ></ShelfComponent></td>
+              <td><RateComponent bookId={userBook.book._id} userRating={userBook.rating} size="small" ></RateComponent></td>
+              <td><ShelfComponent bookId={userBook.book._id} bookShelf={userBook.shelf} setReload={setReload} ></ShelfComponent></td>
             </tr>
             
           })
