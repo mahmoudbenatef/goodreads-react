@@ -29,6 +29,7 @@ export default function BookCardComponent({
   rate,
   bookID,
   handelOnClick,
+  setUpdated,
 }) {
   const authentication = useContext(authContext);
   const [shelf, setShelf] = useState(0);
@@ -52,6 +53,9 @@ export default function BookCardComponent({
     }
   }, []);
   const classes = useStyles();
+  const handleUpdated = () => {
+    setUpdated([]);
+  };
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -73,12 +77,17 @@ export default function BookCardComponent({
               bookId={bookID}
               userRating={rate}
               size="small"
+              callMeonUpdate={handleUpdated}
             ></RateComponent>
           </div>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <ShelfComponent bookShelf={shelf} bookId={bookID}></ShelfComponent>
+        <ShelfComponent
+          bookShelf={shelf}
+          callMeonUpdate={handleUpdated}
+          bookId={bookID}
+        ></ShelfComponent>
       </CardActions>
     </Card>
   );

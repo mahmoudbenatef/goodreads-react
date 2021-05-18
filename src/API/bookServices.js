@@ -30,6 +30,13 @@ export default {
   rate(userId, bookId, rating) {
     return axios.post(BOOK_API.rate(bookId), { user: userId, rating: rating });
   },
+  review(userId, bookId, review) {
+    return axios.post(BOOK_API.review(bookId), {
+      bookId,
+      userId,
+      review,
+    });
+  },
   shelve(userId, bookId, shelf) {
     return axios.post(BOOK_API.shelve(bookId), { user: userId, shelf: shelf });
   },

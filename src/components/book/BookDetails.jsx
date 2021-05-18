@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import bookServices from "../../API/bookServices";
 import { BASE_URL } from "../../API/urls";
+import { mySessionStorage } from "../../helper/LocalStorge";
 import statusCode from "../../helper/statusCode";
 import LoadingComponent from "../reusableComponents/LoadingComponent";
 import BookCardCompontent from "../userDashboard/BookCardComponent";
@@ -12,8 +13,12 @@ export default function BookDetails(props) {
   const [book, setBook] = useState({});
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newReview, setNewReview] = useState("");
+  // to get the new upadted data if any change happend to this book
+  const [updated, setUpdated] = useState([]);
   // navigation
   const history = useHistory();
+
   // accessing the passed object
   const location = useLocation();
   const bookId = location?.state?.bookId;
@@ -26,6 +31,7 @@ export default function BookDetails(props) {
   // get bookDetaisl
 
   useEffect(async () => {
+    console.log("getting the book");
     try {
       const { status, data } = await bookServices.getBookById(bookId);
       if (status === statusCode.Success) {
@@ -37,9 +43,32 @@ export default function BookDetails(props) {
       console.log(err.response);
       alert("somthing went wrong please try again later");
     }
-  }, [bookId]);
+  }, [updated]);
 
+  // get user full name
   const getFullName = (user) => user.firstname + " " + user.lastname;
+
+  // add new review
+
+  const handleNewReview = async () => {
+    //function gurad
+    if (!newReview) return;
+
+    try {
+      const { status } = await bookServices.review(
+        mySessionStorage.getCurrentUser()._id,
+        bookId,
+        newReview
+      );
+      if (status === statusCode.Success) {
+        setNewReview("");
+        setUpdated([]);
+      }
+    } catch (error) {
+      alert("Sorry somthing went wrong please try again later");
+      console.log(error.message, error.response);
+    }
+  };
   return (
     <>
       {loading ? (
@@ -54,6 +83,7 @@ export default function BookDetails(props) {
                 image={BASE_URL + "/" + book.image}
                 bookName={book.name}
                 authorName={getFullName(book.author)}
+                setUpdated={setUpdated}
               />
             </div>
             <div className="col-6">
@@ -66,9 +96,28 @@ export default function BookDetails(props) {
               />
             </div>
           </div>
-
           <hr />
-          <div className="row">
+          <div>
+            <div className="row align-baseline">
+              <div className="col">
+                <input
+                  type="text"
+                  value={newReview}
+                  onChange={(e) => setNewReview(e.target.value)}
+                  className="form-control col-2"
+                />
+              </div>
+              <div className="col-2">
+                <button
+                  className="btn btn-sm
+                 "
+                  style={{ backgroundColor: "rgb(227, 242, 253)" }}
+                  onClick={handleNewReview}
+                >
+                  Review
+                </button>
+              </div>
+            </div>
             {reviews.map((review) => (
               <ReviewComponent
                 authorImg={review.user.avatar}

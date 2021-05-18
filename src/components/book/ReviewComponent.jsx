@@ -28,12 +28,7 @@ export default function ReviewComponent({
           <span className="text-success">Shelfs:</span> {getShelfName(shelf)}
         </div>
         <div>
-          <p className="text-justify">
-            {review} Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Repellendus error nemo quo fugiat molestias quas architecto
-            consectetur nulla assumenda minima animi corrupti voluptatem rem
-            esse, dolorum est accusamus velit earum?
-          </p>
+          <p className="text-justify">{review}</p>
         </div>
       </div>
     </div>

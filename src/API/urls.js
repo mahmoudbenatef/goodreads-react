@@ -11,6 +11,7 @@ export const API = {
 
 export const BOOK_API = {
   rate: (bookId) => `${BASE_URL}/books/${bookId}/rate`,
+  review: (bookId) => `${BASE_URL}/books/${bookId}/review`,
   shelve: (bookId) => `${BASE_URL}/books/${bookId}/shelve`,
   popularBooks: () => `${BASE_URL}/popular/books`,
   books: () => `${BASE_URL}/books`,
