@@ -50,8 +50,7 @@ export default function LoginComponent({ parent = "login" }) {
       )
     ) {
       setUserErrors({ email: { ...userErrors.email, isValid: true } });
-    } 
-    else if (user.email !== "") {
+    } else if (user.email !== "") {
       setUserErrors({
         email: { ...userErrors.email, isValid: false, isTouched: true },
       });
@@ -105,28 +104,31 @@ export default function LoginComponent({ parent = "login" }) {
     }
   }, [loginPressed]);
 
-
   const useStyles = makeStyles((theme) => ({
     homeError: {
       borderRadius: "0.2rem",
       fontSize: "0.9rem",
       display: "inline",
       color: "#711D1D",
-      overflow: "hidden"
-    }
+      overflow: "hidden",
+    },
   }));
   const classes = useStyles();
-  
+
   return parent == "login" ? (
     <>
       <div
         className={
           "d-flex flex-column min-vh-100 align-items-center justify-content-center"
         }
-        style={{backgroundImage:`url(${bg})`,backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        width: "100%",
-        margin:"0"}}>
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          width: "100%",
+          margin: "0",
+        }}
+      >
         <div className="row justify-content-center w-50 p-3 bg-light rounded-3">
           <div className="row justify-content-center mt-5 flex-xl-shrink-2">
             <div className="col-md-4 flex-xl-shrink-2">
@@ -233,23 +235,34 @@ export default function LoginComponent({ parent = "login" }) {
             onClick={() => {
               setloginPressed(loginPressed + 1);
             }}
-            style={{backgroundColor: "#3d6b8c",color:"white"}}
+            style={{ backgroundColor: "#3d6b8c", color: "white" }}
           >
             Login
           </button>
         </div>
       </div>
       <div className="row">
-      <ul>
-      {serverError !== "" && <li className={classes.homeError}> {serverError}</li>}
-      {!userErrors.email.isValid && userErrors.email.isTouched && (
-        <li style={{marginRight:"4rem",paddingLeft:"1.8rem"}} className={classes.homeError} > {userErrors.email.errorMsg}</li>
-      )}
-            {!userErrors.password.isValid && userErrors.password.isTouched && (
-        <li className={classes.homeError}> {userErrors.password.errorMsg}</li>
-      )}
-      </ul>
-    </div>
+        <ul>
+          {serverError !== "" && (
+            <li className={classes.homeError}> {serverError}</li>
+          )}
+          {!userErrors.email.isValid && userErrors.email.isTouched && (
+            <li
+              style={{ marginRight: "4rem", paddingLeft: "1.8rem" }}
+              className={classes.homeError}
+            >
+              {" "}
+              {userErrors.email.errorMsg}
+            </li>
+          )}
+          {!userErrors.password.isValid && userErrors.password.isTouched && (
+            <li className={classes.homeError}>
+              {" "}
+              {userErrors.password.errorMsg}
+            </li>
+          )}
+        </ul>
+      </div>
     </div>
   );
 }
