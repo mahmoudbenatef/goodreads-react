@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import bookServiece from "../../API/bookServices";
 import { BASE_URL } from "../../API/urls";
+import LoadingComponent from "../reusableComponents/LoadingComponent";
 import PaginationComponent from "../reusableComponents/PaginationComponent";
 import BookCardComponent from "./BookCardComponent";
-
 export default function BooksCardContainerComponent() {
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(1);
+  const [updated, setUpdated] = useState([]);
+
   const histroy = useHistory();
-  console.log(books);
   useEffect(() => {
     const getAllData = async () => {
       const params = {
@@ -17,11 +18,11 @@ export default function BooksCardContainerComponent() {
         limit: 6,
       };
       const booksResponse = await bookServiece.getAllBooks(params);
-      console.log(booksResponse);
       if (booksResponse.status === 200) setBooks(booksResponse.data);
     };
     getAllData();
-  }, [page]);
+    console.log("gettign all data");
+  }, [page, updated]);
 
   // redirect to book details page
   const handelBookDetails = (bookId) => () => {
@@ -34,17 +35,17 @@ export default function BooksCardContainerComponent() {
   };
   return (
     <>
-      <h1>Books</h1>
       <div className="container">
         <div className="row">
           {!books.data ? (
-            <h1>No data yet</h1>
+            <LoadingComponent />
           ) : (
             books.data.map((book) => {
               return (
                 <div className={"col-md-4 pt-5"}>
                   <BookCardComponent
                     bookID={book._id}
+                    key={book._id}
                     rate={book.avgRating}
                     image={BASE_URL + "/" + book.image}
                     bookName={book.name}
@@ -52,6 +53,7 @@ export default function BooksCardContainerComponent() {
                       book.author.firstname + " " + book.author.lastname
                     }
                     handelOnClick={handelBookDetails(book._id)}
+                    setUpdated={setUpdated}
                   ></BookCardComponent>
                 </div>
               );

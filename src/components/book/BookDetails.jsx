@@ -120,6 +120,7 @@ export default function BookDetails(props) {
             </div>
             {reviews.map((review) => (
               <ReviewComponent
+                key={review._id}
                 authorImg={review.user.avatar}
                 authorName={getFullName(review.user)}
                 rating={review.rating}

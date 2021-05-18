@@ -33,7 +33,6 @@ export default function BookCardComponent({
 }) {
   const authentication = useContext(authContext);
   const [shelf, setShelf] = useState(0);
-
   useEffect(() => {
     if (
       authentication.auth.authed === true &&
@@ -54,7 +53,7 @@ export default function BookCardComponent({
   }, []);
   const classes = useStyles();
   const handleUpdated = () => {
-    setUpdated([]);
+    if (setUpdated && setUpdated([]));
   };
   return (
     <Card className={classes.root}>

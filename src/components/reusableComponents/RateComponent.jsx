@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import BookService from "../../API/bookServices";
 import { authContext } from "../../contexts/authContext";
@@ -14,7 +14,9 @@ export default function RateComponent({
 }) {
   const authentication = useContext(authContext);
   const history = useHistory();
+  const [rate, setRate] = useState(0);
 
+  useEffect(() => setRate(userRating), []);
   const changeRate = async (event, newValue) => {
     if (authentication.auth.authed) {
       await BookService.rate(
@@ -23,6 +25,7 @@ export default function RateComponent({
         newValue
       );
       callMeonUpdate();
+      setRate(newValue);
     } else history.push("/login");
   };
 
@@ -39,6 +42,7 @@ export default function RateComponent({
         name="half-rating"
         onChange={changeRate}
         defaultValue={userRating}
+        value={rate}
         precision={1.0}
         size={size}
         className={classes.rating}
