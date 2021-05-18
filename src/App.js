@@ -15,6 +15,8 @@ import UserHomeComponent from "./components/user/UserHomeComponent";
 import AdmiAuthorsComponent from "./components/admin/AdmiAuthorsComponent";
 
 import { authContext } from "./contexts/authContext";
+import ListCategoriesComponent from "./components/user/category/ListCategoriesComponent";
+import CategoryBooksComponent from "./components/user/category/CategoryBooksComponent";
 
 function App(props) {
   const authentication = useContext(authContext)
@@ -81,6 +83,12 @@ function App(props) {
             </Route>
             <Route path="/testAdmin">
               <AdmiAuthorsComponent />
+            </Route>
+            <Route exact path="/users/categories">
+              <ListCategoriesComponent />
+            </Route>
+            <Route path="/users/categories/:id">
+              <CategoryBooksComponent />
             </Route>
           </Switch>
         </div>

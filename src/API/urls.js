@@ -26,4 +26,12 @@ const authorsURL = {
   getAllAuthors: `${BASE_URL}/authors`,
 };
 
-export { booksURL, categoriesURL, authorsURL };
+const userCategoriesURL = {
+  getAllCategories: `${BASE_URL}/users/categories`,
+};
+
+const userCategoryBooksURL = {
+  getCategoryBooks: (categoryId) => `${BASE_URL}/users/categories/${categoryId}`,
+};
+
+export { booksURL, categoriesURL, authorsURL, userCategoriesURL, userCategoryBooksURL };
