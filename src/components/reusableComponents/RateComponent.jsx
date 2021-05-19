@@ -10,7 +10,7 @@ export default function RateComponent({
   userRating,
   bookId,
   size,
-  callMeonUpdate,
+  setReload,
 }) {
   const authentication = useContext(authContext);
   const history = useHistory();
@@ -24,7 +24,6 @@ export default function RateComponent({
         bookId,
         newValue
       );
-      callMeonUpdate();
       setRate(newValue);
     } else history.push("/login");
   };

@@ -12,7 +12,7 @@ import { mySessionStorage } from "../../helper/LocalStorge";
 export default function ShelfComponent({
   bookShelf = "0",
   bookId,
-  callMeonUpdate,
+  setReload,
 }) {
   const [shelf, setShelf] = React.useState(bookShelf);
   const authentication = useContext(authContext);
@@ -30,7 +30,7 @@ export default function ShelfComponent({
         bookId,
         newValue.props.value
       );
-      callMeonUpdate();
+      setReload(true);
     } else history.push("/login");
   };
 

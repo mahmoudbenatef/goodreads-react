@@ -39,7 +39,7 @@ export default function ListCategoriesComponent() {
         <ul className="list-group list-group-horizontal">
             { userCategories.map((category) => {
                 return <li className="list-group-item" key={category._id} > <Link to={{
-                    pathname: `/users/categories/${category._id}`,
+                    pathname: `/categories/${category._id}`,
                     state: {
                         title: category.label,
                     },

@@ -20,6 +20,7 @@ import BookCardContainerComponent from "./components/userDashboard/BooksCardCont
 import { authContext } from "./contexts/authContext";
 import ListCategoriesComponent from "./components/user/category/ListCategoriesComponent";
 import CategoryBooksComponent from "./components/user/category/CategoryBooksComponent";
+import UserShelvesComponent from "./components/user/UserShelvesComponent";
 
 function App(props) {
   const authentication = useContext(authContext);
@@ -68,7 +69,7 @@ function App(props) {
             <Route path="/admin">
               <AdminHomeComponent />
             </Route>
-            <Route path="/user">
+            <Route exact path="/user">
               <UserHomeComponent />
             </Route>
             <Route exact path="/">
@@ -91,11 +92,14 @@ function App(props) {
             <Route path="/books">
               <BookCardContainerComponent></BookCardContainerComponent>
             </Route>
-            <Route exact path="/users/categories">
+            <Route exact path="/categories">
               <ListCategoriesComponent />
             </Route>
-            <Route path="/users/categories/:id">
+            <Route path="/categories/:id">
               <CategoryBooksComponent />
+            </Route>
+            <Route key={2} path='/shelves'>
+              <UserShelvesComponent></UserShelvesComponent>
             </Route>
           </Switch>
         </div>

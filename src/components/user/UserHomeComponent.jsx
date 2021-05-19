@@ -7,6 +7,8 @@ import { mySessionStorage } from "../../helper/LocalStorge";
 import { BASE_URL } from "../../API/urls";
 import Rating from "@material-ui/lab/Rating";
 import UserShelvesComponent from './UserShelvesComponent';
+import ListCategoriesComponent from "../adminDashboard/category/ListCategoriesComponent";
+import CategoryBooksComponent from "./category/CategoryBooksComponent";
 
 export default function UserHomeComponent() {
   let { path, url } = useRouteMatch();
@@ -31,9 +33,7 @@ export default function UserHomeComponent() {
         <Route key={1} path={`${path}/books`}>
           <BooksCardContainerComponent></BooksCardContainerComponent>
         </Route>
-        <Route key={2} path={`${path}/shelves`}>
-          <UserShelvesComponent></UserShelvesComponent>
-        </Route>
+        
       </Switch>
     </>
   );
