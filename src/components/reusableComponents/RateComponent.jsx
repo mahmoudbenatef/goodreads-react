@@ -37,16 +37,13 @@ export default function RateComponent({
   const classes = useStyles();
 
   return (
-    <>
-      <Rating
-        name="half-rating"
-        onChange={changeRate}
-        defaultValue={userRating}
-        value={rate}
-        precision={1.0}
-        size={size}
-        className={classes.rating}
-      />
-    </>
+    <Rating
+      name={bookId}
+      onChange={changeRate}
+      defaultValue={userRating}
+      precision={1.0}
+      size={size}
+      className={classes.rating}
+    />
   );
 }

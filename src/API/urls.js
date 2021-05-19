@@ -31,3 +31,7 @@ export const AUTHOR_API = {
   popularAuthors: () => `${BASE_URL}/popular/authors`,
   getAllAuthors: () => `${BASE_URL}/authors`,
 };
+
+export const userBooksURL = {
+  getBooks: (userId) => `${BASE_URL}/user/${userId}/books`, 
+};
