@@ -112,6 +112,7 @@ export default function AdminBooksComponent() {
   };
   return (
     <>
+      <h1 style={{textAlign:"center",marginTop:"3rem"}}> Books </h1>
       {loading ? (
         <LoadingCompoenet />
       ) : (
@@ -136,7 +137,7 @@ export default function AdminBooksComponent() {
             </thead>
             <tbody>
               {books.map((book, index) => (
-                <tr>
+                <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{book.name}</td>
                   <td>{book.author.firstname}</td>

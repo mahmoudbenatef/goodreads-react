@@ -13,6 +13,7 @@
   vertical-align: top;
   transition: height 1s;
   border-radius: 0.4rem;
+  background-color: white;
 }
 
 .book:after {

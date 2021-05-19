@@ -1,15 +1,14 @@
-import {useEffect, useState} from 'react'
-import PaginationComponent from '../../reusableComponents/PaginationComponent'
 import Pagination from "@material-ui/lab/Pagination";
-import "../../../styles/authors.css";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import LoadingComponent from "../../reusableComponents/LoadingComponent";
 import { BASE_URL } from "../../../API/urls";
+import "../../../styles/authors.css";
+import LoadingComponent from "../../reusableComponents/LoadingComponent";
 
 
 
 
-import axios from  'axios'
 const AuthorsList = (props)=>{
     const [page, setPage] = useState(0);
     const [count, setCount] = useState(0);
@@ -78,7 +77,6 @@ style={
      display: "flex"  ,
      justifyContent: "center"  , 
      flexWrap: "wrap"  , 
-        border: "1px solid black" 
     }
 }
 >

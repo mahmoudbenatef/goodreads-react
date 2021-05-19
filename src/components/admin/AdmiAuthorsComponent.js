@@ -24,8 +24,7 @@ function AdminAuthors() {
   return (
     // <Router>
     <div className="App">
-    
-
+    <h1 style={{textAlign:"center",marginTop:"3rem"}}> Authors </h1>
          { displayed === "author" ?  <Author  
          clicked2={(status  )=>{ passData(status)}}
           clicked= { (status ,typeOfForm )=>{ triggered(status,typeOfForm)}}  />  : ''}

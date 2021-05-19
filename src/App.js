@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import {
   BrowserRouter as Router,
-  Link,
   Redirect,
   Route,
   Switch,
@@ -25,42 +24,15 @@ function App(props) {
   return (
     <>
       <Router>
-        <div className="d-flex flex-column min-vh-100 bg-light">
-          {authentication.auth.authed === true &&
-            authentication.auth.role === "admin" && (
-              // location.pathname !== "register" &&
-              <>
-                <nav>
-                  <ul>
-                    <li key={1}>
-                      <Link to="/admin">Admin</Link>
-                    </li>
-                    <li key={2}>
-                      <Link to="/admin/books">admin books</Link>
-                    </li>
-
-              <li key={3}>
-                <Link to="/admin/categories">Categories</Link>
-              </li>
-              <li key={4}>
-                <Link to="/admin/authors">authors</Link>
-              </li>
-            </ul>
-          </nav>
-              </>
-            )}
-
-          {authentication.auth.authed === true &&
-            authentication.auth.role === "user" && (
-              <NavbarComponent></NavbarComponent>
-            )}
+        <div
+          className="d-flex flex-column min-vh-100"
+          style={{ backgroundColor: "#e3f2fd" }}
+        >
+          {authentication.auth.authed ===
+            true && (<NavbarComponent></NavbarComponent>)}
           {authentication.auth.authed === false &&
             BASE_URL + "/register" === window.location.pathname && (
-              <Redirect
-                to={{
-                  pathname: "/login",
-                }}
-              />
+              <Redirect to={{ pathname: "/login" }} />
             )}
           <Switch>
             <Route path="/admin">
@@ -78,7 +50,7 @@ function App(props) {
             <Route path="/register">
               <RegisterComponent />
             </Route>
-        
+
             <Route path="/authors">
               <AuthorsList />
             </Route>
