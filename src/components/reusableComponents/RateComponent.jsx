@@ -25,7 +25,7 @@ export default function RateComponent({userRating,bookId,size}) {
 
   return (
     <Rating
-      name="half-rating"
+      name={bookId}
       onChange={changeRate}
       defaultValue={userRating}
       precision={1.0}
