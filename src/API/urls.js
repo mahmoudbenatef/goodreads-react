@@ -11,27 +11,35 @@ export const API = {
 
 export const BOOK_API = {
   rate: (bookId) => `${BASE_URL}/books/${bookId}/rate`,
+  review: (bookId) => `${BASE_URL}/books/${bookId}/review`,
   shelve: (bookId) => `${BASE_URL}/books/${bookId}/shelve`,
+  popularBooks: () => `${BASE_URL}/popular/books`,
+  books: () => `${BASE_URL}/books`,
 };
 
-const booksURL = {
-  books: `${BASE_URL}/books`,
+export const CATEGORY_API = {
+  popular: () => `${BASE_URL}/popular/categories`,
+  rate: (bookId) => `${BASE_URL}/books/${bookId}/rate`,
+  shelve: (bookId) => `${BASE_URL}/books/${bookId}/shelve`,
+  getAllCategories: () => `${BASE_URL}/category`,
+};
+export const userBook = {
+  shelve: (bookId, userId) =>
+    `${BASE_URL}/userBooks/${bookId}/user/${userId}/shelve`,
+};
+export const AUTHOR_API = {
+  popularAuthors: () => `${BASE_URL}/popular/authors`,
+  getAllAuthors: () => `${BASE_URL}/authors`,
 };
 
-const categoriesURL = {
-  getAllCategories: `${BASE_URL}/category`,
-};
-
-const authorsURL = {
-  getAllAuthors: `${BASE_URL}/authors`,
-};
-
-const userCategoriesURL = {
+export const userCategoriesURL = {
   getAllCategories: `${BASE_URL}/users/categories`,
 };
 
-const userCategoryBooksURL = {
+export const userCategoryBooksURL = {
   getCategoryBooks: (categoryId) => `${BASE_URL}/users/categories/${categoryId}`,
 };
 
-export { booksURL, categoriesURL, authorsURL, userCategoriesURL, userCategoryBooksURL };
+export const userBooksURL = {
+  getBooks: (userId) => `${BASE_URL}/user/${userId}/books`, 
+};

@@ -3,25 +3,34 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { BookService } from "../../API/BookServices";
+import BookService from "../../API/bookServices";
 import { authContext } from "../../contexts/authContext";
 import { mySessionStorage } from "../../helper/LocalStorge";
 
-export default function ShelfComponent({ bookShelf="0", bookId }) {
+export default function ShelfComponent({
+  bookShelf = "0",
+  bookId,
+  callMeonUpdate,
+}) {
   const [shelf, setShelf] = React.useState(bookShelf);
   const authentication = useContext(authContext);
   const history = useHistory();
 
+  useEffect(() => {
+    setShelf(bookShelf);
+  }, [bookShelf]);
+
   const changeShelf = async (event, newValue) => {
     if (authentication.auth.authed) {
       setShelf(newValue.props.value);
-      BookService.shelve(
+      await BookService.shelve(
         mySessionStorage.getCurrentUser()._id,
         bookId,
         newValue.props.value
       );
+      callMeonUpdate();
     } else history.push("/login");
   };
 
@@ -32,18 +41,20 @@ export default function ShelfComponent({ bookShelf="0", bookId }) {
       borderRadius: "0.2rem",
       paddingLeft: "0.2rem",
       textAlign: "center",
-      fontSize: "0.8rem"
+      fontSize: "0.8rem",
     },
-    label:{
-        color: "#074829",
-        zIndex: 1
-    }
+    label: {
+      color: "#074829",
+      zIndex: 1,
+    },
   }));
   const classes = useStyles();
 
   return (
-    <FormControl >
-      <InputLabel className={classes.label} id="demo-mutiple-name-label">Shelf</InputLabel>
+    <FormControl>
+      <InputLabel className={classes.label} id="demo-mutiple-name-label">
+        Shelf
+      </InputLabel>
       <Select
         labelId="demo-mutiple-name-label"
         id="demo-simple-select"

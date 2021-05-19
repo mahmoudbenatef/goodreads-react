@@ -3,6 +3,7 @@ import axios from 'axios';
 import './addAuthor.css'
 import ErrorComponent from "../../reusableComponents/ErrorComponent";
 import UploadImage from '../shared/uploadImage'
+import { TrendingUpTwoTone } from "@material-ui/icons";
 // import { Redirect } from 'react-router-dom';
 
 function AddAuthor(props) {
@@ -10,15 +11,15 @@ function AddAuthor(props) {
     firstname : "", 
     lastname : "" , 
     dob : "" , 
+    description : "" , 
     avatar : '' , 
     role : "author"
   } : {
     id : props.myObject.id,
     firstname : props.myObject.firstname, 
     lastname : props.myObject.lastname , 
-    //  dob : props.myObject.DOB , 
+     description : props.myObject.description , 
     role : "author"
-    // selectedFile : ''
 
 
 
@@ -46,7 +47,9 @@ const errorMessages = {
   firstname:  'firstname is required and must be more than 2 characters',
   lastname:  'lastname is required and must be more than 2 characters',
   dob:  "date of birth is required",
-  avatar:  "you must upload avatar"
+  avatar:  "you must upload avatar" , 
+  description:  "you should enter the decription "
+
 }
 
 
@@ -57,6 +60,8 @@ const [isValid , setIs] = useState( props.label === "add" ?
     lastname:  false,
     dob:  false,
     avatar:  false,
+    description:  false,
+
 
 
 } : {
@@ -65,6 +70,8 @@ const [isValid , setIs] = useState( props.label === "add" ?
     lastname:  true,
     dob:  true,
     avatar:  true,
+    description:  true,
+
 
 
 
@@ -82,6 +89,9 @@ useEffect(() => {
 
   if (formData.lastname !== '' && formData.lastname.length > 2) {
     setIs({...isValid,  lastname :true })
+  }
+  if (formData.description !== '' && formData.description.length > 2 ) {
+    setIs({...isValid,  description :true })
   }
 
 
@@ -112,7 +122,7 @@ useEffect(() => {
       <form className="form row  align-items-center justify-content-center w-50 p-3 bg-light rounded-3">
       <div className=" justify-content-center ">
                   <div className="form-group  " >
-                  <label >FIRST NAME</label>
+                  <label >first name</label>
                   <input type="text" className="form-control"
                   value={formData.firstname}  
                   onChange={(event)=>{
@@ -133,6 +143,44 @@ useEffect(() => {
 <ErrorComponent > {errorMessages.firstname}</ErrorComponent> : ""
 
 }
+                    </div>
+                    <div className="form-group  " >
+                      <div>
+                      <label  className="m-6">description</label> 
+                      </div>
+
+                  {/* <input type="text" className="form-control"
+                  value={formData.description}  
+                  onChange={(event)=>{
+
+                      setFormData({...formData,description : event.target.value})
+
+                  }}
+                  
+                  placeholder="enter description of thr author"/> */}
+                  
+                  <textarea name="desc" 
+                      onChange={(event)=>{
+
+                        setFormData({...formData,description : event.target.value})
+  
+                    }}
+                  value={formData.description}
+                   placeholder="enter description of thr author"
+                   rows="4" cols="50"
+                   ></textarea>
+
+
+ { !isValid.description  &&  props.label == "add" ? 
+
+<ErrorComponent > {errorMessages.description}</ErrorComponent> : ""
+
+   } 
+{/* { formData.description.trim() === "" &&  props.label !== "add"  ? 
+
+<ErrorComponent > {errorMessages.description}</ErrorComponent> : ""
+
+}  */}
                     </div>
                     <div className="form-group " >
 
@@ -158,7 +206,7 @@ useEffect(() => {
 }
                   </div>
                   <div className="form-group " >
-                  <label >DATE OF BIRTH</label>
+                  <label >date of birth</label>
                   <input type="date"
                   value={formData.DOB}  
                   onChange={(event)=>{
@@ -177,7 +225,7 @@ useEffect(() => {
                 
                   <div> <UploadImage
                     uploadInput={(pickedFile ,isVlaidImg )=>{
-
+                    
                       console.log("pickedFile in props",pickedFile)
 
                       HandlerOfImage(pickedFile ,isVlaidImg)
@@ -200,7 +248,7 @@ useEffect(() => {
                 if ( isValid.firstname && isValid.lastname &&  isValid.dob  )
                 {
 
-                  console.log("mydata" , formData) 
+                  console.log("mydata with descripton " , formData) 
                   const mydata = new FormData() 
                   for (const [key, value] of Object.entries(formData)) {
                     mydata.append(key, value)
