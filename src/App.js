@@ -11,6 +11,7 @@ import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import AuthorsList from "./components/author/AuthorsList/AuthorsLIst";
+import AuthorDetails from "./components/author/authorDetails/AuthorDetails";
 import BookDetials from "./components/book/BookDetails";
 import LandingComponent from "./components/landingPage/landingComponent";
 import NavbarComponent from "./components/user/NavbarComponent";
@@ -53,11 +54,12 @@ function App(props) {
             <Route path="/register">
               <RegisterComponent />
             </Route>
-
-            <Route path="/authors">
+        
+            <Route exact path="/authors">
               <AuthorsList />
             </Route>
-
+            <Route path="/authors/:id">
+              <AuthorDetails />
             <Route exact path="/books/details">
               <BookDetials />
             </Route>
