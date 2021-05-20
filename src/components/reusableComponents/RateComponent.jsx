@@ -10,7 +10,7 @@ export default function RateComponent({
   userRating,
   bookId,
   size,
-  callMeonUpdate,
+  setReload,
 }) {
   const authentication = useContext(authContext);
   const history = useHistory();
@@ -24,7 +24,6 @@ export default function RateComponent({
         bookId,
         newValue
       );
-      callMeonUpdate();
       setRate(newValue);
     } else history.push("/login");
   };
@@ -37,16 +36,13 @@ export default function RateComponent({
   const classes = useStyles();
 
   return (
-    <>
-      <Rating
-        name="half-rating"
-        onChange={changeRate}
-        defaultValue={userRating}
-        value={rate}
-        precision={1.0}
-        size={size}
-        className={classes.rating}
-      />
-    </>
+    <Rating
+      name={bookId}
+      onChange={changeRate}
+      defaultValue={userRating}
+      precision={1.0}
+      size={size}
+      className={classes.rating}
+    />
   );
 }
