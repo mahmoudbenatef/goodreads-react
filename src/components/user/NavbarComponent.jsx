@@ -5,25 +5,22 @@ import { BASE_URL } from "../../API/urls";
 import logo from "../../assets/logo.png";
 import { authContext } from "../../contexts/authContext";
 import { mySessionStorage } from "../../helper/LocalStorge";
-
 export default function NavbarComponent() {
   const authentication = useContext(authContext);
   const history = useHistory();
+  const isAdmin = () => mySessionStorage.getCurrentUser().role === "admin";
   const logout = () => {
     mySessionStorage.removeCurrentUser();
     mySessionStorage.removeToken();
     authentication.setAuth({
-      authed: false
+      authed: false,
     });
     history.push("/");
   };
   return (
     <>
-      <nav
-        style={{ backgroundColor: "#e3f2fd" }}
-        className="navbar navbar-expand-lg navbar-light"
-      >
-        <Link className="navbar-brand" style={{ marginLeft: "1rem" }} to="/user">
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <Link className="navbar-brand" style={{ marginLeft: "1rem" }} to="/">
           <img src={logo} height="45" alt="" />
         </Link>
         <button
@@ -44,51 +41,67 @@ export default function NavbarComponent() {
         >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <Link className="nav-link" to="/user">
+              <Link className="nav-link" to="/">
                 Home
               </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" to="/categories">
+              <Link
+                className="nav-link"
+                to={isAdmin() ? "/admin/categories" : "/categories"}
+              >
                 Categories
               </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" to="/books">
+              <Link
+                className="nav-link"
+                to={isAdmin() ? "/admin/books" : "/books"}
+              >
                 Books
               </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" to="/authors">
+              <Link
+                className="nav-link"
+                to={isAdmin() ? "/admin/authors" : "/authors"}
+              >
                 Authors
               </Link>
             </li>
-
-            <form
-              className="form-inline my-2 my-lg-0"
-              style={{
-                marginRight: "1rem",
-                marginLeft: "1rem",
-                borderRadius: "3rem",
-              }}
-            >
-              <input
-                className="form-control mr-5"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                style={{ borderRadius: "2rem", width: "20rem" }}
-              />
-            </form>
+            {isAdmin() ? (
+              ""
+            ) : (
+              <form
+                className="form-inline my-2 my-lg-0"
+                style={{
+                  marginRight: "1rem",
+                  marginLeft: "1rem",
+                  borderRadius: "3rem",
+                }}
+              >
+                <input
+                  className="form-control mr-5"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  style={{ borderRadius: "2rem", width: "20rem" }}
+                />
+              </form>
+            )}
           </ul>
           <ul className="navbar-nav mr-auto">
-            <img
-              style={{ borderRadius: "2rem" }}
-              src={BASE_URL + "/" + mySessionStorage.getCurrentUser().avatar}
-              height="40"
-              width="40"
-              alt=""
-            />
+            {isAdmin() ? (
+              ""
+            ) : (
+              <img
+                style={{ borderRadius: "2rem" }}
+                src={BASE_URL + "/" + mySessionStorage.getCurrentUser().avatar}
+                height="40"
+                width="40"
+                alt=""
+              />
+            )}
             <li className="nav-item active nav-link">
               {mySessionStorage.getCurrentUser().firstname}{" "}
               {mySessionStorage.getCurrentUser().lastname}

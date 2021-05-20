@@ -14,9 +14,9 @@ export default function UserHomeComponent() {
     ) {
       history.push("/admin");
     }
-    if (authentication.auth.authed === false) {
-      history.push("/login");
-    }
+    // if (authentication.auth.authed === false) {
+    //   history.push("/login");
+    // }
   }, []);
   return (
     <>
@@ -27,7 +27,6 @@ export default function UserHomeComponent() {
           <BooksCardContainerComponent></BooksCardContainerComponent>
         </Route>
       </Switch>
-
     </>
   );
 }
