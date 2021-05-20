@@ -46,7 +46,7 @@ export default function BooksCardContainerComponent() {
                   <BookCardComponent
                     bookID={book._id}
                     key={book._id}
-                    rate={book.avgRating}
+                    // rate={book.avgRating}
                     image={BASE_URL + "/" + book.image}
                     bookName={book.name}
                     authorName={

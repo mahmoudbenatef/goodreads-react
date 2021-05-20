@@ -16,6 +16,10 @@ import CategoriesComponent from "./PopularCategoriesComponent";
 export default function LandingComponent({ parent = "login" }) {
   const authentication = useContext(authContext);
   const history = useHistory();
+  
+  useEffect(() => {
+    document.title = "Goodreads"
+  }, [])
 
   useEffect(() => {
     if (
@@ -40,12 +44,9 @@ export default function LandingComponent({ parent = "login" }) {
     },
     header: {
       backgroundImage: `url(${headerBg})`,
-      backgroundSize: "contain",
-      backgroundRepeat: "no-repeat",
-      width: "100%",
-      margin:"0",
-      height:"48.9rem"
-    },
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat"
+        },
     regHeader: {
       color:"black",
       textAlign:"center",

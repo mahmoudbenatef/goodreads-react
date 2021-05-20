@@ -14,9 +14,9 @@ export default function RateComponent({
 }) {
   const authentication = useContext(authContext);
   const history = useHistory();
-  const [rate, setRate] = useState(0);
+  const [rate, setRate] = useState(userRating);
 
-  useEffect(() => setRate(userRating), []);
+  useEffect(() => setRate(userRating), [userRating]);
   const changeRate = async (event, newValue) => {
     if (authentication.auth.authed) {
       await BookService.rate(
@@ -36,13 +36,15 @@ export default function RateComponent({
   const classes = useStyles();
 
   return (
+   <>    
     <Rating
       name={bookId}
       onChange={changeRate}
-      defaultValue={userRating}
+      value={rate}
       precision={1.0}
       size={size}
       className={classes.rating}
     />
+   </>
   );
 }

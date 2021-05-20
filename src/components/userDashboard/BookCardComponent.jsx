@@ -26,13 +26,12 @@ export default function BookCardComponent({
   bookName,
   authorName,
   image,
-  rate,
   bookID,
   handelOnClick,
   setUpdated,
 }) {
   const authentication = useContext(authContext);
-  const [shelf, setShelf] = useState(0);
+  const [review, setReview] = useState({rating: 0 , shelf:0});
   useEffect(() => {
     if (
       authentication.auth.authed === true &&
@@ -43,9 +42,10 @@ export default function BookCardComponent({
         .then((data) => {
           // console.log(data.data.data.shelf)
           if (data.data.data) {
-            setShelf(data.data.data.shelf);
+            console.log(data.data.data);
+            setReview(data.data.data);
           } else {
-            setShelf(0);
+            setReview(0);
           }
         })
         .catch();
@@ -74,7 +74,7 @@ export default function BookCardComponent({
           <div>
             <RateComponent
               bookId={bookID}
-              userRating={rate}
+              userRating={review.rating}
               size="small"
               callMeonUpdate={handleUpdated}
             ></RateComponent>
@@ -83,7 +83,7 @@ export default function BookCardComponent({
       </CardActionArea>
       <CardActions>
         <ShelfComponent
-          bookShelf={shelf}
+          bookShelf={review.shelf}
           callMeonUpdate={handleUpdated}
           bookId={bookID}
         ></ShelfComponent>
