@@ -83,7 +83,6 @@ export default function BookFormComponent({
       Object.entries(book).map(([key, value]) => {
         // assign the id only for author, and category if updated book
         if (
-          (updatedbook && key === "author") ||
           (updatedbook && key === "category")
         ) {
           return form.append(key, value._id);
