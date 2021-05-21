@@ -3,16 +3,16 @@ import {
   BrowserRouter as Router,
   Redirect,
   Route,
-  Switch,
+  Switch
 } from "react-router-dom";
 import { BASE_URL } from "./API/urls";
 import "./App.css";
-import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import AuthorDetails from "./components/author/authorDetails/AuthorDetails";
 import AuthorsList from "./components/author/AuthorsList/AuthorsLIst";
 import BookDetials from "./components/book/BookDetails";
+import FooterComponent from "./components/landingPage/FooterComponent";
 import LandingComponent from "./components/landingPage/landingComponent";
 import CategoryBooksComponent from "./components/user/category/CategoryBooksComponent";
 import ListCategoriesComponent from "./components/user/category/ListCategoriesComponent";
@@ -21,7 +21,6 @@ import UserHomeComponent from "./components/user/UserHomeComponent";
 import UserShelvesComponent from "./components/user/UserShelvesComponent";
 import BookCardContainerComponent from "./components/userDashboard/BooksCardContainerComponent.jsx";
 import { authContext } from "./contexts/authContext";
-
 function App(props) {
   const authentication = useContext(authContext);
   console.log(authentication);
@@ -75,7 +74,9 @@ function App(props) {
             </Route>
           </Switch>
         </div>
+        <FooterComponent></FooterComponent>
       </Router>
+
     </>
   );
 }
