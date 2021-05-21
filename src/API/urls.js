@@ -30,6 +30,7 @@ export const userBook = {
 export const AUTHOR_API = {
   popularAuthors: () => `${BASE_URL}/popular/authors`,
   getAllAuthors: () => `${BASE_URL}/authors`,
+  getBooks: (id,skip) => `${BASE_URL}/authors/${id}/books/${skip}`
 };
 
 export const userCategoriesURL = {

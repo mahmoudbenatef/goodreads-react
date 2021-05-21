@@ -53,13 +53,13 @@ export default function NavbarComponent() {
                 Categories
               </Link>
             </li>
+            { isAdmin() ? "":
             <li className="nav-item active">
               <Link className="nav-link" to="/shelves">
                 Shelves
               </Link>
-            </li>
+            </li>}
             <li className="nav-item active">
-              <Link className="nav-link" to="/books">
               <Link
                 className="nav-link"
                 to={isAdmin() ? "/admin/books" : "/books"}

@@ -8,7 +8,6 @@ import { authContext } from "../../contexts/authContext";
 import "../../styles/popular.css";
 import LoginComponent from "../auth/LoginComponent";
 import RegisterComponent from "../auth/RegisterComponent";
-import FooterComponent from "./FooterComponent";
 import AuthorsComponent from "./PopularAuthorsComponent";
 import BooksComponent from "./PopularBooksComponent";
 import CategoriesComponent from "./PopularCategoriesComponent";
@@ -16,6 +15,10 @@ import CategoriesComponent from "./PopularCategoriesComponent";
 export default function LandingComponent({ parent = "login" }) {
   const authentication = useContext(authContext);
   const history = useHistory();
+  
+  useEffect(() => {
+    document.title = "Goodreads"
+  }, [])
 
   useEffect(() => {
     if (
@@ -40,12 +43,9 @@ export default function LandingComponent({ parent = "login" }) {
     },
     header: {
       backgroundImage: `url(${headerBg})`,
-      backgroundSize: "contain",
-      backgroundRepeat: "no-repeat",
-      width: "100%",
-      margin:"0",
-      height:"48.9rem"
-    },
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat"
+        },
     regHeader: {
       color:"black",
       textAlign:"center",
@@ -86,7 +86,6 @@ export default function LandingComponent({ parent = "login" }) {
     <div style={{ backgroundColor: "white" , paddingBottom:"4rem"}}>
     <AuthorsComponent></AuthorsComponent>
     </div>
-    <FooterComponent></FooterComponent>
     </>
   );
 }

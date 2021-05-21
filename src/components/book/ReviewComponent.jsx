@@ -19,13 +19,13 @@ export default function ReviewComponent({
   return (
     <div className="row mt-2  ">
       <div className="col-2 col-sm-1">
-        <img src={`${BASE_URL}/${authorImg}`} alt="" />
+        <img style={{width:"4rem",height:"4rem",borderRadius:"50%"}} src={`${BASE_URL}/${authorImg}`} alt="" />
       </div>
       <div className="col">
         <span className="text-success"> {authorName}</span> rate it
         <Rate value={rating} />
         <div>
-          <span className="text-success">Shelfs:</span> {getShelfName(shelf)}
+          <span className="text-success">Shelf:</span> {getShelfName(shelf)}
         </div>
         <div>
           <p className="text-justify">{review}</p>

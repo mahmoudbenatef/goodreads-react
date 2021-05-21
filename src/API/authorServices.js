@@ -8,4 +8,7 @@ export default {
   getPopularAuthors() {
     return axios.get(AUTHOR_API.popularAuthors());
   },
+  getAuthorBooks(id,skip){
+    return axios.get(AUTHOR_API.getBooks(id,skip));
+  }
 };

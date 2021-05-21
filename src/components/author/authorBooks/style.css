@@ -1,0 +1,51 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.7fr 1fr 0.9fr 1.1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "avatar desc desc action"
+      ". . . ."
+      ". . . .";
+    margin-bottom: 1rem;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+  .avatar { grid-area: avatar; }
+  .desc { grid-area: desc; }
+  .action { grid-area: action; }
+
+  .avatar img{
+      width: 8vw;
+      height: 18vh;
+      border-radius: 0.6rem;
+  }
+
+  .myButton {
+	box-shadow: 0px 3px 3px 0px #5c575c;
+	background-color:#f55a49;
+	border-radius:31px;
+	border:1px solid #e35644;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:14px 31px;
+	text-decoration:none;
+	text-shadow:0px 0px 1px #ffffff;
+}
+.myButton:hover {
+	background-color:#e05d4e;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.wrapp{
+text-align: center;
+margin-bottom: 4rem;
+margin-top: 2rem;
+}

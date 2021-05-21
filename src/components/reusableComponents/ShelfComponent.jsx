@@ -13,6 +13,7 @@ export default function ShelfComponent({
   bookShelf = "0",
   bookId,
   setReload,
+  reload,
 }) {
   const [shelf, setShelf] = React.useState(bookShelf);
   const authentication = useContext(authContext);
@@ -30,7 +31,7 @@ export default function ShelfComponent({
         bookId,
         newValue.props.value
       );
-      setReload(true);
+      if (setReload) setReload(!reload);
     } else history.push("/login");
   };
 
