@@ -1,17 +1,24 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import BookService from "../../../API/bookServices";
 import { BASE_URL } from "../../../API/urls";
 import "./style.css";
 
 export default function SearchComponent() {
   const [books, setBooks] = useState([]);
+  const [searchValue,setSearchValue] = useState("");
   const search = (event) => {
+    setSearchValue(event.target.value);
     if (event.target.value == "") setBooks([]);
     else
       BookService.search(event.target.value,0).then((result) => {
         setBooks(result.data);
       });
   };
+  const reset = ()=>{
+    setSearchValue("");
+    setBooks([]);
+  }
   return (
     <>
       <div className="search-area">
@@ -28,6 +35,7 @@ export default function SearchComponent() {
             type="text"
             placeholder="Search"
             aria-label="Search"
+            value={searchValue}
             style={{ borderRadius: "2rem", width: "20rem" }}
             onChange={search}
             list="data"
@@ -37,12 +45,13 @@ export default function SearchComponent() {
             className="search-dropdown rounded  border border-1 p-2"
             tabIndex="0"
             style={{ display: books.length ? "block" : "none" }}
+            onClick={reset}
           >
             {books.map((value, index) => (
-              <a
+              <Link
                 key={value._id}
                 className="search-dropdown-content dropdown-item"
-                href="#"
+                to={"/book/" + value._id}
               >
                   <div class="image">
                     <img src={BASE_URL + "/" + value.image} />
@@ -53,7 +62,7 @@ export default function SearchComponent() {
                   <div class="author">
                     <p>by {value.author.firstname} {value.author.lastname}</p>
                   </div>
-              </a>
+              </Link>
             ))}
             <a
               className="dropdown-item view-all"

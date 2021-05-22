@@ -5,7 +5,7 @@ import { BASE_URL } from "../../API/urls";
 import logo from "../../assets/logo.png";
 import { authContext } from "../../contexts/authContext";
 import { mySessionStorage } from "../../helper/LocalStorge";
-import SearchComponent from "./Search/SearchComponent";
+import SearchDropdownComponent from "./Search/SearchDropdownComponent";
 export default function NavbarComponent() {
   const authentication = useContext(authContext);
   const history = useHistory();
@@ -79,7 +79,7 @@ export default function NavbarComponent() {
                 Authors
               </Link>
             </li>
-            {isAdmin() ? "" : <SearchComponent></SearchComponent>}
+            {isAdmin() ? "" : <SearchDropdownComponent></SearchDropdownComponent>}
           </ul>
           <ul className="navbar-nav mr-auto">
             {isAdmin() ? (
