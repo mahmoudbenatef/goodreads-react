@@ -167,7 +167,6 @@ export default function RegisterComponent({ parent }) {
           formData.append(key, value);
         }
         // ApiServices.register(formData)
-        console.log(formData);
         axios
           .post(API.register(), formData)
           .then(function (response) {

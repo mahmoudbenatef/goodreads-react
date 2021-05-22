@@ -21,7 +21,6 @@ const AuthorsList = (props)=>{
 
 
     const handlePagination = (event, pageNumber) => {
-        console.log("number",pageNumber )
         setPage(pageNumber - 1);
       };
     useEffect( ()=>{
@@ -35,7 +34,6 @@ const AuthorsList = (props)=>{
                     setLoading(false)
             })
     }  , [page])
-    console.log("test test ",authors )
 
     const mycards = loading? <LoadingComponent></LoadingComponent> :
       authors.map((value, index) => {

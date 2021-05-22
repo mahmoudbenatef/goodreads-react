@@ -25,7 +25,6 @@ export default function ListCategoriesComponent() {
       const userCategoriesData = await userCategoriesServices.userCategories();
       if (userCategoriesData.status === 200)
         setUserCategories(userCategoriesData.data);
-      console.log(userCategoriesData.data);
     };
     getCategories();
   }, []);

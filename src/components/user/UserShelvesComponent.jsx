@@ -24,7 +24,6 @@ export default function UserShelvesComponent() {
           7,
           filter
         );
-        console.log(userBooksData);
         if (userBooksData.status === 200) setUserBooks(userBooksData.data);
       } catch (error) {
         setUserBooks([]);

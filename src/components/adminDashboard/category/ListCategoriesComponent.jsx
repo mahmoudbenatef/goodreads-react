@@ -9,7 +9,6 @@ export default function ({ changeState }) {
   const catContext = useContext(categoryContext);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  console.log(page);
   const [deletedElement, setDeletedElement] = useState(null);
   useEffect(() => {
     if (deletedElement) {
@@ -26,7 +25,6 @@ export default function ({ changeState }) {
       .then((data) => {
         setCategories(data.data);
         setLoading(false);
-        console.log(data.data);
       })
       .catch();
   }, [catContext.newOneAdded, page]);

@@ -15,6 +15,7 @@ export const BOOK_API = {
   shelve: (bookId) => `${BASE_URL}/books/${bookId}/shelve`,
   popularBooks: () => `${BASE_URL}/popular/books`,
   books: () => `${BASE_URL}/books`,
+  search: (value) => `${BASE_URL}/search/${value}`
 };
 
 export const CATEGORY_API = {

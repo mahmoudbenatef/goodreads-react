@@ -21,7 +21,6 @@ export default function BooksCardContainerComponent() {
       if (booksResponse.status === 200) setBooks(booksResponse.data);
     };
     getAllData();
-    console.log("gettign all data");
   }, [page, updated]);
 
   // redirect to book details page
