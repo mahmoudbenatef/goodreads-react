@@ -64,12 +64,12 @@ export default function SearchComponent() {
                   </div>
               </Link>
             ))}
-            <a
+            <Link
               className="dropdown-item view-all"
-              href="#"
+              to={"/search/"+searchValue}
             >
               View All
-            </a>
+              </Link>
           </div>
         </form>
       </div>
