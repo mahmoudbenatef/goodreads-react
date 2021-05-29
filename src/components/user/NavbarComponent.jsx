@@ -5,6 +5,7 @@ import { BASE_URL } from "../../API/urls";
 import logo from "../../assets/logo.png";
 import { authContext } from "../../contexts/authContext";
 import { mySessionStorage } from "../../helper/LocalStorge";
+import SearchDropdownComponent from "./Search/SearchDropdownComponent";
 export default function NavbarComponent() {
   const authentication = useContext(authContext);
   const history = useHistory();
@@ -53,12 +54,15 @@ export default function NavbarComponent() {
                 Categories
               </Link>
             </li>
-            { isAdmin() ? "":
-            <li className="nav-item active">
-              <Link className="nav-link" to="/shelves">
-                Shelves
-              </Link>
-            </li>}
+            {isAdmin() ? (
+              ""
+            ) : (
+              <li className="nav-item active">
+                <Link className="nav-link" to="/shelves">
+                  Shelves
+                </Link>
+              </li>
+            )}
             <li className="nav-item active">
               <Link
                 className="nav-link"
@@ -75,26 +79,7 @@ export default function NavbarComponent() {
                 Authors
               </Link>
             </li>
-            {isAdmin() ? (
-              ""
-            ) : (
-              <form
-                className="form-inline my-2 my-lg-0"
-                style={{
-                  marginRight: "1rem",
-                  marginLeft: "1rem",
-                  borderRadius: "3rem",
-                }}
-              >
-                <input
-                  className="form-control mr-5"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                  style={{ borderRadius: "2rem", width: "20rem" }}
-                />
-              </form>
-            )}
+            {isAdmin() ? "" : <SearchDropdownComponent></SearchDropdownComponent>}
           </ul>
           <ul className="navbar-nav mr-auto">
             {isAdmin() ? (

@@ -43,4 +43,7 @@ export default {
   getPopularBooks() {
     return axios.get(BOOK_API.popularBooks());
   },
+  search(value,skip){
+    return axios.get(BOOK_API.search(value,skip));
+  }
 };

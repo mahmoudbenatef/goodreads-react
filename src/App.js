@@ -14,6 +14,7 @@ import AuthorsList from "./components/author/AuthorsList/AuthorsLIst";
 import BookDetials from "./components/book/BookDetails";
 import FooterComponent from "./components/landingPage/FooterComponent";
 import LandingComponent from "./components/landingPage/landingComponent";
+import SearchComponent from "./components/Search/SearchComponent";
 import CategoryBooksComponent from "./components/user/category/CategoryBooksComponent";
 import ListCategoriesComponent from "./components/user/category/ListCategoriesComponent";
 import NavbarComponent from "./components/user/NavbarComponent";
@@ -56,6 +57,9 @@ function App(props) {
             </Route>
             <Route path="/authors/:id">
               <AuthorDetails />
+            </Route>
+            <Route path="/search/:value">
+              <SearchComponent />
             </Route>
             <Route exact path="/books/details">
               <BookDetials />

@@ -1,0 +1,65 @@
+.search-area {
+    position: relative;
+    z-index: 1;
+
+}
+
+.search-dropdown {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 82%;
+    margin-left: 1rem;
+}
+.search-dropdown-content {
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr;
+    gap: 0 0;
+    grid-template-areas: "image name name" "image author author";
+    padding: 0.1rem;
+    border-bottom: 1px solid #D8D8D8;
+}
+
+.search-dropdown-content:hover {
+    background-color: #f7f5f5;
+    cursor: pointer;
+}
+
+.view-all {
+    text-align: center;
+    color: seagreen;
+}
+
+.view-all:hover {
+    background-color: #ffffff;
+    color: rgb(28, 95, 57);
+    cursor: pointer;
+    text-align: center;
+}
+
+#searchDropDown img {
+    width: 3rem;
+    height: 4rem;
+    border-radius: 0.3rem;
+}
+
+.image {
+    grid-area: image;
+}
+.name {
+    grid-area: name;
+    font-size: 0.9rem;
+}
+
+.name p{
+    margin: 0;
+}
+
+.author {
+    grid-area: author;
+    font-size: 0.7rem;
+}
+
+.author p{
+    margin: 0;
+}

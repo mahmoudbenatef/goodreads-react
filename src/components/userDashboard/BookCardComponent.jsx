@@ -40,9 +40,7 @@ export default function BookCardComponent({
       userBookService
         .getShelve(bookID, mySessionStorage.getCurrentUser()._id)
         .then((data) => {
-          // console.log(data.data.data.shelf)
           if (data.data.data) {
-            console.log(data.data.data);
             setReview(data.data.data);
           } else {
             setReview(0);

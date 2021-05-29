@@ -31,7 +31,6 @@ export default function BookDetails(props) {
   // get bookDetaisl
 
   useEffect(async () => {
-    console.log("getting the book");
     try {
       const { status, data } = await bookServices.getBookById(bookId);
       if (status === statusCode.Success) {
@@ -40,7 +39,6 @@ export default function BookDetails(props) {
         setLoading(false);
       }
     } catch (err) {
-      console.log(err.response);
       alert("somthing went wrong please try again later");
     }
   }, [updated]);

@@ -9,6 +9,5 @@ export  const validateAllInputs = (userErrors) => {
             }
             newErrors[key] = value
         }
-    // console.log(newErrors)
     return {valid: errors === 0, newErrors}
 }

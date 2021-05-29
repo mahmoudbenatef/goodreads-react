@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import {Route, Switch, useHistory, useRouteMatch, Link, useLocation, useParams} from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { BASE_URL } from "../../../API/urls";
 import { userCategoriesServices } from "../../../API/userCategoriesServices";
 import { authContext } from "../../../contexts/authContext";
