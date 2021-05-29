@@ -124,14 +124,14 @@ export default function UserShelvesComponent() {
                         />{" "}
                       </td>
                       <td
-                        onClick={() => handelBookDetails(userBook.book._id)}
+                        onClick={() => handelBookDetails(userBook.book?._id)}
                         style={{ cursor: "pointer" }}
                       >
-                        {userBook.book.name}
+                        {userBook.book?.name}
                       </td>
                       <td>
-                        <Link to={"/authors/" + userBook.book.author._id}>
-                          {userBook.book.author.lastname}
+                        <Link to={"/authors/" + userBook.book?.author._id}>
+                          {userBook.book?.author.lastname}
                         </Link>
                       </td>
                       <td>
