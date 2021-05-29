@@ -26,7 +26,7 @@ export default function BooksCardContainerComponent() {
   // redirect to book details page
   const handelBookDetails = (bookId) => () => {
     return histroy.push({
-      pathname: "books/details",
+      pathname: "/books/details",
       state: {
         bookId,
       },

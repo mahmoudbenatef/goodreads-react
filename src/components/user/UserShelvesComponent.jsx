@@ -1,6 +1,6 @@
 import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { BASE_URL } from "../../API/urls";
 import { UserBookServices } from "../../API/userBookservices";
 import { mySessionStorage } from "../../helper/LocalStorge";
@@ -32,10 +32,19 @@ export default function UserShelvesComponent() {
     getBooks();
   }, [filter, reload]);
 
+  const handelBookDetails = (bookId) => {
+    return history.push({
+      pathname: "books/details",
+      state: {
+        bookId,
+      },
+    });
+  };
+
   return (
     <>
       {userBooks.length === 0 ? (
-        <div className="text-center m-5">
+        <div className="text-center mb-5 mt-5">
           <h1>No books yet!</h1>
           <button className="btn btn-success m-5" onClick={() => setFilter(0)}>
             {" "}
@@ -43,7 +52,7 @@ export default function UserShelvesComponent() {
           </button>
           <button
             className="btn btn-primary m-5"
-            onClick={() => history.push("/user/books")}
+            onClick={() => history.push("/books")}
           >
             {" "}
             All Available Books
@@ -114,8 +123,17 @@ export default function UserShelvesComponent() {
                           alt="Book"
                         />{" "}
                       </td>
-                      <td>{userBook.book.name}</td>
-                      <td>{userBook.book.author.lastname}</td>
+                      <td
+                        onClick={() => handelBookDetails(userBook.book._id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {userBook.book.name}
+                      </td>
+                      <td>
+                        <Link to={"/authors/" + userBook.book.author._id}>
+                          {userBook.book.author.lastname}
+                        </Link>
+                      </td>
                       <td>
                         <Rating
                           name="read-only"

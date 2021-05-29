@@ -8,17 +8,6 @@ export default function ListCategoriesComponent() {
   const [userCategories, setUserCategories] = useState([]);
   const authentication = useContext(authContext);
   const history = useHistory();
-  useEffect(() => {
-    if (
-      authentication.auth.authed === true &&
-      authentication.auth.role === "admin"
-    ) {
-      history.push("/admin");
-    }
-    if (authentication.auth.authed === false) {
-      history.push("/login");
-    }
-  }, []);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -69,7 +58,7 @@ export default function ListCategoriesComponent() {
                   variant="outlined"
                 >
                   <Link
-                  className={classes.label}
+                    className={classes.label}
                     to={{
                       pathname: `/categories/${category._id}`,
                       state: {

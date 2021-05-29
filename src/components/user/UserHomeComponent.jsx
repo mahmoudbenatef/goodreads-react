@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import {Route, Switch, useHistory, useRouteMatch} from "react-router-dom";
+import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
 import BooksCardContainerComponent from "../userDashboard/BooksCardContainerComponent";
 import { UserBookServices } from "../../API/userBookservices";
 import { mySessionStorage } from "../../helper/LocalStorge";
 import { BASE_URL } from "../../API/urls";
 import Rating from "@material-ui/lab/Rating";
-import UserShelvesComponent from './UserShelvesComponent';
+import UserShelvesComponent from "./UserShelvesComponent";
 import ListCategoriesComponent from "../adminDashboard/category/ListCategoriesComponent";
 import CategoryBooksComponent from "./category/CategoryBooksComponent";
 
@@ -29,12 +29,7 @@ export default function UserHomeComponent() {
 
   return (
     <>
-      <Switch>
-        <Route key={1} path={`${path}/books`}>
-          <BooksCardContainerComponent></BooksCardContainerComponent>
-        </Route>
-        
-      </Switch>
+      <UserShelvesComponent />
     </>
   );
 }
