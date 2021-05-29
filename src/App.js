@@ -19,7 +19,6 @@ import CategoryBooksComponent from "./components/user/category/CategoryBooksComp
 import ListCategoriesComponent from "./components/user/category/ListCategoriesComponent";
 import NavbarComponent from "./components/user/NavbarComponent";
 import UserHomeComponent from "./components/user/UserHomeComponent";
-import UserShelvesComponent from "./components/user/UserShelvesComponent";
 import BookCardContainerComponent from "./components/userDashboard/BooksCardContainerComponent.jsx";
 import { authContext } from "./contexts/authContext";
 function App(props) {

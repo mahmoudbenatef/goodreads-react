@@ -73,9 +73,8 @@ export default function AdminBooksComponent() {
 
   // editt old book
   const editBook = async (updatedBook) => {
-
     const updatedBookId = updatedBook.get("_id");
-    const kaoud = updatedBook.get("author"); 
+    const kaoud = updatedBook.get("author");
 
     const response = await bookServiece.editBook(updatedBookId, updatedBook);
     // in case there is a server problem
@@ -112,7 +111,7 @@ export default function AdminBooksComponent() {
   };
   return (
     <>
-      <h1 style={{textAlign:"center",marginTop:"3rem"}}> Books </h1>
+      <h1 style={{ textAlign: "center", marginTop: "3rem" }}> Books </h1>
       {loading ? (
         <LoadingCompoenet />
       ) : (
