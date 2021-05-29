@@ -40,7 +40,7 @@ export default function Books() {
 
   const handelBookDetails = (bookId) => {
     return history.push({
-      pathname: "books/details",
+      pathname: "/books/details",
       state: {
         bookId,
       },
@@ -61,10 +61,10 @@ export default function Books() {
                     <div className="book-card__book">
                       <div className="book-card__book-front">
                         <img
-                          onClick={() => handelBookDetails(value.book._id)}
+                          onClick={() => handelBookDetails(value.book?._id)}
                           style={{ cursor: "pointer" }}
                           className="book-card__img"
-                          src={BASE_URL + "/" + value.book.image}
+                          src={BASE_URL + "/" + value.book?.image}
                         />
                       </div>
                       <div className="book-card__book-back"></div>
@@ -72,7 +72,7 @@ export default function Books() {
                     </div>
                   </div>
                   <div>
-                    <div className="book-card__title">{value.book.name}</div>
+                    <div className="book-card__title">{value.book?.name}</div>
                     <p
                       style={{
                         margin: 0,
@@ -80,22 +80,22 @@ export default function Books() {
                         textAlign: "center",
                       }}
                     >
-                      {value.book.category.label}
+                      {value.book?.category.label}
                     </p>
                     <div className="book-card__author"></div>
                     <Link
                       className={classes.label}
-                      to={"/authors/" + value.book.author._id}
+                      to={"/authors/" + value.book?.author._id}
                     >
                       <p style={{ margin: 0 }}>
-                        by {value.book.author.firstname}
-                        {value.book.author.lastname}
+                        by {value.book?.author.firstname}
+                        {value.book?.author.lastname}
                       </p>
                     </Link>
                     <div style={{ justifyContent: "center", display: "flex" }}>
                       <Rating
                         name="read-only"
-                        value={value.book.avgRating}
+                        value={value.book?.avgRating}
                         precision={0.2}
                         size="small"
                         readOnly
