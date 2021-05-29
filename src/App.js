@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Redirect,
   Route,
-  Switch
+  Switch,
 } from "react-router-dom";
 import { BASE_URL } from "./API/urls";
 import "./App.css";
@@ -73,14 +73,10 @@ function App(props) {
             <Route path="/categories/:id">
               <CategoryBooksComponent />
             </Route>
-            <Route key={2} path="/shelves">
-              <UserShelvesComponent></UserShelvesComponent>
-            </Route>
           </Switch>
         </div>
         <FooterComponent></FooterComponent>
       </Router>
-
     </>
   );
 }

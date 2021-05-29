@@ -54,15 +54,6 @@ export default function NavbarComponent() {
                 Categories
               </Link>
             </li>
-            {isAdmin() ? (
-              ""
-            ) : (
-              <li className="nav-item active">
-                <Link className="nav-link" to="/shelves">
-                  Shelves
-                </Link>
-              </li>
-            )}
             <li className="nav-item active">
               <Link
                 className="nav-link"
@@ -79,7 +70,11 @@ export default function NavbarComponent() {
                 Authors
               </Link>
             </li>
-            {isAdmin() ? "" : <SearchDropdownComponent></SearchDropdownComponent>}
+            {isAdmin() ? (
+              ""
+            ) : (
+              <SearchDropdownComponent></SearchDropdownComponent>
+            )}
           </ul>
           <ul className="navbar-nav mr-auto">
             {isAdmin() ? (
