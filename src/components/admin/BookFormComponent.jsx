@@ -80,13 +80,7 @@ export default function BookFormComponent({
 
       // use form data object to carry the file input
       const form = new FormData();
-      Object.entries(book).map(([key, value]) => {
-        // assign the id only for author, and category if updated book
-        if (
-          (updatedbook && key === "category")
-        ) {
-          return form.append(key, value._id);
-        }
+      Object.entries(book).forEach(([key, value]) => {
         return form.append(key, value);
       });
 
@@ -179,11 +173,7 @@ export default function BookFormComponent({
             >
               <option></option>
               {authors.map((auth) => (
-                <option
-                  selected={book.author.firstname === auth.firstname}
-                  value={auth._id}
-                  key={auth._id}
-                >
+                <option value={auth._id} key={auth._id}>
                   {auth.firstname} {book.author.firstname === auth.firstname}
                 </option>
               ))}
@@ -208,11 +198,7 @@ export default function BookFormComponent({
             <option></option>
 
             {categories.map((cat) => (
-              <option
-                selected={book.category.label === cat.label}
-                value={cat._id}
-                key={cat._id}
-              >
+              <option value={cat._id} key={cat._id}>
                 {cat.label}
               </option>
             ))}

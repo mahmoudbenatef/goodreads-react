@@ -59,13 +59,21 @@ export default function BookDetails(props) {
         newReview
       );
       if (status === statusCode.Success) {
+        // reset the review text input
         setNewReview("");
+        // get the updated book again
         setUpdated([]);
       }
     } catch (error) {
       alert("Sorry somthing went wrong please try again later");
       console.log(error.message, error.response);
     }
+  };
+
+  // delete review
+  const handelDeleteReview = (reviewId) => async () => {
+    const { status } = await bookServices.deleteReview(reviewId, bookId);
+    if (status === statusCode.Success) setUpdated([]); // get updated book again
   };
   return (
     <>
@@ -116,16 +124,21 @@ export default function BookDetails(props) {
                 </button>
               </div>
             </div>
-            {reviews.map((review) => (
-              <ReviewComponent
-                key={review._id}
-                authorImg={review.user.avatar}
-                authorName={getFullName(review.user)}
-                rating={review.rating}
-                review={review.review}
-                shelf={review.shelf}
-              />
-            ))}
+            {reviews.map(
+              (review) =>
+                review.review && (
+                  <ReviewComponent
+                    key={review._id}
+                    authorImg={review.user.avatar}
+                    authorName={getFullName(review.user)}
+                    rating={review.rating}
+                    review={review.review}
+                    shelf={review.shelf}
+                    authorId={review.user._id}
+                    handelDeleteReview={handelDeleteReview(review._id)}
+                  />
+                )
+            )}
           </div>
         </div>
       )}

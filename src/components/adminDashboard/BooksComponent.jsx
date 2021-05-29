@@ -144,6 +144,7 @@ export default function AdminBooksComponent() {
                   <td>
                     <BookFormComponent
                       updatedbook={book}
+                      key={book._id}
                       buttonTitle="Edit"
                       buttonIcon={<EditIcon fontSize="small" />}
                       buttonClassName="btn btn-warning btn-sm"

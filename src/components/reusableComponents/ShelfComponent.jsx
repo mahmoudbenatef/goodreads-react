@@ -14,6 +14,7 @@ export default function ShelfComponent({
   bookId,
   setReload,
   reload,
+  callMeonUpdate,
 }) {
   const [shelf, setShelf] = React.useState(bookShelf);
   const authentication = useContext(authContext);
@@ -25,6 +26,8 @@ export default function ShelfComponent({
 
   const changeShelf = async (event, newValue) => {
     if (authentication.auth.authed) {
+      // update the state of the book details, to see the new shelf
+      callMeonUpdate();
       setShelf(newValue.props.value);
       await BookService.shelve(
         mySessionStorage.getCurrentUser()._id,

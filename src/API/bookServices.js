@@ -37,13 +37,16 @@ export default {
       review,
     });
   },
+  deleteReview(reviewId, bookId) {
+    return axios.delete(BOOK_API.review(bookId), { data: { reviewId } });
+  },
   shelve(userId, bookId, shelf) {
     return axios.post(BOOK_API.shelve(bookId), { user: userId, shelf: shelf });
   },
   getPopularBooks() {
     return axios.get(BOOK_API.popularBooks());
   },
-  search(value,skip){
-    return axios.get(BOOK_API.search(value,skip));
-  }
+  search(value, skip) {
+    return axios.get(BOOK_API.search(value, skip));
+  },
 };

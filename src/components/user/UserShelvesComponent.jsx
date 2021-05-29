@@ -119,39 +119,39 @@ export default function UserShelvesComponent() {
                         <img
                           width="150px"
                           className="img-fluid"
-                          src={BASE_URL + "/" + userBook.book.image}
+                          src={BASE_URL + "/" + userBook.book?.image}
                           alt="Book"
                         />{" "}
                       </td>
                       <td
-                        onClick={() => handelBookDetails(userBook.book._id)}
+                        onClick={() => handelBookDetails(userBook.book?._id)}
                         style={{ cursor: "pointer" }}
                       >
-                        {userBook.book.name}
+                        {userBook.book?.name}
                       </td>
                       <td>
-                        <Link to={"/authors/" + userBook.book.author._id}>
-                          {userBook.book.author.lastname}
+                        <Link to={"/authors/" + userBook.book?.author._id}>
+                          {userBook.book?.author.lastname}
                         </Link>
                       </td>
                       <td>
                         <Rating
                           name="read-only"
-                          value={userBook.book.avgRating}
+                          value={userBook.book?.avgRating}
                           readOnly
                           size="small"
                         />
                       </td>
                       <td>
                         <RateComponent
-                          bookId={userBook.book._id}
+                          bookId={userBook.book?._id}
                           userRating={userBook.rating}
                           size="small"
                         ></RateComponent>
                       </td>
                       <td>
                         <ShelfComponent
-                          bookId={userBook.book._id}
+                          bookId={userBook.book?._id}
                           bookShelf={userBook.shelf}
                           setReload={setReload}
                           reload={reload}
