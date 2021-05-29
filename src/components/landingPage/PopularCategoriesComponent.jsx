@@ -6,11 +6,14 @@ import CategoryService from "../../API/categoryServices";
 import LoadingComponent from "../reusableComponents/LoadingComponent";
 
 export default function Categories() {
-  const [categories , setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-        CategoryService.getPopular().then((cat)=>{setCategories(cat.data);setLoading(false);});
+    CategoryService.getPopular().then((cat) => {
+      setCategories(cat.data);
+      setLoading(false);
+    });
   }, []);
 
   const useStyles = makeStyles((theme) => ({
@@ -33,7 +36,7 @@ export default function Categories() {
       fontSize: "2rem",
       textDecoration: "none",
       color: "black",
-      fontSize : "1.5rem",
+      fontSize: "1.5rem",
       "&:hover": {
         color: "#ac5d59",
       },
@@ -44,21 +47,34 @@ export default function Categories() {
   return (
     <div style={{ paddingTop: "4.0rem" }}>
       <h1 style={{ textAlign: "center" }}>Explore our Categories</h1>
-      {loading? <LoadingComponent></LoadingComponent> :
-      <div className={classes.flex}>
-        {categories.map((value, index) => {
-          return (
-            <div className={classes.category} key={index}>
-              <Button style={{padding: "1rem" , width: "15rem"}} variant="outlined" >
-                <Link className={classes.label} to={"/categoty/"+value.category._id}>
-                  {value.category.label}
-                </Link>
-              </Button>
-            </div>
-          );
-        })}
-      </div>
-}
+      {loading ? (
+        <LoadingComponent></LoadingComponent>
+      ) : (
+        <div className={classes.flex}>
+          {categories.map((value, index) => {
+            return (
+              <div className={classes.category} key={index}>
+                <Button
+                  style={{ padding: "1rem", width: "15rem" }}
+                  variant="outlined"
+                >
+                  <Link
+                    className={classes.label}
+                    to={{
+                      pathname: `/categories/${value.category._id}`,
+                      state: {
+                        title: value.category.label,
+                      },
+                    }}
+                  >
+                    {value.category.label}
+                  </Link>
+                </Button>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

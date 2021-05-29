@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { BASE_URL } from "./API/urls";
 import "./App.css";
+import AdminHomeComponent from "./components/admin/AdminHomeComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import AuthorDetails from "./components/author/authorDetails/AuthorDetails";
@@ -72,6 +73,9 @@ function App(props) {
             </Route>
             <Route path="/categories/:id">
               <CategoryBooksComponent />
+            </Route>
+            <Route path="/admin/">
+              <AdminHomeComponent />
             </Route>
           </Switch>
         </div>
