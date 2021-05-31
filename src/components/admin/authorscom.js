@@ -65,7 +65,7 @@ function Author(props) {
                            </button> 
                     </div>
          <table className="table table-striped">
-             <thead>
+             { authors ? <thead>
                  <tr>
                  <td>#</td>
                 <td>image</td>
@@ -74,7 +74,7 @@ function Author(props) {
                 <td>date of birth</td>
                 <td>actions</td>
                  </tr>
-             </thead>
+             </thead> : <thead></thead> }
              <tbody>
              {
 
@@ -100,9 +100,7 @@ function Author(props) {
                                      </td>
                             <td  className="pt-5">{item.firstname}</td>
                             <td  className="pt-5">{item.lastname}</td>
-                            <td  className="pt-5">
-                                { datestring}</td>
-                            <td>
+                            <td  className="pt-5">{datestring}</td><td>
                                 <button 
                                 onClick={()=>{ 
                                     console.log("item",item)
@@ -124,11 +122,11 @@ function Author(props) {
                         </tr>
                      ) ; 
                  })
-            : "" }
+            : <tr></tr> }
              </tbody>
          </table>
      </div>
-    <div className="row" >
+   { authors ? <div className="row" >
                 <div className=" container  " 
                         style={{
                                 display: "flex", 
@@ -141,7 +139,7 @@ function Author(props) {
                       onChange={handlePagination}
                  />
              </div>
-    </div>
+    </div> : <h1 style={{color: "red" }} > Sorry ... no data found</h1> }
 
 
     </div>  

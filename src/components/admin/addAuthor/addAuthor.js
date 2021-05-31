@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import ErrorComponent from "../../reusableComponents/ErrorComponent";
 import UploadImage from "../shared/uploadImage";
 import "./addAuthor.css";
-// import { Redirect } from 'react-router-dom';
 
 function AddAuthor(props) {
   const [formData, setFormData] = useState(
@@ -21,6 +20,9 @@ function AddAuthor(props) {
           firstname: props.myObject.firstname,
           lastname: props.myObject.lastname,
           description: props.myObject.description,
+          dob: props.myObject.dob,
+           avatar: props.myObject.avatar,
+
           role: "author",
         }
   );
@@ -60,29 +62,30 @@ function AddAuthor(props) {
           description: true,
         }
   );
+
   useEffect(() => {
-    if (formData.firstname !== "" && formData.firstname.length > 2) {
+    if (formData.firstname !== "" && formData.firstname.length > 2 && isValid.firstname === false) {
       setIs({ ...isValid, firstname: true });
     }
 
-    if (formData.lastname !== "" && formData.lastname.length > 2) {
+    if (formData.lastname !== "" && formData.lastname.length > 2  && isValid.lastname === false ) {
       setIs({ ...isValid, lastname: true });
     }
-    if (formData.description !== "" && formData.description.length > 2) {
+    if (formData.description !== "" && formData.description.length > 2 && isValid.description === false) {
       setIs({ ...isValid, description: true });
     }
 
-    if (formData.dob !== "" && props.label === "add") {
+    if (formData.dob !== "" && props.label === "add"  && isValid.dob === false) {
       setIs({ ...isValid, dob: true });
     }
-    if (props.label !== "add") {
+    if (props.label !== "add" ) {
       setIs({ ...isValid, dob: true });
     }
 
-    if (formData.avatar !== "" && props.label === "add") {
+    if (formData.avatar !== "" && props.label === "add"  && isValid.avatar === false) {
       setIs({ ...isValid, avatar: true });
     }
-    if (props.label !== "add") {
+    if (props.label !== "add" ) {
       setIs({ ...isValid, avatar: true });
     }
   }, [formData]);
@@ -114,43 +117,7 @@ function AddAuthor(props) {
               ""
             )}
           </div>
-          <div className="form-group  ">
-            <div>
-              <label className="m-6">description</label>
-            </div>
 
-            {/* <input type="text" className="form-control"
-                  value={formData.description}  
-                  onChange={(event)=>{
-
-                      setFormData({...formData,description : event.target.value})
-
-                  }}
-                  
-                  placeholder="enter description of thr author"/> */}
-
-            <textarea
-              name="desc"
-              onChange={(event) => {
-                setFormData({ ...formData, description: event.target.value });
-              }}
-              value={formData.description}
-              placeholder="enter description of thr author"
-              rows="4"
-              cols="50"
-            ></textarea>
-
-            {!isValid.description && props.label == "add" ? (
-              <ErrorComponent> {errorMessages.description}</ErrorComponent>
-            ) : (
-              ""
-            )}
-            {/* { formData.description.trim() === "" &&  props.label !== "add"  ? 
-
-<ErrorComponent > {errorMessages.description}</ErrorComponent> : ""
-
-}  */}
-          </div>
           <div className="form-group ">
             <label>last name</label>
             <input
@@ -174,6 +141,31 @@ function AddAuthor(props) {
               ""
             )}
           </div>
+          <div className="form-group  ">
+            <div>
+              <label className="m-6">description</label>
+            </div>
+
+
+            <textarea
+              name="desc"
+              onChange={(event) => {
+                setFormData({ ...formData, description: event.target.value });
+              }}
+              value={formData.description}
+              placeholder="enter description of thr author"
+              rows="4"
+              cols="50"
+            ></textarea>
+
+            {!isValid.description && props.label == "add" ? (
+              <ErrorComponent> {errorMessages.description}</ErrorComponent>
+            ) : (
+              ""
+            )}
+   
+          </div>
+          
           <div className="form-group ">
             <label>date of birth</label>
             <input
@@ -227,10 +219,9 @@ function AddAuthor(props) {
                   .then((response) => {
                     console.log("item added successfully");
                     props.clicked("author");
-                    // return <Redirect to='/' />
                   });
               } else {
-                console.log("item mydata ", formData);
+                console.log("updateed data ", formData);
 
                 axios
                   .patch(
@@ -240,7 +231,6 @@ function AddAuthor(props) {
                   .then((response) => {
                     console.log("item updated  successfully");
                     props.clicked("author");
-                    // return <Redirect to='/' />
                   });
               }
             }
